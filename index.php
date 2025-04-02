@@ -1,9 +1,11 @@
 <html>
     <head>
     <title>Online Shop</title>
-    
+    <meta iconv="icon" href="favicon.ico" type="image/x-icon">
     </head>
     <body>
+        <nav></nav>
         <h1>Hello World</h1>
+        <footer>Impressum...</footer>
     </body>
 </html>

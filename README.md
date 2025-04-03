@@ -1,3 +1,9 @@
 # Webapp_projekt_wa2
 
-https://prod.liveshare.vsengsaas.visualstudio.com/join?692AA1509FEE1950801E4D6979C5E8D1378A
+Die folgende App ist für ein Projekt im Rahmen unser Web_App Vorlesung.
+
+## Aufbau
+
+Diese App läuft in einer xampp.
+Unser Backend läuft auf PHP, Frontend mit HTML, CSS, jQuery und Ajax.
+Unser datenbank ist eine SQL Datenbank und läuft ebenfalls in XAMPP

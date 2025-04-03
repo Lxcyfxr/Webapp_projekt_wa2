@@ -2,16 +2,29 @@
   <head>
     <title>Online Shop</title>
     <meta iconv="icon" href="favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="nav_bar.css" />
   </head>
   <body>
-    <nav>
-      <div>Home</div><div>Herren</div><div>Damen</div><div>Login</div>
-    </nav>
-    <h1>Hello World</h1>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a>Herren</a></li>
+      <!--Keine Weiterleitung zu einer anderen Seite! Eher Filtereinstellung für die Kleiderübersicht-->
+      <li><a>Damen</a></li>
+      <!--Keine Weiterleitung zu einer anderen Seite! Eher Filtereinstellung für die Kleiderübersicht-->
+      <li style="float: right"><a class="active" href="">Login</a></li>
+      <!--Login/Profil-->
+      <li style="float: right"><a href="contact.html">Kontakt</a></li>
+    </ul>
+  </body>
+  <body>
+    <h1 style="padding-top: 3%">Home Seite</h1>
     <footer>
-      <p>Impressum</p>
-      <p>DHBW Mannnnnnheim</p>
-      <p>Coblitzallee</p>
+      Platz für aktuelle Angebote, Rabatte, Aktionen. Hier sollen auch
+      Neuerscheinungen und Bestseller angezeigt werden
     </footer>
+    <!-- jquery einbindung -->
+    <script src="jquery-3.7.1.min.js"></script>
+    <!-- Scriptdatei -->
+    <scripts src="javascript.js"></scripts>
   </body>
 </html>

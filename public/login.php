@@ -4,19 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <link rel="stylesheet" href="nav_bar.css">
 </head>
-<body>
-<ul>
-      <li><a href="index.html"> <img src="pictures/zuhause.png" width="20" height="20"></a></li>
-      <li><a>Herren</a></li>
-      <!--Keine Weiterleitung zu einer anderen Seite! Eher Filtereinstellung für die Kleiderübersicht-->
-      <li><a>Damen</a></li>
-      <!--Keine Weiterleitung zu einer anderen Seite! Eher Filtereinstellung für die Kleiderübersicht-->
-      <li style="float: right"><a class="active" href="login.php">Login</a></li>
-      <!--Login/Profil-->
-      <li style="float: right"><a href="contact.html">Kontakt</a></li>
-    </ul>
+<body style="background: #333; color: white;padding-top:3%">
+    <?php include 'navbar.html'; ?>
     <form action="Post">
         <label for="username">Username:</label><br>
         <input type="text" id="username" name="username"><br><br>

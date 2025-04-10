@@ -1,4 +1,4 @@
-<?php
+<--?php
     require("connection.php");
 
 
@@ -33,7 +33,7 @@
             $stmt->bindParam(":username", $username);
             $stmt->bindParam(":email", $email);
             $stmt->bindParam(":password", $password);
-            stmt->execute();
+            $stmt->execute();
 
         }
     }
@@ -52,7 +52,7 @@
         <input type="text" id="username" name="username"><br><br>
         <label for="password">Password:</label><br>
         <input type="password" id="password" name="password"><br><br>
-        <input type="submit" value="Login" name="submit>
+        <input type="submit" value="Login" name="submit">
     </form>
 </body>
 </html>

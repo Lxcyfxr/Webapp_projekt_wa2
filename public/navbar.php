@@ -13,9 +13,9 @@
   <body>
     <ul class="navbar">
       <li class="navbar"><a href="index.php"><img src="pictures/zuhause.png" width="15" height="15"></a></li>
-      <li class="navbar"><a href="shopsite.php">Buben</a></li>
-      <li class="navbar"><a href="shopsite.php">Weiber</a></li>
-      <li class="navbar"><a href="shopsite.php">Kinnas</a></li>
+      <li class="navbar"><a href="shopsite.php">Produkte</a></li>
+      <li class="navbar"><a href="shopsite.php?gender=MALE">Männer</a></li>
+      <li class="navbar"><a href="shopsite.php?gender=FEMALE">Frauen</a></li>
       <li class="navbar" style="float: right">
         <?php if (isset($_SESSION["username"])): ?>
           <!-- Bild anzeigen wenn eingeloggt -->

@@ -4,7 +4,7 @@
     <title>Online Shop</title>
     <meta iconv="icon" href="favicon.ico" type="image/x-icon" />
   </head>
-  <body style="background: #333; color: white">
+  <body style="background: #141b27; color: white">
     <?php include 'navbar.php'; ?>
     <h1 style="padding-top: 3%">Kontaktseite</h1>
     <footer>Impressum, Kontaktformular, ...</footer>

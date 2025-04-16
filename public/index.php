@@ -8,6 +8,7 @@
   <body style="background: #333; color: white">
     <?php include 'navbar.html'; ?>
     <h1 style="padding-top: 3%">Home Seite</h1>
+    <img src="/public/pictures/Logo_Stylung.png" alt="">
     <footer>
       Platz für aktuelle Angebote, Rabatte, Aktionen. Hier sollen auch
       Neuerscheinungen und Bestseller angezeigt werden

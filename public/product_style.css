@@ -1,0 +1,29 @@
+.product-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  .product-box {
+    background: #444;
+    color: white;
+    border-radius: 8px;
+    padding: 15px;
+    width: 200px;
+    height: 300px; /* Einheitliche Höhe */
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end; /* Inhalt an das untere Ende verschieben */
+  }
+  .product-box img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+    margin-bottom: auto; /* Bild bleibt oben */
+  }
+  .product-box h3, .product-box p {
+    margin: 5px 0;
+  }

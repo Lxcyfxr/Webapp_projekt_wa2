@@ -1,10 +1,11 @@
 <?php
 
 
-$dsn ='mysql:dbname=userdb;host=localhost';
+$dsn ='localhost';
 $username = 'root';
 $password = '';
+$dbname = "userdb";
 
-$con = new PDO($dsn, $username, $password);
+$con = new mysqli($dsn, $username, $password, $dbname);
 
 ?>

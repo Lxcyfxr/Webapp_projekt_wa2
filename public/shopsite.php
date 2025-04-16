@@ -19,7 +19,7 @@
           });
           $(document).ready(function() {
             $.ajax({
-              url: '../backend.php',
+              url: 'backend.php',
               method: 'GET',
               dataType: 'json',
               success: function(data) {

@@ -68,8 +68,10 @@
         <label for="password">Password:</label><br>
         <input type="password" id="password" name="password" required><br><br>
         <input type="submit" value="Login" name="submit">
+    
     </form>
-
+    <a href="register.php">Register</a></li>
+    
     <!-- Logout Button -->
     <?php if (isset($_SESSION["username"])): ?>
         <form action="login.php" method="POST" style="margin-top: 20px;">

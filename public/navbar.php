@@ -1,5 +1,8 @@
 <?php
-  session_start(); // Start the session to check if the user is logged in
+  // Start the session only if it hasn't been started already
+  if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 ?>
 <html>
   <head>

@@ -6,7 +6,7 @@
     <script src="jquery-3.7.1.min.js"></script>
   </head>
   <body style="background: #333; color: white">
-    <?php include 'navbar.html'; ?>
+    <?php include 'navbar.php'; ?>
     <h1 style="padding-top: 3%">Home Seite</h1>
     <footer>
       Platz für aktuelle Angebote, Rabatte, Aktionen. Hier sollen auch

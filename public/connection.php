@@ -4,7 +4,7 @@
 $dsn ='localhost';
 $username = 'root';
 $password = '';
-$dbname = "userdb";
+$dbname = "webapp_project";
 
 $con = new mysqli($dsn, $username, $password, $dbname);
 

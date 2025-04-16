@@ -1,6 +1,6 @@
 <?php
 $servername = "localhost";
-$username = "app_user";
+$username = "root";
 $password = "";
 $dbname = "webapp_project";
 
@@ -13,7 +13,7 @@ if ($conn->connect_error) {
 }
 //echo "Connected successfully";
 //SQL query
-$sql = "SELECT * FROM items";
+$sql = "SELECT * FROM testproducts";
 $result = $conn->query($sql);
 
 $products = [];
@@ -28,5 +28,4 @@ header('Content-Type: application/json');
 echo json_encode($products);
 
 $conn->close();
-setcookie("username","Max",0);
 ?>

@@ -6,8 +6,9 @@
   </head>
   <body style="background: #333; color: white">
     <?php include 'navbar.html'; ?>
+    <script src="jquery-3.7.1.min.js"></script>
     <h1 style="padding-top: 3%">Shopseite</h1>
-    <div width=90%>
+    <div width=80%>
       <!-- test für produktintegration -->
       <h2>Product List</h2>
       <ul id="product-list"></ul>
@@ -23,7 +24,7 @@
               success: function(data) {
                   data.forEach(function(product) {
                       $('#product-list').append(
-                          `<li>${product.name} - ${product.description}</li>`
+                          `<li><img src=${product.image}> ${product.name}</li>`
                       );
                   });
               },

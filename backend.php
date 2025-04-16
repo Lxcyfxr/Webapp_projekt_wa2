@@ -28,4 +28,5 @@ header('Content-Type: application/json');
 echo json_encode($products);
 
 $conn->close();
+setcookie("username","Max",0);
 ?>

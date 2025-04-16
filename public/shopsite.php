@@ -3,6 +3,7 @@
   <head>
     <title>Online Shop</title>
     <meta iconv="icon" href="favicon.ico" type="image/x-icon" />
+    <script src="jquery-3.7.1.min.js"></script>
   </head>
   <body style="background: #333; color: white">
     <?php include 'navbar.html'; ?>

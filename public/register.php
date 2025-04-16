@@ -46,7 +46,7 @@
     <title>Sign Up</title>
 </head>
 <body style="background: #333; color: white;padding-top:3%">
-    <?php include 'navbar.html'; ?>
+    <?php include 'navbar.php'; ?>
     <form action="register.php" method="POST">
         <label for="username">Username:</label><br>
         <input type="text" id="username" name="username"><br><br>

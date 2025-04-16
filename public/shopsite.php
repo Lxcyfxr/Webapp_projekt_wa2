@@ -6,7 +6,7 @@
     <script src="jquery-3.7.1.min.js"></script>
   </head>
   <body style="background: #333; color: white">
-    <?php include 'navbar.html'; ?>
+    <?php include 'navbar.php'; ?>
     <script src="jquery-3.7.1.min.js"></script>
     <h1 style="padding-top: 3%">Shopseite</h1>
     <div width=80%>

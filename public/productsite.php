@@ -6,7 +6,7 @@
     <title>Produktseite</title>
     <script src="jquery-3.7.1.min.js"></script>
 </head>
-<body style="background: #333; color: white; font-family: Arial, sans-serif;">
+<body style="background: #141b27; color: white; font-family: Arial, sans-serif;">
     <h1>Produktdetails</h1>
     <div id="product-details">
         <p>Produktinformationen werden geladen...</p>

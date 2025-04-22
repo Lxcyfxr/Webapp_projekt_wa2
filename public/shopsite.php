@@ -6,10 +6,10 @@
     <script src="jquery-3.7.1.min.js"></script>
     <link rel="stylesheet" href="product_style.css">
   </head>
-  <body style="background: #333; color: white">
+  <body style="background: #141b27; color: white">
     <?php include 'navbar.php'; ?>
     <script src="jquery-3.7.1.min.js"></script>
-    <h1 style="padding-top: 3%">Shopseite</h1>
+    <img src="pictures/Schriftzug_Stylung.png" style="width: 5%; height: auto; display: block; margin: 0 auto; padding-top: 3%; padding-bottom: 1%">
     <div width=80%>
       <!-- Filter Dropdown -->
       <div style="margin-bottom: 20px; text-align: center;">
@@ -53,8 +53,17 @@
             });
           }
 
-          // Initiales Laden der Produkte
-          loadProducts();
+          // URL-Parameter auslesen
+          const urlParams = new URLSearchParams(window.location.search);
+          const genderParam = urlParams.get('gender');
+
+          // Filter automatisch setzen
+          if (genderParam === 'MALE' || genderParam === 'FEMALE') {
+            $('#gender-filter').val(genderParam);
+            loadProducts(genderParam);
+          } else {
+            loadProducts();
+          }
 
           // Event-Listener für den Filter
           $('#gender-filter').on('change', function() {

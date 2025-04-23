@@ -102,7 +102,7 @@
       <li class="navbar" style="float: right">
         <?php if (isset($_SESSION["username"])): ?>
           <!-- Bild anzeigen wenn eingeloggt -->
-          <a href="auth.php"><img src="pictures/usericon.svg" alt="Profil" width="20" height="20"></a>
+          <a href="auth.php"><img src="pictures/usericon.svg" alt="Profil" width="15" height="15"></a>
         <?php else: ?>
           <!-- Login Text wenn nicht eingeloggt -->
           <a class="active" href="auth.php">Login</a>

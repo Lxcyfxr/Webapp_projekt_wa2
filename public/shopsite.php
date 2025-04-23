@@ -11,7 +11,6 @@
   <body style="background: #141b27; color: white">
     <?php include 'navbar.php'; ?>
     <script src="jquery-3.7.1.min.js"></script>
-    <img src="pictures/Schriftzug_Stylung.png" style="width: 5%; height: auto; display: block; margin: 0 auto; padding-top: 3%; padding-bottom: 1%">
     <div width=80%>
       <!-- Filter Dropdown -->
       <!--<div style="margin-bottom: 20px; text-align: center;">
@@ -37,17 +36,19 @@
               success: function(data) {
                 let productContent = '';
                 data.forEach(function(product) {
+                  // Kürze den Namen auf maximal 50 Zeichen
+                  const truncatedName = product.name.length > 30 ? product.name.substring(0, 30) + '...' : product.name;
+
                   // Filterlogik
                   if (filterGender === 'ALL' || product.gender === filterGender) {
                     productContent += `
                       <a href="productsite.php?id=${product.id}" style="text-decoration: none; color: inherit;">
                         <div class="product-box">
                           <img src="${product.picture}" alt="${product.name}">
-                          <h3>${product.name}</h3>
+                          <h3>${truncatedName}</h3>
                           <p>${product.price} €</p>
                         </div>
                       </a>`;
-                      
                   }
                 });
                 $('#product-container').html(productContent);

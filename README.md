@@ -18,3 +18,7 @@ xss
 ## Datenbank
 
 id, name, beschreibung, größe, geschlecht, preis, marke
+
+## ToDo
+
+Zeichenlimit für Produktnamen: 30 Zeichen -> Auch bei Adminpage (Anlegen neuer Produkte)

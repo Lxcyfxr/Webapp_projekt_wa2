@@ -1,5 +1,5 @@
-/*Last Change:    */
-/*Reason:         */
+/*Last Change:    Loris 23/04/2025*/
+/*Reason:         Farbänderung, Logo Homebutton*/
 body {
     overflow-y: scroll; /* Scrollen bleibt aktiv, aber die Scrollbar wird ausgeblendet */
 }
@@ -14,6 +14,8 @@ body::-webkit-scrollbar {
     gap: 20px;
     justify-content: center;
     margin-top: 20px;
+    padding-top: 60px;
+    padding-bottom: 30px;
 }
 
 .product-box {
@@ -22,21 +24,26 @@ body::-webkit-scrollbar {
     border-radius: 8px;
     padding: 15px;
     width: 200px;
-    height: 300px; /* Einheitliche Höhe */
+    height: 300px;
     text-align: center;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     display: flex;
     flex-direction: column;
-    justify-content: flex-end; /* Inhalt an das untere Ende verschieben */
+    justify-content: flex-end;
 }
 
 .product-box img {
     max-width: 100%;
     height: auto;
     border-radius: 5px;
-    margin-bottom: auto; /* Bild bleibt oben */
+    margin-bottom: auto;
 }
 
 .product-box h3, .product-box p {
     margin: 5px 0;
+}
+
+.product-box p {
+    margin: 5px 0;
+    color: #2cc9c2;
 }

@@ -26,14 +26,25 @@ ul.navbar {
     color: white;
     align-content: center;
     text-align: center;
-    padding: 14px 16px;
+    padding: 16px 16px;
     text-decoration: none;
   }
+
+  li.navbarimg a img {
+    float: left;
+    margin: 0;
+    padding: 0px 16px; 
+    display: block;
+}
   
   li.navbar a:hover:not(.active) {
     background-color: #111;
   }
+  li.navbarimg a img:hover:not(.active) {
+    background-color: #111;
+  }
   
   .active {
-    background-color: #00bfff;
+    /* background-color: #2cc9c2; */
+    background-color: #c580f7; 
   }

@@ -14,7 +14,7 @@
   </head>
   <body>
     <ul class="navbar">
-      <li class="navbar"><a href="index.php"><img src="pictures/zuhause.png" width="15" height="15"></a></li>
+      <li class="navbarimg"><a href="index.php"><img src="pictures/Logo_Stylung-Photoroom(1).png" width="50" height="50"></a></li>
       <li class="navbar"><a href="shopsite.php">Produkte</a></li>
       <li class="navbar"><a href="shopsite.php?gender=MALE">Männer</a></li>
       <li class="navbar"><a href="shopsite.php?gender=FEMALE">Frauen</a></li>

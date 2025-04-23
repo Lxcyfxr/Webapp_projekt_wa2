@@ -58,3 +58,10 @@ ul.navbar {
   .classic {
     color: #2cc9c2
   }
+
+  .outfit-300 {
+    font-family: "Outfit", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 300;
+    font-style: normal;
+  }

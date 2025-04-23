@@ -46,3 +46,10 @@ body::-webkit-scrollbar {
     margin: 5px 0;
     color: #2cc9c2;
 }
+
+.outfit-300 {
+    font-family: "Outfit", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 300;
+    font-style: normal;
+  }

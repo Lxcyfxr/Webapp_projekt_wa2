@@ -17,16 +17,16 @@
     echo "Sie können uns unter den folgenden Möglichkeiten erreichen:";
     ?>
 
-    <h3>E-Mail</h3>
+    <h3 style="color: #c580f7;">E-Mail</h3>
     <p>support@mein-onlineshop.de</p>
 
-    <h3>Telefon</h3>
+    <h3 style="color: #c580f7;">Telefon</h3>
     <p>+49 123 4567890</p>
 
-    <h3>Adresse</h3>
+    <h3 style="color: #c580f7;">Adresse</h3>
     <p>Musterstraße 1, 12345 Beispielstadt</p>
 
-    <h3>Öffnungszeiten</h3>
+    <h3 style="color: #c580f7;">Öffnungszeiten</h3>
     <p>Montag - Freitag: 09:00 - 17:00 Uhr</p>
 
     <footer style="margin-top: 50px;">

@@ -19,16 +19,16 @@
     ?>
 
     <h3 style="color: #c580f7;">E-Mail</h3>
-    <p>support@mein-onlineshop.de</p>
+    <p>support@stylung.de</p>
 
     <h3 style="color: #c580f7;">Telefon</h3>
-    <p>+49 123 4567890</p>
+    <p>+49 123 6969690</p>
 
     <h3 style="color: #c580f7;">Adresse</h3>
-    <p>Musterstraße 1, 12345 Beispielstadt</p>
+    <p>Musterstraße 1, 21614 Buxtehude</p>
 
     <h3 style="color: #c580f7;">Öffnungszeiten</h3>
-    <p>Montag - Freitag: 09:00 - 17:00 Uhr</p>
+    <p>Montag - Freitag: 04:20 - 15:00 Uhr</p>
 
     <footer style="position: fixed; bottom: 0; left: 0; width: 100%; background-color: #141b27; color: white; text-align: center; padding: 10px;">
     <hr>

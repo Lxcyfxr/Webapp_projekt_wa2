@@ -10,7 +10,7 @@
   <head>
     <title>Online Shop</title>
     <meta iconv="icon" href="favicon.ico" type="image/x-icon" />
-    <link rel="stylesheet" href="nav_bar.css"/>
+    <link rel="stylesheet" href="navbar.css"/>
   </head>
   <body>
     <ul class="navbar">

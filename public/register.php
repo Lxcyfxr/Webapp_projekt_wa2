@@ -6,7 +6,10 @@
 
         $username = $_POST["username"];
         $email = $_POST["email"];
-        $password = PASSWORD_HASH($_POST["password"], PASSWORD_DEFAULT);
+        
+
+
+        $password = $_POST["password"];
 
         // Prepare the SQL statement using MySQLi
         $stmt = $con->prepare("SELECT * FROM users WHERE username=? OR email=?");

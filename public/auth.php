@@ -96,7 +96,7 @@
 </head>
 <body>
 <ul class="navbar">
-      <li class="navbarimg"><a href="index.php"><img src="pictures/Logo_Stylung-Photoroom(1).png" width="50" height="50"></a></li>
+      <li class="navbarimg"><a href="index.php"><img src="pictures/Logo_Stylung-Photoroom.png" width="50" height="50"></a></li>
       <li class="navbar"><a href="shopsite.php">Produkte</a></li>
       <li class="navbar"><a href="shopsite.php?gender=MALE">Männer</a></li>
       <li class="navbar"><a href="shopsite.php?gender=FEMALE">Frauen</a></li>
@@ -173,7 +173,7 @@
                 <p>Please create a new account</p>
                 <button class="btn transparent" id="sign-up-btn">Sign up</button>
             </div>
-            <img src="pictures/LoginFeld.png" class="image" alt=""/>
+            <img src="pictures/Logo_Stylung-Photoroom.png" class="image" alt=""/>
         </div>
         <div class="panel right-panel">
             <div class="content">
@@ -181,7 +181,7 @@
                 <p>Please log in</p>
                 <button class="btn transparent" id="sign-in-btn">Sign in</button>
             </div>
-            <img src="pictures/SignInFeld.png" class="image" alt=""/>
+            <img src="pictures/Logo_Stylung-Photoroom.png" class="image" alt=""/>
         </div>
     </div>
 </div>

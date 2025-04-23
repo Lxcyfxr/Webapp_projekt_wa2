@@ -42,7 +42,7 @@
                     productContent += `
                       <a href="productsite.php?id=${product.id}" style="text-decoration: none; color: inherit;">
                         <div class="product-box">
-                          <img src="${product.image}" alt="${product.name}">
+                          <img src="${product.picture}" alt="${product.name}">
                           <h3>${product.name}</h3>
                           <p>${product.price} €</p>
                         </div>

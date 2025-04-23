@@ -169,6 +169,6 @@
 </div>
 
 <!-- JS für UI-Wechsel -->
-<script src="/app.js"></script>
+<script src="./app.js"></script>
 </body>
 </html>

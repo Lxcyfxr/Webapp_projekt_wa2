@@ -8,6 +8,9 @@
     <link rel="stylesheet" href="productsite_style.css">
     <title>Produktdetails</title>
     <script src="jquery-3.7.1.min.js"></script>
+    <style> /* Für Schriftart. Funktioniert noch nicht */
+        @import url('https://fonts.googleapis.com/css2?family=Comic+Neue:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Outfit:wght@100..900&family=Winky+Rough:ital,wght@0,300..900;1,300..900&display=swap');
+    </style>
 </head>
 <body style="background: #141b27; color: white;">
     <?php include 'navbar.php'; ?>
@@ -15,14 +18,15 @@
         <div class="product-details-left">
             <div class="product-box-large">
                 <img src="path/to/product-image.jpg" alt="Produktname">
-                <h3>Produktname</h3>
-                <p>Preis</p>
+                <h3 class="outfit-600">Produktname</h3>
+                <p class="outfit-300">Preis</p>
             </div>
         </div>
 
         <div class="product-details-right">
-            <h2>Produktname</h2>
-            <p>Produktbeschreibung</p>
+            <h2 class="outfit-600">Produktname</h2>
+            <hr width="100%" size="1" color="#ffffff" style="margin: 0px; padding: 0px;">
+            <p class="outfit-300">Produktbeschreibung</p>
             <button class="add-to-cart-btn">In den Warenkorb</button>
         </div>
     </div>

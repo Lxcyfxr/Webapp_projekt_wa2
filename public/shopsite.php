@@ -1,3 +1,5 @@
+<!--Last Change:    Loris 23/04/2025-->
+<!--Reason:         Produktweiterleitung-->
 <!DOCTYPE html>
 <html>
   <head>
@@ -12,14 +14,14 @@
     <img src="pictures/Schriftzug_Stylung.png" style="width: 5%; height: auto; display: block; margin: 0 auto; padding-top: 3%; padding-bottom: 1%">
     <div width=80%>
       <!-- Filter Dropdown -->
-      <div style="margin-bottom: 20px; text-align: center;">
+      <!--<div style="margin-bottom: 20px; text-align: center;">
         <label for="gender-filter" style="margin-right: 10px;">Filter nach Geschlecht:</label>
         <select id="gender-filter">
           <option value="ALL">Alle</option>
           <option value="MALE">Männlich</option>
           <option value="FEMALE">Weiblich</option>
         </select>
-      </div>
+      </div>-->
 
       <div id="product-container" class="product-container"></div>
       <script>
@@ -38,11 +40,14 @@
                   // Filterlogik
                   if (filterGender === 'ALL' || product.gender === filterGender) {
                     productContent += `
-                      <div class="product-box">
-                        <img src="${product.image}" alt="${product.name}">
-                        <h3>${product.name}</h3>
-                        <p>${product.price} €</p>
-                      </div>`;
+                      <a href="productsite.php?id=${product.id}" style="text-decoration: none; color: inherit;">
+                        <div class="product-box">
+                          <img src="${product.picture}" alt="${product.name}">
+                          <h3>${product.name}</h3>
+                          <p>${product.price} €</p>
+                        </div>
+                      </a>`;
+                      
                   }
                 });
                 $('#product-container').html(productContent);

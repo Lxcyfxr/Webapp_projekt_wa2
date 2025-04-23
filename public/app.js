@@ -1,3 +1,6 @@
+//Last Change:    >
+//Reason:         
+
 var sign_in_btn = document.querySelector("#sign-in-btn");
 var sign_up_btn = document.querySelector("#sign-up-btn");
 var container = document.querySelector(".container");

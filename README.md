@@ -19,11 +19,33 @@ xss
 
 id, name, beschreibung, größe, geschlecht, preis, marke
 
-## ToDo
+## Shopsite
 
 Zeichenlimit für Produktnamen: 30 Zeichen -> Auch bei Adminpage (Anlegen neuer Produkte)
 
 ## Farbschemen
-Türkis: #2cc9c2
-Lila: #c580f7
+
+Türkis: #2cc9c2 <br>
+Lila: #c580f7 <br>
 Schwarztöne: #111;#222;#333
+
+## Kontaktformular
+
+Rückmelde Funktion mit email und Textfield <br>
+wenn man aber eingeloggt ist muss man keine email ausfüllen
+
+## Warenkorb
+
+scatch ist im root dir. 2 tabellen pro user <br>
+eine für den warenkorb und eine für den Kaufverlauf
+
+## Login / Register
+
+navbar reparieren <br>
+gegen sql injections und dashboard für user und admin <br>
+admin kriegt einen button dynamisch angezeigt um aufs admin portal zu kommen
+
+## admin portal
+
+produkte aus db löschen und aus pictures ordner <br>
+ebenfalls rückmeldungen von Kunden lesen

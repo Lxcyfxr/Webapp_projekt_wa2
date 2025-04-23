@@ -7,10 +7,10 @@
     <meta charset="UTF-8" />
     <link rel="icon" href="favicon.ico" type="image/x-icon" />
   </head>
-  <body style="background: #333; color: white">
+  <body style="background: #141b27; color: white">
     <?php include 'navbar.php'; ?>
     
-    <h1 style="padding-top: 3%">Kontaktseite</h1>
+    <h1 style="padding-top: 3%; color: #2cc9c2">Kontaktseite</h1>
     <h2>Kontakt:</h2>
 
     <?php

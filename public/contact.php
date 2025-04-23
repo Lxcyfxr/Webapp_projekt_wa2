@@ -9,7 +9,7 @@
   </head>
   <body style="background: #141b27; color: white">
     <?php include 'navbar.php'; ?>
-    <img src="pictures/Logo_Stylung.png" alt="Stylung Logo" style="width: 180px; display: block; margin: 20px auto;">
+    <img src="pictures/Logo_Stylung-Photoroom(1).png" alt="Stylung Logo" style="width: 180px; display: block; margin: 20px auto;">
 
 
 
@@ -33,9 +33,10 @@
     <h3 style="color: #c580f7;">Öffnungszeiten</h3>
     <p>Montag - Freitag: 09:00 - 17:00 Uhr</p>
 
-    <footer style="margin-top: 50px;">
-      <hr>
-      <p>Impressum | Kontaktformular | Datenschutz</p>
+    <footer style="position: fixed; bottom: 0; left: 0; width: 100%; background-color: #141b27; color: white; text-align: center; padding: 10px;">
+    <hr>
+    <p>Impressum | Kontaktformular | Datenschutz</p>
     </footer>
+
   </body>
 </html>

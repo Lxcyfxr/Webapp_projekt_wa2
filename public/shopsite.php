@@ -1,5 +1,5 @@
-<!--Last Change:    -->
-<!--Reason:         -->
+<!--Last Change:    Loris 23/04/2025-->
+<!--Reason:         Produktweiterleitung-->
 <!DOCTYPE html>
 <html>
   <head>
@@ -40,13 +40,14 @@
                   // Filterlogik
                   if (filterGender === 'ALL' || product.gender === filterGender) {
                     productContent += `
-                      <div class="product-box">
-                        <a href="productsite.php?id=${product.id}" style="text-decoration: none; color: inherit;">
+                      <a href="productsite.php?id=${product.id}" style="text-decoration: none; color: inherit;">
+                        <div class="product-box">
                           <img src="${product.image}" alt="${product.name}">
                           <h3>${product.name}</h3>
                           <p>${product.price} €</p>
-                        </a>
-                      </div>`;
+                        </div>
+                      </a>`;
+                      
                   }
                 });
                 $('#product-container').html(productContent);

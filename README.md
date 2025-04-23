@@ -22,3 +22,8 @@ id, name, beschreibung, größe, geschlecht, preis, marke
 ## ToDo
 
 Zeichenlimit für Produktnamen: 30 Zeichen -> Auch bei Adminpage (Anlegen neuer Produkte)
+
+## Farbschemen
+Türkis: #2cc9c2
+Lila: #c580f7
+Schwarztöne: #111;#222;#333

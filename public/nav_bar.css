@@ -1,7 +1,5 @@
-/*Last Change:    */
-/*Reason:         */
-
-@import url('https://fonts.googleapis.com/css2?family=Comic+Neue:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Winky+Rough:ital,wght@0,300..900;1,300..900&display=swap');
+/*Last Change:    Loris 23.04.2025*/
+/*Reason:         Farbschema geändert*/
 
 body {
     font-family: Helvetica;
@@ -26,7 +24,6 @@ ul.navbar {
   
   li.navbar a {
     display: block;
-    color: #2cc9c2;
     align-content: center;
     text-align: center;
     padding: 16px 16px;
@@ -54,6 +51,10 @@ ul.navbar {
   }
   
   .active {
-    /* background-color: #2cc9c2; */
-    background-color: #c580f7; 
+    background-color: #c580f7;
+    color: #ffffff;
+  }
+
+  .classic {
+    color: #2cc9c2
   }

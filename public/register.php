@@ -6,10 +6,7 @@
 
         $username = $_POST["username"];
         $email = $_POST["email"];
-        
-
-
-        $password = $_POST["password"];
+        $password = password_hash($_POST["password"], PASSWORD_DEFAULT);
 
         // Prepare the SQL statement using MySQLi
         $stmt = $con->prepare("SELECT * FROM users WHERE username=? OR email=?");
@@ -20,7 +17,6 @@
         $result = $stmt->get_result();
         $userAlreadyExists = $result->num_rows > 0;
 
-
         // Function to register the user
         function registerUser($username, $email, $password){
             global $con;
@@ -29,35 +25,84 @@
             $stmt->execute();
         }
 
-
-
-
         if(!$userAlreadyExists){
-            // Register the user
             registerUser($username, $email, $password);
         } else {
-            // User already exists
+            echo "User already exists";
         }
-
-        
     }
 ?>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Up</title>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/authentication.css">
+    <title>Sign in & Sign up Form</title>
 </head>
-<body style="background: #333; color: white;padding-top:3%">
-    <?php include 'navbar.php'; ?>
-    <form action="register.php" method="POST">
-        <label for="username">Username:</label><br>
-        <input type="text" id="username" name="username"><br><br>
-        <label for="email">Email:</label><br>
-        <input type="text" id="email" name="email"><br><br>
-        <label for="password">Password:</label><br>
-        <input type="password" id="password" name="password"><br><br>
-        <input type="submit" value="Sign Up" name="submit">
-    </form>
+<body>
+<div class="container">
+    <div class="forms-container">
+        <div class="signin-signup">
+            <!-- Register Form -->
+            <form action="register.php" class="sign-up-form" method="POST">
+                <h2 class="title">Sign up</h2>
+                <div class="input-field">
+                    <i class="fas fa-user"></i>
+                    <input name="firstName" type="text" placeholder="First Name" required />
+                </div>
+                <div class="input-field">
+                    <i class="fas fa-user"></i>
+                    <input name="lastName" type="text" placeholder="Last Name" required />
+                </div>
+                <div class="input-field">
+                    <i class="fas fa-user"></i>
+                    <input name="username" type="text" placeholder="User Name" required />
+                </div>
+                <div class="input-field">
+                    <i class="fas fa-envelope"></i>
+                    <input name="email" type="email" placeholder="Email" required />
+                </div>
+                <div class="input-field">
+                    <i class="fas fa-lock"></i>
+                    <input name="password" id="register-password" type="password" placeholder="Password" required />
+                </div>
+                <div class="password-strength">
+                    <div id="strength-bar"></div>
+                    <span id="strength-text"></span>
+                </div>
+                <div class="input-field">
+                    <i class="fas fa-user"></i>
+                    <input name="address" type="text" placeholder="Address" />
+                </div>
+                <input type="submit" class="btn" value="Sign up" name="submit"/>
+            </form>
+        </div>
+    </div>
+
+    <!-- Panels -->
+    <div class="panels-container">
+        <div class="panel left-panel">
+            <div class="content">
+                <h3>New here?</h3>
+                <p>Please create a new account</p>
+                <button class="btn transparent" id="sign-up-btn">Sign up</button>
+            </div>
+            <img src="pictures/LoginFeld.png" class="image" alt=""/>
+        </div>
+        <div class="panel right-panel">
+            <div class="content">
+                <h3>Are you already one of us?</h3>
+                <p>Please log in</p>
+                <button class="btn transparent" id="sign-in-btn">Sign in</button>
+            </div>
+            <img src="pictures/SignInFeld.png" class="image" alt=""/>
+        </div>
+    </div>
+</div>
+
+<!-- JS für UI-Wechsel -->
+<script src="/app.js"></script>
 </body>
 </html>

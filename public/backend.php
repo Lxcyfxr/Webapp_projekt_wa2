@@ -1,5 +1,3 @@
-<!--Last Change:    -->
-<!--Reason:         -->
 <?php
 $servername = "localhost";
 $username = "root";

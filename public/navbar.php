@@ -28,6 +28,7 @@
         <?php endif; ?>
       </li>
       <li class="navbar" style="float: right"><a class="classic" href="contact.php">Kontakt</a></li>
+      <li class="navbar" style="float: right"><a class="classic" href="cart.php">Warenkorb</a></li>
     </ul>
   </body>
 </html>

@@ -3,8 +3,8 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Online Shop</title>
-    <meta iconv="icon" href="favicon.ico" type="image/x-icon" />
+    <title>Stylung</title>
+    <link rel="icon" href="/public/pictures/Logo_Stylung.ico" type="image/x-icon" />
     <script src="jquery-3.7.1.min.js"></script>
     <link rel="stylesheet" href="product_style.css">
   </head>

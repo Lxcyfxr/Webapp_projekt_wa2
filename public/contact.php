@@ -10,9 +10,6 @@
   <body style="background: #141b27; color: white">
     <?php include 'navbar.php'; ?>
     <img src="pictures/Logo_Stylung-Photoroom(1).png" alt="Stylung Logo" style="width: 180px; display: block; margin: 20px auto;">
-
-
-
     
     <h1 style="padding-top: 3%; color: #2cc9c2">Kontaktseite</h1>
     <h2>Kontakt:</h2>

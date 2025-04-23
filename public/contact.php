@@ -9,7 +9,8 @@
   </head>
   <body style="background: #141b27; color: white">
     <?php include 'navbar.php'; ?>
-    <img src="Logo_Stylung.png" alt="Stylung Logo" style="width: 180px; display: block; margin: 20px auto;">
+    <img src="pictures/Logo_Stylung-Photoroom.png" alt="Stylung Logo" style="width: 180px; display: block; margin: 20px auto;">
+
 
 
     

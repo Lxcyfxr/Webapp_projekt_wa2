@@ -1,20 +1,32 @@
 <!--Last Change:    -->
 <!--Reason:         -->
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Produktseite</title>
+    <link rel="stylesheet" href="productsite_style.css">
+    <title>Produktdetails</title>
     <script src="jquery-3.7.1.min.js"></script>
 </head>
-<body style="background: #141b27; color: white; font-family: Arial, sans-serif;">
+<body style="background: #141b27; color: white;">
     <?php include 'navbar.php'; ?>
-    <h1>Produktdetails</h1>
-    <div id="product-details">
-        <p>Produktinformationen werden geladen...</p>
-    </div>
+    <div class="product-details-container">
+        <div class="product-details-left">
+            <div class="product-box-large">
+                <img src="path/to/product-image.jpg" alt="Produktname">
+                <h3>Produktname</h3>
+                <p>Preis</p>
+            </div>
+        </div>
 
+        <div class="product-details-right">
+            <h2>Produktname</h2>
+            <p>Produktbeschreibung</p>
+            <button class="add-to-cart-btn">In den Warenkorb</button>
+        </div>
+    </div>
+    
     <script>
         function loadProduct(id) {
             $.ajax({
@@ -26,18 +38,17 @@
                     const product = data.find(p => p.id === id);
 
                     if (product) {
-                        $('#product-details').html(
-                            '<h2>' + product.name + '</h2>' +
-                            '<img src="' + product.picture + '" alt="' + product.name + '" style="max-width: 300px; display: block; margin: 20px 0;">' +
-                            '<p>' + product.description + '</p>' +
-                            '<p>Preis: ' + parseFloat(product.price).toFixed(2) + ' €</p>'
-                        );
+                        $('.product-box-large img').attr('src', product.picture).attr('alt', product.name);
+                        $('.product-box-large h3').text(product.name);
+                        $('.product-box-large p').text(parseFloat(product.price).toFixed(2) + ' €');
+                        $('.product-details-right h2').text(product.name);
+                        $('.product-details-right p').text(product.description);
                     } else {
-                        $('#product-details').html('<p>Kein Produkt mit dieser ID</p>');
+                        $('.product-details-container').html('<p>Kein Produkt mit dieser ID</p>');
                     }
                 },
                 error: function() {
-                    $('#product-details').html('<p>Fehler beim Laden der Produktdaten.</p>');
+                    $('.product-details-container').html('<p>Fehler beim Laden der Produktdaten.</p>');
                 }
             });
         }
@@ -49,11 +60,8 @@
         if (productId) {
             loadProduct(productId); // Produkt laden
         } else {
-            $('#product-details').html('<p>Keine Produkt-ID angegeben.</p>');
+            $('.product-details-container').html('<p>Keine Produkt-ID angegeben.</p>');
         }
     </script>
 </body>
 </html>
-
-
-<!-- id fängt bei 26 an -->

@@ -34,7 +34,6 @@ body::-webkit-scrollbar {
 
 .product-box img {
     max-width: 100%;
-    height: auto;
     border-radius: 5px;
     margin-bottom: auto;
 }

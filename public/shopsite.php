@@ -6,7 +6,7 @@
     <title>Online Shop</title>
     <meta iconv="icon" href="favicon.ico" type="image/x-icon" />
     <script src="jquery-3.7.1.min.js"></script>
-    <link rel="stylesheet" href="product_style.css">
+    <link rel="stylesheet" href="shopsite_style.css">
   </head>
   <body style="background: #141b27; color: white">
     <?php include 'navbar.php'; ?>

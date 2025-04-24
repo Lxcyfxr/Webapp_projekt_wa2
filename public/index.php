@@ -9,9 +9,9 @@
   </head>
   <body style="background: #141b27; color: white; display:flex; justify-content: center; align-items: center; flex-direction: column;">
     <?php include 'navbar.php'; ?>
-    <h1 style="padding-top: 3%">Home Seite</h1>
-    <img src="/public/pictures/Logo_Stylung.png" alt="">
-    <footer>
+    <h1 class="outfit-300" style="padding-top: 3%">Willkommen bei Stylung</h1>
+    <img src="/public/pictures/Schriftzug_Stylung.png" width="50%" alt="">
+    <footer class="outfit-300">
       Platz für aktuelle Angebote, Rabatte, Aktionen. Hier sollen auch
       Neuerscheinungen und Bestseller angezeigt werden
     </footer>

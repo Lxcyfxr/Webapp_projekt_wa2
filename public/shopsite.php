@@ -39,7 +39,6 @@
               success: function(data) {
                 let productContent = '';
                 data.forEach(function(product) {
-                  // Kürze den Namen auf maximal 50 Zeichen
                   const truncatedName = product.name.length > 30 ? product.name.substring(0, 30) + '...' : product.name;
 
                   // Filterlogik

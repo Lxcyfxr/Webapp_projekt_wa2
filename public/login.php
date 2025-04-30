@@ -13,7 +13,7 @@
     }
     $_SESSION['last_activity'] = time();
 
-    // Handle manual logout
+    // Manueller Logout
     if (isset($_POST['logout'])) {
         session_unset();
         session_destroy();
@@ -25,12 +25,12 @@
         $username = $_POST["username"];
         $password = $_POST["password"];
 
-        // Prepare the SQL statement using MySQLi
+        // SQL Statement vorbereiten
         $stmt = $con->prepare("SELECT * FROM users WHERE username=? OR email=?");
         $stmt->bind_param("ss", $username, $username);
         $stmt->execute();
 
-        // Fetch the result
+        
         $result = $stmt->get_result();
         $userExists = $result->fetch_assoc();
 

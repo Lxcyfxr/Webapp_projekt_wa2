@@ -24,7 +24,7 @@
       <li class="navbar outfit-300" style="float: right">
         <?php if (isset($_SESSION["username"])): ?>
           <!-- Bild anzeigen wenn eingeloggt -->
-          <a class="active" href="auth.php"><img src="pictures/usericon.svg" alt="Profil" width="19" height="19"></a>
+          <a class="active" href="profile.php"><img src="pictures/usericon.svg" alt="Profil" width="19" height="19"></a>
         <?php else: ?>
           <!-- Login Text wenn nicht eingeloggt -->
           <a class="active outfit-300" href="auth.php">Login</a>

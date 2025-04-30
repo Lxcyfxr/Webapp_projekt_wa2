@@ -1,16 +1,6 @@
 //Last Change:    >
-//Reason:         
+//Reason:         >
 
-// Statische Navbar oben einblenden
-document.addEventListener("DOMContentLoaded", function () {
-    var navbar = document.querySelector("ul.navbar");
-    if (navbar) {
-        navbar.style.position = "fixed";
-        navbar.style.top = "0";
-        navbar.style.width = "100%";
-        navbar.style.zIndex = "1000";
-    }
-});
 
 var sign_in_btn = document.querySelector("#sign-in-btn");
 var sign_up_btn = document.querySelector("#sign-up-btn");

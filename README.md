@@ -49,3 +49,13 @@ admin kriegt einen button dynamisch angezeigt um aufs admin portal zu kommen
 
 produkte aus db löschen und aus pictures ordner <br>
 ebenfalls rückmeldungen von Kunden lesen
+
+## Über uns -> eventuell zu Kontakt
+
+Willkommen bei Stylung – deinem Online-Shop für Streetwear, die genau zu dir passt. Wir stehen für einen simplen und schlichten Stil, der ohne Kompromisse kommt: modern, urban und unverwechselbar.
+
+Unsere Mission ist es, die jüngere Generation mit hochwertigen und authentischen Pieces zu versorgen, die nicht nur Trends folgen, sondern den individuellen Ausdruck unterstreichen. Egal ob Basic oder Statement – bei uns findest du das perfekte Outfit für deinen Streetstyle.
+
+Stylung ist mehr als nur Mode. Es ist ein Lebensgefühl. Minimalistisch, zeitlos, stark.
+
+Entdecke unseren Shop und werde Teil von Stylung.

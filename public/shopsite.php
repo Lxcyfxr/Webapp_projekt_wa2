@@ -30,6 +30,12 @@
         $(document).ready(function() {
           console.log("jQuery is working!");
 
+          function truncateAtWord(text, limit) {
+            if (text.length <= limit) return text; // Wenn der Text kürzer als das Limit ist, gib ihn unverändert zurück
+            const truncated = text.substring(0, limit); // Schneide den Text auf das Limit zu
+            return truncated.substring(0, truncated.lastIndexOf(' ')) + ' ...'; // Kürze bis zum letzten Leerzeichen und füge "..." hinzu
+          }
+
           // Funktion zum Laden und Filtern der Produkte
           function loadProducts(filterGender = 'ALL') {
             $.ajax({
@@ -39,7 +45,8 @@
               success: function(data) {
                 let productContent = '';
                 data.forEach(function(product) {
-                  const truncatedName = product.name.length > 30 ? product.name.substring(0, 30) + '...' : product.name;
+                  
+                  const truncatedName = truncateAtWord(product.name, 30);
 
                   // Filterlogik
                   if (filterGender === 'ALL' || product.gender === filterGender) {

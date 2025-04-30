@@ -20,8 +20,7 @@ PROFIL</p>
 <?php include 'navbar.php'; ?>
     <h1>Profil: <?php 
             if (isset($_SESSION['username'])) {
-                echo htmlspecialchars($_SESSION['username']); 
-                echo "Gast"; 
+                echo htmlspecialchars($_SESSION['username']);
             }
         ?></h1>
     

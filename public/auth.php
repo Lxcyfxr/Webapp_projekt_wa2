@@ -95,22 +95,7 @@
     <link rel="icon" href="/public/pictures/Logo_Stylung.ico" type="image/x-icon" />
 </head>
 <body>
-<ul class="navbar">
-      <li class="navbarimg"><a href="index.php"><img src="pictures/Logo_Stylung-Photoroom.png" width="50" height="50"></a></li>
-      <li class="navbar"><a href="shopsite.php">Produkte</a></li>
-      <li class="navbar"><a href="shopsite.php?gender=MALE">Männer</a></li>
-      <li class="navbar"><a href="shopsite.php?gender=FEMALE">Frauen</a></li>
-      <li class="navbar" style="float: right">
-        <?php if (isset($_SESSION["username"])): ?>
-          <!-- Bild anzeigen wenn eingeloggt -->
-          <a href="auth.php"><img src="pictures/usericon.svg" alt="Profil" width="15" height="15"></a>
-        <?php else: ?>
-          <!-- Login Text wenn nicht eingeloggt -->
-          <a class="active" href="auth.php">Login</a>
-        <?php endif; ?>
-      </li>
-      <li class="navbar" style="float: right"><a href="contact.php">Kontakt</a></li>
-</ul>
+<?php include("navbar.php"); ?>
 <div class="container">
     <div class="forms-container">
         <div class="signin-signup">

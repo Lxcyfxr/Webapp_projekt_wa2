@@ -1,11 +1,24 @@
 /*Last Change:    Loris 23/04/2025*/
 /*Reason:         Farbänderung, Logo Homebutton*/
 body {
-    overflow-y: scroll; /* Scrollen bleibt aktiv, aber die Scrollbar wird ausgeblendet */
+    overflow-y: scroll;
 }
 
 body::-webkit-scrollbar {
-    display: none; /* Versteckt die Scrollbar in Webkit-Browsern (Chrome, Safari) */
+    display: none;
+}
+
+#search-bar {
+    width: 100%; 
+    max-width: 800px; 
+    padding: 0.8rem;
+    margin: 0 auto;
+    border: none;
+    border-radius: 5px;
+    background-color: #333;
+    color: white;
+    font-size: 1rem;
+    outline: none;
 }
 
 .product-container {
@@ -13,8 +26,8 @@ body::-webkit-scrollbar {
     flex-wrap: wrap;
     gap: 20px;
     justify-content: center;
-    margin-top: 20px;
-    padding-top: 60px;
+    margin-top: 5px;
+    padding-top: 10px;
     padding-bottom: 30px;
 }
 
@@ -29,16 +42,19 @@ body::-webkit-scrollbar {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
+    justify-content: center; /* Zentriert den Inhalt */
+    align-items: center; /* Zentriert den Inhalt */
+    overflow: hidden; /* Verhindert, dass Inhalte aus der Box hinausragen */
 }
 
 .product-box img {
-    max-width: 100%;
+    width: 100%;
+    max-height: calc(100% - 100px);
     border-radius: 5px;
     margin-bottom: auto;
 }
 
-.product-box h3, .product-box p {
+.product-box h3{
     margin: 5px 0;
 }
 
@@ -53,3 +69,23 @@ body::-webkit-scrollbar {
     font-weight: 300;
     font-style: normal;
   }
+
+#prev-page, #next-page, #first-page, #last-page{
+    background-color: #2cc9c2;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 20px;
+}
+
+#prev-page:hover, #next-page:hover, #first-page:hover, #last-page:hover {
+    background-color: #1f9a9a;
+}
+
+#prev-page:disabled, #next-page:disabled, #first-page:disabled, #last-page:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}

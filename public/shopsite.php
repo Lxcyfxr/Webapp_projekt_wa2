@@ -15,75 +15,146 @@
     <?php include 'navbar.php'; ?>
     <script src="jquery-3.7.1.min.js"></script>
     <div width=80%>
-      <!-- Filter Dropdown -->
-      <!--<div style="margin-bottom: 20px; text-align: center;">
-        <label for="gender-filter" style="margin-right: 10px;">Filter nach Geschlecht:</label>
-        <select id="gender-filter">
-          <option value="ALL">Alle</option>
-          <option value="MALE">Männlich</option>
-          <option value="FEMALE">Weiblich</option>
-        </select>
-      </div>-->
+      <div id="search-container" style="text-align: center; margin-top: 5rem;">
+        <input type="text" id="search-bar" class="outfit-300" placeholder="Produkte durchsuchen..."/>
+      </div>
 
       <div id="product-container" class="product-container"></div>
+
+      <!-- Pagination -->
+      <div id="pagination" style="text-align: center; margin-top: 20px; padding-bottom: 1rem;">
+        <button id="first-page" style="margin-right: 10px;" disabled>Anfang</button>
+        <button id="prev-page" style="margin-right: 10px;" disabled>Zurück</button>
+        <span id="page-info" class="outfit-300">Seite: 1 / 1</span>
+        <button id="next-page" style="margin-left: 10px;">Weiter</button>
+        <button id="last-page" style="margin-left: 10px;">Ende</button>
+      </div>
+
       <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
           console.log("jQuery is working!");
 
+          let currentPage = 1;
+          const productsPerPage = 25;
+          let totalProducts = 0;
+          let allProducts = []; // Speichert alle Produkte für die Suche
+
           function truncateAtWord(text, limit) {
-            if (text.length <= limit) return text; // Wenn der Text kürzer als das Limit ist, gib ihn unverändert zurück
-            const truncated = text.substring(0, limit); // Schneide den Text auf das Limit zu
-            return truncated.substring(0, truncated.lastIndexOf(' ')) + ' ...'; // Kürze bis zum letzten Leerzeichen und füge "..." hinzu
+            if (text.length <= limit) return text;
+            const truncated = text.substring(0, limit);
+            return truncated.substring(0, truncated.lastIndexOf(" ")) + " ...";
           }
 
-          // Funktion zum Laden und Filtern der Produkte
-          function loadProducts(filterGender = 'ALL') {
-            $.ajax({
-              url: 'backend.php',
-              method: 'GET',
-              dataType: 'json',
-              success: function(data) {
-                let productContent = '';
-                data.forEach(function(product) {
-                  
-                  const truncatedName = truncateAtWord(product.name, 30);
+          function updatePageInfo() {
+            const maxPage = Math.ceil(totalProducts / productsPerPage);
+            $("#page-info").text(`Seite: ${currentPage} / ${maxPage}`);
 
-                  // Filterlogik
-                  if (filterGender === 'ALL' || product.gender === filterGender) {
-                    productContent += `
-                      <a href="productsite.php?id=${product.id}" style="text-decoration: none; color: inherit;">
-                        <div class="product-box">
-                          <img src="${product.picture}" alt="${product.name}">
-                          <h3 class="outfit-300">${truncatedName}</h3>
-                          <p class="outfit-300">${product.price} €</p>
-                        </div>
-                      </a>`;
-                  }
+            $("#prev-page, #first-page").prop("disabled", currentPage === 1);
+            $("#next-page, #last-page").prop(
+              "disabled",
+              currentPage === maxPage
+            );
+          }
+
+          function loadProducts(filterGender = "ALL", searchQuery = "") {
+            $.ajax({
+              url: "backend.php",
+              method: "GET",
+              dataType: "json",
+              success: function (data) {
+                allProducts = data; // Speichert alle Produkte für die Suche
+
+                // Filterlogik
+                const filteredProducts = data.filter(
+                  (product) =>
+                    (filterGender === "ALL" || product.gender === filterGender) &&
+                    product.name.toLowerCase().includes(searchQuery.toLowerCase())
+                );
+
+                totalProducts = filteredProducts.length;
+                const startIndex = (currentPage - 1) * productsPerPage;
+                const endIndex = startIndex + productsPerPage;
+                const paginatedProducts = filteredProducts.slice(
+                  startIndex,
+                  endIndex
+                );
+
+                let productContent = "";
+                paginatedProducts.forEach(function (product) {
+                  const truncatedName = truncateAtWord(product.name, 30);
+                  productContent += `
+                    <a href="productsite.php?id=${product.id}" style="text-decoration: none; color: inherit;">
+                      <div class="product-box">
+                        <img src="${product.picture}" alt="${product.name}">
+                        <h3 class="outfit-300">${truncatedName}</h3>
+                        <p class="outfit-300">${product.price} €</p>
+                      </div>
+                    </a>`;
                 });
-                $('#product-container').html(productContent);
+
+                $("#product-container").html(productContent);
+
+                updatePageInfo();
               },
-              error: function(xhr, status, error) {
-                console.error('Error fetching data:', error);
-              }
+              error: function (xhr, status, error) {
+                console.error("Error fetching data:", error);
+              },
             });
           }
 
-          // URL-Parameter auslesen
           const urlParams = new URLSearchParams(window.location.search);
-          const genderParam = urlParams.get('gender');
+          const genderParam = urlParams.get("gender");
 
-          // Filter automatisch setzen
-          if (genderParam === 'MALE' || genderParam === 'FEMALE') {
-            $('#gender-filter').val(genderParam);
+          if (genderParam === "MALE" || genderParam === "FEMALE") {
             loadProducts(genderParam);
           } else {
             loadProducts();
           }
 
-          // Event-Listener für den Filter
-          $('#gender-filter').on('change', function() {
+          $("#gender-filter").on("change", function () {
             const selectedGender = $(this).val();
+            currentPage = 1;
             loadProducts(selectedGender);
+          });
+
+          $("#search-bar").on("input", function () {
+            const searchQuery = $(this).val();
+            currentPage = 1;
+            loadProducts(genderParam || "ALL", searchQuery);
+          });
+
+          $("#prev-page").on("click", function () {
+            if (currentPage > 1) {
+              currentPage--;
+              loadProducts(genderParam || "ALL", $("#search-bar").val());
+              window.scrollTo({ top: 0, behavior: "smooth" });
+            }
+          });
+
+          $("#next-page").on("click", function () {
+            const maxPage = Math.ceil(totalProducts / productsPerPage);
+            if (currentPage < maxPage) {
+              currentPage++;
+              loadProducts(genderParam || "ALL", $("#search-bar").val());
+              window.scrollTo({ top: 0, behavior: "smooth" });
+            }
+          });
+
+          $("#first-page").on("click", function () {
+            if (currentPage !== 1) {
+              currentPage = 1;
+              loadProducts(genderParam || "ALL", $("#search-bar").val());
+              window.scrollTo({ top: 0, behavior: "smooth" });
+            }
+          });
+
+          $("#last-page").on("click", function () {
+            const maxPage = Math.ceil(totalProducts / productsPerPage);
+            if (currentPage !== maxPage) {
+              currentPage = maxPage;
+              loadProducts(genderParam || "ALL", $("#search-bar").val());
+              window.scrollTo({ top: 0, behavior: "smooth" });
+            }
           });
         });
       </script>

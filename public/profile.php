@@ -20,26 +20,45 @@
     if (isset($_SESSION['username']) && $_SESSION['username'] === 'admin') {
         echo '
         <h1 class="outfit-300">Produktverwaltung</h1>
-        <form action="product_add.php" method="POST" style="margin-top: 1rem;">
-            <h2 class="outfit-300">Produkt hinzufügen</h2>
-            <input type="text" name="product_name" placeholder="Produktname" required />
-            <textarea name="description" placeholder="Beschreibung" required></textarea>
-            <input type="text" name="image_url" placeholder="Bild-URL" required />
-            <input type="number" name="price" placeholder="Preis" step="0.01" required />
-            <select name="gender">
-                <option value="">Geschlecht (optional)</option>
-                <option value="MALE">Männer</option>
-                <option value="FEMALE">Frauen</option>
-            </select>
-            <input type="text" name="size" placeholder="Größe (optional)" />
-            <input type="text" name="brand" placeholder="Marke (optional)" />
-            <button type="submit" style="margin-top: 0.5rem;">Bestätigen</button>
-        </form>
-        <form action="product_delete.php" method="POST" style="margin-top: 1rem;">
-            <h2 class="outfit-300">Produkt löschen</h2>
-            <input type="number" name="product_id" placeholder="Produkt-ID" required />
-            <button type="submit" style="margin-top: 0.5rem;">Bestätigen</button>
-        </form>
+        <p class="outfit-300 success-message" id="message-container"></p>
+        <div style="display: flex; justify-content: center; width: 90%; gap: 2rem; margin-top: 2rem;">
+            <form action="product_add.php" method="POST" style="margin-top: 1rem;">
+                <h2 class="outfit-300">Produkt hinzufügen</h2>
+                <input class="outfit-300" type="text" name="product_name" placeholder="Produktname" required />
+                <textarea class="outfit-300" name="description" placeholder="Beschreibung" required></textarea>
+                <input class="outfit-300" type="text" name="image_url" placeholder="Bild-URL" required />
+                <input class="outfit-300" type="number" name="price" placeholder="Preis" step="0.01" required />
+                <select class="outfit-300" name="gender">
+                    <option value="">Geschlecht (optional)</option>
+                    <option value="MALE">Männer</option>
+                    <option value="FEMALE">Frauen</option>
+                </select>
+                <input class="outfit-300" type="text" name="size" placeholder="Größe (optional)" />
+                <input class="outfit-300" type="text" name="brand" placeholder="Marke (optional)" />
+                <button class="outfit-300" type="submit">Bestätigen</button>
+            </form>
+            <form action="product_update.php" method="POST" style="margin-top: 1rem;">
+                <h2 class="outfit-300">Produkt aktualisieren</h2>
+                <input class="outfit-300" type="number" name="product_id" placeholder="Produkt-ID" required />
+                <input class="outfit-300" type="text" name="product_name" placeholder="Neuer Produktname (optional)" />
+                <textarea class="outfit-300" name="description" placeholder="Neue Beschreibung (optional)"></textarea>
+                <input class="outfit-300" type="text" name="image_url" placeholder="Neue Bild-URL (optional)" />
+                <input class="outfit-300" type="number" name="price" placeholder="Neuer Preis (optional)" step="0.01" />
+                <select class="outfit-300" name="gender">
+                    <option value="">Geschlecht (optional)</option>
+                    <option value="MALE">Männer</option>
+                    <option value="FEMALE">Frauen</option>
+                </select>
+                <input class="outfit-300" type="text" name="size" placeholder="Größe (optional)" />
+                <input class="outfit-300" type="text" name="brand" placeholder="Marke (optional)" />
+                <button class="outfit-300" type="submit">Bestätigen</button>
+            </form>
+            <form action="product_delete.php" method="POST" style="margin-top: 1rem;">
+                <h2 class="outfit-300">Produkt löschen</h2>
+                <input class="outfit-300" type="number" name="product_id" placeholder="Produkt-ID" required />
+                <button class="outfit-300" type="submit">Bestätigen</button>
+            </form>
+        </div>
         ';
     }
     ?>
@@ -49,11 +68,21 @@
     </form>
 
     <script>
-        const urlParams = new URLSearchParams(window.location.search);
-        const message = urlParams.get('message');
-        if (message) {
-            alert(message);
-        }
+        document.addEventListener('DOMContentLoaded', function () {
+            const urlParams = new URLSearchParams(window.location.search);
+            const message = urlParams.get('message');
+            const messageContainer = document.getElementById('message-container');
+
+            if (message) {
+                messageContainer.textContent = message;
+
+                const forms = document.querySelectorAll('form');
+                forms.forEach(form => form.reset());
+
+                const newUrl = window.location.href.split('?')[0];
+                window.history.replaceState({}, document.title, newUrl);
+            }
+        });
     </script>
 
     <!-- jquery einbindung -->

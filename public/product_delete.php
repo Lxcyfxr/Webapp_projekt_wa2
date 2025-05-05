@@ -1,4 +1,3 @@
-<!-- filepath: c:\xampp\htdocs\DHBW\Stylung\public\delete_product.php -->
 <?php
 session_start();
 if ($_SESSION['username'] !== 'admin') {
@@ -8,7 +7,6 @@ if ($_SESSION['username'] !== 'admin') {
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $product_id = $_POST['product_id'];
 
-    // Verbindung zur Datenbank herstellen
     $servername = "localhost";
     $username = "root";
     $password = "";

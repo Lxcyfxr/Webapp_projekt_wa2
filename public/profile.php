@@ -16,6 +16,17 @@
             }
         ?>
     </h1>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <?php
     if (isset($_SESSION['username']) && $_SESSION['username'] === 'admin') {
         echo '
@@ -75,6 +86,9 @@
 
             if (message) {
                 messageContainer.textContent = message;
+                setTimeout(function() {
+                    document.getElementById("message-container").style.display = "none";
+                }, 3000);
 
                 const forms = document.querySelectorAll('form');
                 forms.forEach(form => form.reset());

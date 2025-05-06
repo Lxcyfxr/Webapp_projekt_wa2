@@ -28,6 +28,10 @@ h1, h2 {
     padding: 0;
 }
 
+.success-message {
+    color: #2cc9c2;
+}
+
 form {
     display: flex;
     flex-direction: column;
@@ -41,7 +45,6 @@ form {
     gap: 1rem;
 }
 
-/* Eingabefelder */
 form input[type="text"],
 form input[type="number"],
 form select,

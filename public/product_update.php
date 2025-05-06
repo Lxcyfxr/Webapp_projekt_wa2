@@ -24,11 +24,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         die('Datenbankverbindung fehlgeschlagen: ' . $conn->connect_error);
     }
 
+    if (empty($product_name)) {
+        $stmt = $conn->prepare('SELECT name FROM testproducts WHERE id = ?');
+        $stmt->bind_param('i', $product_id);
+        $stmt->execute();
+        $stmt->bind_result($product_name);
+        $stmt->fetch();
+        $stmt->close();
+
+        if (empty($product_name)) {
+            die('Produkt nicht gefunden.');
+        }
+    }
+
     $stmt = $conn->prepare('UPDATE testproducts SET name = ?, description = ?, picture = ?, price = ?, gender = ?, size = ?, brand = ? WHERE id = ?');
     $stmt->bind_param('sssssssi', $product_name, $description, $image_url, $price, $gender, $size, $brand, $product_id);
 
     if ($stmt->execute()) {
-        header('Location: profile.php?message=Produkt erfolgreich bearbeitet!');
+        header('Location: profile.php?message=' . urlencode('Produkt ' . $product_name . ' erfolgreich aktualisiert!'));
         exit();
     } else {
         echo 'Fehler beim Bearbeiten des Produkts: ' . $stmt->error;

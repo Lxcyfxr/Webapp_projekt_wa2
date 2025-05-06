@@ -17,11 +17,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         die('Datenbankverbindung fehlgeschlagen: ' . $conn->connect_error);
     }
 
+    $stmt = $conn->prepare('SELECT name FROM testproducts WHERE id = ?');
+    $stmt->bind_param('i', $product_id);
+    $stmt->execute();
+    $stmt->bind_result($product_name);
+    $stmt->fetch();
+    $stmt->close();
+
+    if (!$product_name) {
+        die('Produkt nicht gefunden.');
+    }
+
     $stmt = $conn->prepare('DELETE FROM testproducts WHERE id = ?');
     $stmt->bind_param('i', $product_id);
 
     if ($stmt->execute()) {
-        header('Location: profile.php?message=Produkt erfolgreich gelöscht!');
+        header('Location: profile.php?message=' . urlencode('Produkt ' . $product_name . ' erfolgreich gelöscht!'));
         exit();
     } else {
         echo 'Fehler beim Entfernen des Produkts: ' . $stmt->error;

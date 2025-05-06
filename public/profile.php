@@ -86,6 +86,7 @@
 
             if (message) {
                 messageContainer.textContent = message;
+                messageContainer.style.display = 'block';
                 setTimeout(function() {
                     document.getElementById("message-container").style.display = "none";
                 }, 3000);

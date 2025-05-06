@@ -30,6 +30,7 @@ h1, h2 {
 
 .success-message {
     color: #2cc9c2;
+    display: none
 }
 
 form {

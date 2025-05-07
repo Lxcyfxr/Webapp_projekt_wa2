@@ -27,6 +27,15 @@
             <h2 class="outfit-600">Produktname</h2>
             <hr width="100%" size="1" color="#ffffff" style="margin: 0px; padding: 0px;">
             <p class="outfit-300">Produktbeschreibung</p>
+            <label for="size">Größe wählen:</label>
+            <select id="size" name="size" >
+                <option value="xs">XS</option>
+                <option value="s">S</option>
+                <option value="m">M</option>
+                <option value="l">L</option>
+                <option value="xl">XL</option>
+                <option value="xxl">XXL</option>
+            </select>
             <button class="add-to-cart-btn">In den Warenkorb</button>
         </div>
     </div>

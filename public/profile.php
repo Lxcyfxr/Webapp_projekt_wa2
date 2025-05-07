@@ -71,12 +71,40 @@
             </form>
         </div>
         ';
+    }else {
+        echo ' 
+        <img src="pictures/usericon.svg" alt="Profil" width="100" height="100">
+        <p class="outfit-300 success-message" id="message-container"></p>
+        <div style="display: flex; justify-content: center; width: 90%; gap: 2rem; margin-top: 2rem;">
+            <form action="product_add.php" method="POST" style="margin-top: 1rem;">
+                <h2 class="outfit-300">Persönliche Informationen</h2>
+                 <select class="outfit-300" name="gender">
+                    <option value="">Anrede</option>
+                    <option value="MALE">Herr</option>
+                    <option value="FEMALE">Frau</option>
+                </select>
+                <input class="outfit-300" type="text" name="vorname" placeholder="Vorname" required />
+                <input class="outfit-300" type="text" name="nachname" placeholder="Nachname" required />
+                <input class="outfit-300" type="text" name="username" placeholder="Username" required />
+                <input class="outfit-300" type="text" name="profilepic_url" placeholder="Profilbild-URL" required />
+                
+               
+                
+                <button class="outfit-300" type="submit">Bearbeiten</button>
+                
+            </form>
+            <form action="product_delete.php" method="POST" style="margin-top: 1rem;">
+                <h2 class="outfit-300">Verlauf</h2>
+                
+            </form>
+        </div>
+        ';
     }
     ?>
-
     <form action="auth.php" class="logout-form" method="POST">
         <h1><input type="submit" value="Logout" class="btn solid" name="logout"/></h1>
     </form>
+    
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {

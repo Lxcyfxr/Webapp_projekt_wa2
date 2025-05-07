@@ -77,7 +77,7 @@
                         });
                     },
                     error: function (xhr, status, error) {
-                        alert('Fehler beim Laden des Warenkorbs.');
+                        alert('Fehler beim Laden des Warenkorbs.'+error);
                     }
                 });
             }

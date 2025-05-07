@@ -34,7 +34,7 @@ $sql = "SELECT product.name,
             product.picture, 
             cart.amount, 
             cart.size 
-        FROM cartlb8vxe4fc
+        FROM cart
         JOIN testproducts product ON cart.product_id = product.id
         WHERE cart.user_id = ?";
 $stmt = $conn->prepare($sql);

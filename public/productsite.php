@@ -76,5 +76,39 @@
             $('.product-details-container').html('<p>Keine Produkt-ID angegeben.</p>');
         }
     </script>
+<!-- ajax für addtocart button -->
+<script>
+    $(document).ready(function () {
+        $('.add-to-cart-btn').click(function () {
+            const productId = new URLSearchParams(window.location.search).get('id');
+            const size = $('#size').val();
+
+            if (!productId || !size) {
+                alert('Bitte wählen Sie eine Größe aus.');
+                return;
+            }
+
+            $.ajax({
+                url: './add_to_cart.php',
+                type: 'POST',
+                data: {
+                    product_id: productId,
+                    size: size
+                },
+                dataType: 'json',
+                success: function (response) {
+                    if (response.error) {
+                        alert(response.error);
+                    } else {
+                        alert(response.success);
+                    }
+                },
+                error: function (xhr,status, error) {
+                    alert('Fehler beim Hinzufügen zum Warenkorb.'+ error);
+                }
+            });
+        });
+    });
+</script>
 </body>
 </html>

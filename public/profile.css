@@ -46,6 +46,14 @@ form {
     gap: 1rem;
 }
 
+form.history {
+    max-width: 600px;
+    min-width: 500px;
+}
+form.profile {
+    max-width: 400px;
+}
+
 form input[type="text"],
 form input[type="number"],
 form select,
@@ -61,6 +69,8 @@ form textarea {
     outline: none;
     resize: none;
 }
+
+
 
 form textarea {
     height: 100px;
@@ -102,6 +112,12 @@ h1.outfit-300, h2.outfit-300 {
     width: 100%;
     max-width: 400px;
     text-align: center;
+}
+
+h1.history, h2.history {
+    
+max-width: 600px;
+    min-width: 400px;
 }
 
 

@@ -76,7 +76,7 @@
         <img src="pictures/usericon.svg" alt="Profil" width="100" height="100">
         <p class="outfit-300 success-message" id="message-container"></p>
         <div style="display: flex; justify-content: center; width: 90%; gap: 2rem; margin-top: 2rem;">
-            <form action="product_add.php" method="POST" style="margin-top: 1rem;">
+            <form class="profile" action="product_add.php" method="POST" style="margin-top: 1rem;">
                 <h2 class="outfit-300">Persönliche Informationen</h2>
                  <select class="outfit-300" name="gender">
                     <option value="">Anrede</option>
@@ -93,9 +93,8 @@
                 <button class="outfit-300" type="submit">Bearbeiten</button>
                 
             </form>
-            <form action="product_delete.php" method="POST" style="margin-top: 1rem;">
-                <h2 class="outfit-300">Verlauf</h2>
-                
+            <form class="history" action="product_delete.php" method="POST" style="margin-top: 1rem;">
+                <h2 class="history outfit-300">Verlauf</h2>
             </form>
         </div>
         ';

@@ -60,3 +60,29 @@ li.navbarimg a img:hover:not(.active) {
   font-weight: 300;
   font-style: normal;
 }
+
+@media screen and (min-width: 1000px) {
+  #desktop-navbar {
+    display: block;
+  }
+  #mobile-navbar {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 999px) {
+  #desktop-navbar {
+    display: none;
+  }
+  #mobile-navbar {
+    display: block;
+  }
+}
+
+.dropdown-content {
+  display: none;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}

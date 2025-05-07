@@ -1,5 +1,5 @@
-<!--Last Change:    Loris 23/04/2025-->
-<!--Reason:         Produktweiterleitung-->
+<!--Last Change:    Loris 07/05/2025-->
+<!--Reason:         Seitensteuerung-->
 <!DOCTYPE html>
 <html>
   <head>
@@ -50,10 +50,7 @@
             $("#page-info").text(`Seite: ${currentPage} / ${maxPage}`);
 
             $("#prev-page, #first-page").prop("disabled", currentPage === 1);
-            $("#next-page, #last-page").prop(
-              "disabled",
-              currentPage === maxPage
-            );
+            $("#next-page, #last-page").prop("disabled", currentPage === maxPage || maxPage === 0);
           }
 
           function loadProducts(filterGender = "ALL", searchQuery = "") {
@@ -127,7 +124,7 @@
             if (currentPage > 1) {
               currentPage--;
               loadProducts(genderParam || "ALL", $("#search-bar").val());
-              window.scrollTo({ top: 0, behavior: "smooth" });
+              window.scrollTo({ top: 0});
             }
           });
 
@@ -136,24 +133,24 @@
             if (currentPage < maxPage) {
               currentPage++;
               loadProducts(genderParam || "ALL", $("#search-bar").val());
-              window.scrollTo({ top: 0, behavior: "smooth" });
+              window.scrollTo({ top: 0});
             }
           });
 
           $("#first-page").on("click", function () {
-            if (currentPage !== 1) {
+            if (currentPage > 1) {
               currentPage = 1;
               loadProducts(genderParam || "ALL", $("#search-bar").val());
-              window.scrollTo({ top: 0, behavior: "smooth" });
+              window.scrollTo({ top: 0});
             }
           });
 
           $("#last-page").on("click", function () {
             const maxPage = Math.ceil(totalProducts / productsPerPage);
-            if (currentPage !== maxPage) {
+            if (currentPage < maxPage) {
               currentPage = maxPage;
               loadProducts(genderParam || "ALL", $("#search-bar").val());
-              window.scrollTo({ top: 0, behavior: "smooth" });
+              window.scrollTo({ top: 0});
             }
           });
         });

@@ -32,8 +32,35 @@
 
     <footer style="position: fixed; bottom: 0; left: 0; width: 100%; background-color: #141b27; color: white; text-align: center; padding: 10px;">
     <hr>
-    <p>Impressum | Kontaktformular | Datenschutz</p>
+    <p>
+      <a href="impressum.php" style="color: #2cc9c2; text-decoration: underline;">Impressum</a>    | 
+      <a href="#" onclick="toggleForm(); return false;" style="color: #2cc9c2; text-decoration: underline;">Kontaktformular</a> | 
+      Datenschutz
+    </p>
+
     </footer>
+
+
+<div id="kontaktformular" style="display: none; position: fixed; top: 20%; left: 50%; transform: translate(-50%, -20%); background-color: #1f2a3a; padding: 20px; border-radius: 12px; box-shadow: 0 0 10px #2cc9c2; z-index: 1000; width: 300px;">
+  <h3 style="color: #2cc9c2;">Kontaktformular</h3>
+  <form action="contact_send.php" method="post">
+    <label for="email">E-Mail:</label><br>
+    <input type="email" name="email" id="email" required style="width: 100%; padding: 5px;"><br><br>
+
+    <label for="problem">Problem:</label><br>
+    <textarea name="problem" id="problem" rows="4" required style="width: 100%; padding: 5px;"></textarea><br><br>
+
+    <button type="submit" style="background-color: #2cc9c2; color: white; border: none; padding: 8px 16px; border-radius: 8px;">Absenden</button>
+    <button type="button" onclick="toggleForm()" style="margin-left: 10px; background-color: #555; color: white; border: none; padding: 8px 16px; border-radius: 8px;">Abbrechen</button>
+  </form>
+</div>
+
+<script>
+function toggleForm() {
+  const form = document.getElementById('kontaktformular');
+  form.style.display = form.style.display === 'none' ? 'block' : 'none';
+}
+</script>
 
   </body>
 </html>

@@ -3,7 +3,7 @@
     session_start();
 
     // Check for session timeout
-    if (isset($_SESSION['last_activity']) && (time() - $_SESSION['last_activity'] > 900)) {
+    if (isset($_SESSION['last_activity']) && (time() - $_SESSION['last_activity'] > 60)) {
         session_unset();
         session_destroy();
         header("Location: auth.php");
@@ -56,7 +56,19 @@
     if (isset($_POST["register_submit"])) {
         $username = $_POST["username"];
         $email = $_POST["email"];
-        $password = password_hash($_POST["password"], PASSWORD_DEFAULT);
+        $password_plain = $_POST["password"];
+        $passwordre_plain = $_POST["passwordre"];
+        
+        if ($password_plain !== $passwordre_plain) {
+            echo "<script src='https://code.jquery.com/jquery-3.7.1.min.js'></script>
+                  <script>
+                    $(function() {
+                        alert('Die Passwörter stimmen nicht überein!');
+                    });
+                  </script>";
+            exit();
+        }
+        $password = password_hash($password_plain, PASSWORD_DEFAULT);
 
         // Prepare the SQL statement using MySQLi
         $stmt = $con->prepare("SELECT * FROM users WHERE username=? OR email=?");
@@ -136,6 +148,10 @@
     <div class="input-field">
         <i class="fas fa-lock"></i>
         <input name="password" id="register-password" type="password" placeholder="Password" required />
+    </div>
+    <div class="input-field">
+        <i class="fas fa-lock"></i>
+        <input name="passwordre" id="register-passwordre" type="password" placeholder="Password wiederholen" required />
     </div>
     <div class="password-strength">
         <div id="strength-bar"></div>

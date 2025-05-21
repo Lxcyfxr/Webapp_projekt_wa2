@@ -1,37 +1,35 @@
 <?php
-// Datenbankverbindung herstellen
-$servername = "localhost"; // oder IP-Adresse deines MySQL-Servers
-$username = "root"; // Dein MySQL-Benutzername
-$password = ""; // Dein MySQL-Passwort
-$dbname = "webapp_project"; // Name der Datenbank, die du verwendest
+header('Content-Type: application/json');
 
-// Verbindung aufbauen
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "webapp_project";
+
 $conn = new mysqli($servername, $username, $password, $dbname);
 
-// Überprüfen, ob die Verbindung erfolgreich ist
 if ($conn->connect_error) {
-    die("Verbindung fehlgeschlagen: " . $conn->connect_error);
+    http_response_code(500);
+    echo json_encode(["success" => false, "message" => "Verbindung fehlgeschlagen"]);
+    exit;
 }
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    // Benutzereingaben holen
-    $email = $_POST['email'];
-    $problem = $_POST['problem'];
+    $email = $_POST['email'] ?? '';
+    $problem = $_POST['problem'] ?? '';
 
-    // SQL-Query vorbereiten, um die Daten in die Tabelle 'info_contacts' zu speichern
     $stmt = $conn->prepare("INSERT INTO info_contacts (email, problem) VALUES (?, ?)");
-    $stmt->bind_param("ss", $email, $problem); // "ss" bedeutet, dass beide Parameter Strings sind
+    $stmt->bind_param("ss", $email, $problem);
 
-    // SQL-Query ausführen
     if ($stmt->execute()) {
-        echo "Danke für Ihre Nachricht, das Stylungs Team meldet sich möglichst schnell bei Ihnen!";
+        echo json_encode(["success" => true]);
     } else {
-        echo "Fehler beim Absenden der Nachricht: " . $stmt->error;
+        http_response_code(500);
+        echo json_encode(["success" => false, "message" => "Fehler beim Absenden"]);
     }
 
-    // Prepared Statement und Verbindung schließen
     $stmt->close();
 }
 
 $conn->close();
-?>
+

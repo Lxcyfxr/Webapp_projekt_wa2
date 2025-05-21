@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 21. Mai 2025 um 15:41
+-- Erstellungszeit: 21. Mai 2025 um 16:44
 -- Server-Version: 10.4.32-MariaDB
 -- PHP-Version: 8.2.12
 
@@ -183,8 +183,7 @@ INSERT INTO `testproducts` (`id`, `name`, `description`, `picture`, `price`, `ge
 (96, 'Auto Product 96', 'Auto-generated product for image 11_2.jpg', '/../products/11_2.jpg', 102.00, 'FEMALE', 'M', 'AutoBrand'),
 (97, 'Auto Product 97', 'Auto-generated product for image 19.jpg', '/../products/19.jpg', 102.75, 'FEMALE', 'M', 'AutoBrand'),
 (98, 'Auto Product 98', 'Auto-generated product for image 2.jpg', '/../products/2.jpg', 103.50, 'FEMALE', 'M', 'AutoBrand'),
-(99, 'Auto Product 99', 'Auto-generated product for image 21_1.jpg', '/../products/21_1.jpg', 104.25, 'FEMALE', 'M', 'AutoBrand'),
-(100, 'Auto Product 100', 'Auto-generated product for image 3.jpg', '/../products/3.jpg', 105.00, 'FEMALE', 'M', 'AutoBrand');
+(99, 'Auto Product 99', 'Auto-generated product for image 21_1.jpg', '/../products/21_1.jpg', 104.25, 'FEMALE', 'M', 'AutoBrand');
 
 -- --------------------------------------------------------
 
@@ -197,6 +196,9 @@ CREATE TABLE `users` (
   `username` varchar(255) DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
   `password` varchar(255) DEFAULT NULL,
+  `firstName` text NOT NULL,
+  `lastName` text NOT NULL,
+  `address` text NOT NULL,
   `role` text NOT NULL DEFAULT 'user'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -204,9 +206,10 @@ CREATE TABLE `users` (
 -- Daten für Tabelle `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `email`, `password`, `role`) VALUES
-(1, 'admin', 'admin@stylung.de', '$2y$10$e4XwgysQY2BJudOVZxdVzOwTKVlHME/bkcMD0JMuhIzpVJLScTTPy', 'admin'),
-(2, 'les', 'les@les.les', '$2y$10$POIVT4VeQr2UTq/CzvjmLuJ.QRPjlqyL6vRgpDkeMQX/5t.oi9FiG', 'user');
+INSERT INTO `users` (`id`, `username`, `email`, `password`, `firstName`, `lastName`, `address`, `role`) VALUES
+(1, 'admin', 'admin@stylung.de', '$2y$10$e4XwgysQY2BJudOVZxdVzOwTKVlHME/bkcMD0JMuhIzpVJLScTTPy', '', '', '', 'admin'),
+(2, 'qeqweqe', 'ka@ka.ka', '$2y$10$iRlfNO1TRSlthsDubicktu4jWT6xSs..1/M/rWp2UzWvpBb/QzSG.', '', '', '', 'user'),
+(3, 'les', 'les@les.les', '$2y$10$POIVT4VeQr2UTq/CzvjmLuJ.QRPjlqyL6vRgpDkeMQX/5t.oi9FiG', '', '', '', 'user');
 
 --
 -- Indizes der exportierten Tabellen

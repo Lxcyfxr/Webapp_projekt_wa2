@@ -1,5 +1,4 @@
-<!--Last Change:    -->
-<!--Reason:         -->
+<!-- Datenbank eintrag -->
 <?php
 
 

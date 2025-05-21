@@ -80,6 +80,7 @@
                 <select class="outfit-300" name="role">
                     <option value="user">User</option>
                     <option value="admin">Admin</option>
+                </select>
                 <button class="outfit-300" type="submit">Bestätigen</button>
             </form>
         </div>

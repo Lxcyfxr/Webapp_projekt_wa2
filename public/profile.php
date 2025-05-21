@@ -45,7 +45,7 @@
         $role = $row['role'];
     }
     $stmt->close();
-    $con->close();
+    $con->close();}
         if ($role === 'admin') {
         echo '
         <h1 class="outfit-300">Produktverwaltung</h1>

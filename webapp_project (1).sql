@@ -206,8 +206,7 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `username`, `email`, `password`, `role`) VALUES
 (1, 'admin', 'admin@stylung.de', '$2y$10$e4XwgysQY2BJudOVZxdVzOwTKVlHME/bkcMD0JMuhIzpVJLScTTPy', 'admin'),
-(2, 'qeqweqe', 'ka@ka.ka', '$2y$10$iRlfNO1TRSlthsDubicktu4jWT6xSs..1/M/rWp2UzWvpBb/QzSG.', 'user'),
-(3, 'les', 'les@les.les', '$2y$10$POIVT4VeQr2UTq/CzvjmLuJ.QRPjlqyL6vRgpDkeMQX/5t.oi9FiG', 'user');
+(2, 'les', 'les@les.les', '$2y$10$POIVT4VeQr2UTq/CzvjmLuJ.QRPjlqyL6vRgpDkeMQX/5t.oi9FiG', 'user');
 
 --
 -- Indizes der exportierten Tabellen

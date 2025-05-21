@@ -74,6 +74,14 @@
                 <input class="outfit-300" type="number" name="product_id" placeholder="Produkt-ID" required />
                 <button class="outfit-300" type="submit">Bestätigen</button>
             </form>
+            <form action="user_admin.php" method="POST" style="margin-top: 1rem;">
+                <h2 class="outfit-300">User Rolle ändern</h2>
+                <input class="outfit-300" type="text" name="username" placeholder="Username" required />
+                <select class="outfit-300" name="role">
+                    <option value="user">User</option>
+                    <option value="admin">Admin</option>
+                <button class="outfit-300" type="submit">Bestätigen</button>
+            </form>
         </div>
         ';
     }else {

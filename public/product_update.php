@@ -25,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     if (empty($product_name)) {
-        $stmt = $conn->prepare('SELECT name FROM testproducts WHERE id = ?');
+        $stmt = $conn->prepare('SELECT name FROM  testproducts WHERE id = ?');
         $stmt->bind_param('i', $product_id);
         $stmt->execute();
         $stmt->bind_result($product_name);

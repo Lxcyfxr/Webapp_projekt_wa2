@@ -97,8 +97,8 @@
                     <option value="MALE">Herr</option>
                     <option value="FEMALE">Frau</option>
                 </select>
-                <input class="outfit-300" type="text" name="vorname" placeholder="Vorname" required />
-                <input class="outfit-300" type="text" name="nachname" placeholder="Nachname" required />
+                <input class="outfit-300" type="text" name="vorname" placeholder="Vorname" required value="' . htmlspecialchars($userData['firstName'] ?? '') . '" readonly/>
+                <input class="outfit-300" type="text" name="nachname" placeholder="Nachname" required value="' . htmlspecialchars($userData['lastName'] ?? '') . '" readonly/>
                 <input class="outfit-300" type="text" name="username" placeholder="Username" required value="' . htmlspecialchars($userData['username'] ?? '') . '" readonly />
                 <input class="outfit-300" type="email" name="email" placeholder="E-Mail" required value="' . htmlspecialchars($userData['email'] ?? '') . '" readonly />
                 <input class="outfit-300" type="text" name="profilepic_url" placeholder="Profilbild-URL" required />

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Stylung</title>
     <link rel="icon" href="/public/pictures/Logo_Stylung.ico" type="image/x-icon" />
-    <link rel="stylesheet" href="profile.css">
+    <link rel="stylesheet" href="./css/profile.css">
 </head>
 <?php include 'navbar.php'; ?>
 <body style="background: #141b27; color: white; display:flex; justify-content: center; align-items: center; flex-direction: column; padding-top: 3%">

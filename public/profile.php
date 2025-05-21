@@ -22,30 +22,17 @@
     $userData = null;
     if (isset($_SESSION['username'])) {
         require_once("../connection.php");
-        $stmt = $con->prepare("SELECT username, email FROM users WHERE username=?");
+        $stmt = $con->prepare("SELECT username, email,role FROM users WHERE username=?");
         $stmt->bind_param("s", $_SESSION['username']);
         $stmt->execute();
         $result = $stmt->get_result();
         $userData = $result->fetch_assoc();
+        if ($userData) {
+        $role = $userData['role'];
+    }
         $stmt->close();
     }
-    if (isset($_SESSION['username'])) {
-    // Hole die Rolle aus der Datenbank
-    $con = new mysqli("localhost", "root", "", "webapp_project");
-    if ($con->connect_error) {
-        die("Verbindung fehlgeschlagen: " . $con->connect_error);
-    }
-    $username = $_SESSION['username'];
-    $stmt = $con->prepare("SELECT role FROM users WHERE username = ?");
-    $stmt->bind_param("s", $username);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    $role = "";
-    if ($row = $result->fetch_assoc()) {
-        $role = $row['role'];
-    }
-    $stmt->close();
-    $con->close();}
+    
         if ($role === 'admin') {
         echo '
         <h1 class="outfit-300">Produktverwaltung</h1>

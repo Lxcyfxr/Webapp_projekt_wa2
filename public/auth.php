@@ -54,11 +54,14 @@
 
     // Registration logic
     if (isset($_POST["register_submit"])) {
+        $firstName = $_POST["firstName"];
+        $lastName = $_POST["lastName"];
         $username = $_POST["username"];
         $email = trim(strtolower($_POST["email"]));
         $emailre = trim(strtolower($_POST["emailre"]));
         $password_plain = $_POST["password"];
         $passwordre_plain = $_POST["passwordre"];
+        $address = $_POST["address"];
         
         if ($password_plain !== $passwordre_plain || $email !== $emailre) {
             echo "<script src='https://code.jquery.com/jquery-3.7.1.min.js'></script>
@@ -67,7 +70,7 @@
                         alert('Die Passwörter oder Emails stimmen nicht überein!');
                     });
                   </script>";
-        } else if ($password_plain == $passwordre_plain || $email == $emailre){
+        } else {
             $password = password_hash($password_plain, PASSWORD_DEFAULT);
 
             // Prepare the SQL statement using MySQLi
@@ -80,15 +83,15 @@
             $userAlreadyExists = $result->num_rows > 0;
 
             // Function to register the user
-            function registerUser($username, $email, $password){
+            function registerUser($username, $email, $password, $firstName, $lastName, $address) {
                 global $con;
-                $stmt = $con->prepare("INSERT INTO users(username, email, password) VALUES(?, ?, ?)");
-                $stmt->bind_param("sss", $username, $email, $password);
+                $stmt = $con->prepare("INSERT INTO users (firstName, lastName, username, email, password, address) VALUES (?, ?, ?, ?, ?, ?)");
+                $stmt->bind_param("ssssss", $firstName, $lastName, $username, $email, $password, $address);
                 $stmt->execute();
             }
 
             if (!$userAlreadyExists) {
-                registerUser($username, $email, $password);
+                registerUser($username, $email, $password, $firstName, $lastName, $address);
                 echo "Registration successful!";
             } else {
                 echo "User already exists";

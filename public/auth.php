@@ -55,43 +55,44 @@
     // Registration logic
     if (isset($_POST["register_submit"])) {
         $username = $_POST["username"];
-        $email = $_POST["email"];
+        $email = trim(strtolower($_POST["email"]));
+        $emailre = trim(strtolower($_POST["emailre"]));
         $password_plain = $_POST["password"];
         $passwordre_plain = $_POST["passwordre"];
         
-        if ($password_plain !== $passwordre_plain) {
+        if ($password_plain !== $passwordre_plain || $email !== $emailre) {
             echo "<script src='https://code.jquery.com/jquery-3.7.1.min.js'></script>
                   <script>
                     $(function() {
-                        alert('Die Passwörter stimmen nicht überein!');
+                        alert('Die Passwörter oder Emails stimmen nicht überein!');
                     });
                   </script>";
-            exit();
-        }
-        $password = password_hash($password_plain, PASSWORD_DEFAULT);
+        } else if ($password_plain == $passwordre_plain || $email == $emailre){
+            $password = password_hash($password_plain, PASSWORD_DEFAULT);
 
-        // Prepare the SQL statement using MySQLi
-        $stmt = $con->prepare("SELECT * FROM users WHERE username=? OR email=?");
-        $stmt->bind_param("ss", $username, $email);
-        $stmt->execute();
-
-        // Fetch the result
-        $result = $stmt->get_result();
-        $userAlreadyExists = $result->num_rows > 0;
-
-        // Function to register the user
-        function registerUser($username, $email, $password){
-            global $con;
-            $stmt = $con->prepare("INSERT INTO users(username, email, password) VALUES(?, ?, ?)");
-            $stmt->bind_param("sss", $username, $email, $password);
+            // Prepare the SQL statement using MySQLi
+            $stmt = $con->prepare("SELECT * FROM users WHERE username=? OR email=?");
+            $stmt->bind_param("ss", $username, $email);
             $stmt->execute();
-        }
 
-        if (!$userAlreadyExists) {
-            registerUser($username, $email, $password);
-            echo "Registration successful!";
-        } else {
-            echo "User already exists";
+            // Fetch the result
+            $result = $stmt->get_result();
+            $userAlreadyExists = $result->num_rows > 0;
+
+            // Function to register the user
+            function registerUser($username, $email, $password){
+                global $con;
+                $stmt = $con->prepare("INSERT INTO users(username, email, password) VALUES(?, ?, ?)");
+                $stmt->bind_param("sss", $username, $email, $password);
+                $stmt->execute();
+            }
+
+            if (!$userAlreadyExists) {
+                registerUser($username, $email, $password);
+                echo "Registration successful!";
+            } else {
+                echo "User already exists";
+            }
         }
     }
 ?>
@@ -144,6 +145,10 @@
     <div class="input-field">
         <i class="fas fa-envelope"></i>
         <input name="email" type="email" placeholder="Email" required />
+    </div>
+    <div class="input-field">
+        <i class="fas fa-envelope"></i>
+        <input name="emailre" type="email" placeholder="Email wiederholen" required />
     </div>
     <div class="input-field">
         <i class="fas fa-lock"></i>

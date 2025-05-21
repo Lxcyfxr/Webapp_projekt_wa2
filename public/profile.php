@@ -17,17 +17,18 @@
         ?>
     </h1>
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     <?php
+    // Hole Userdaten aus DB, falls eingeloggt
+    $userData = null;
+    if (isset($_SESSION['username'])) {
+        require_once("../connection.php");
+        $stmt = $con->prepare("SELECT username, email FROM users WHERE username=?");
+        $stmt->bind_param("s", $_SESSION['username']);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $userData = $result->fetch_assoc();
+        $stmt->close();
+    }
     if (isset($_SESSION['username']) && $_SESSION['username'] === 'admin') {
         echo '
         <h1 class="outfit-300">Produktverwaltung</h1>
@@ -85,13 +86,10 @@
                 </select>
                 <input class="outfit-300" type="text" name="vorname" placeholder="Vorname" required />
                 <input class="outfit-300" type="text" name="nachname" placeholder="Nachname" required />
-                <input class="outfit-300" type="text" name="username" placeholder="Username" required />
+                <input class="outfit-300" type="text" name="username" placeholder="Username" required value="' . htmlspecialchars($userData['username'] ?? '') . '" readonly />
+                <input class="outfit-300" type="email" name="email" placeholder="E-Mail" required value="' . htmlspecialchars($userData['email'] ?? '') . '" readonly />
                 <input class="outfit-300" type="text" name="profilepic_url" placeholder="Profilbild-URL" required />
-                
-               
-                
                 <button class="outfit-300" type="submit">Bearbeiten</button>
-                
             </form>
             <form class="history" action="product_delete.php" method="POST" style="margin-top: 1rem;">
                 <h2 class="history outfit-300">Verlauf</h2>

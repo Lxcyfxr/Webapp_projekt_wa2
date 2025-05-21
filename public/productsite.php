@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="productsite_style.css">
+    <link rel="stylesheet" href="./css/productsite_style.css">
     <title>Produktdetails</title>
     <script src="jquery-3.7.1.min.js"></script>
     <style>
@@ -43,7 +43,7 @@
     <script>
         function loadProduct(id) {
             $.ajax({
-                url: './backend.php', // URL zur backend.php
+                url: '../backend.php', // URL zur backend.php
                 type: 'GET',
                 dataType: 'json',
                 success: function(data) {

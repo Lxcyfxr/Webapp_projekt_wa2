@@ -6,7 +6,7 @@
     <title>Stylung</title>
     <link rel="icon" href="/public/pictures/Logo_Stylung.ico" type="image/x-icon" />
     <script src="jquery-3.7.1.min.js"></script>
-    <link rel="stylesheet" href="shopsite_style.css">
+    <link rel="stylesheet" href="./css/shopsite_style.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Comic+Neue:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Outfit:wght@100..900&family=Winky+Rough:ital,wght@0,300..900;1,300..900&display=swap');
     </style>
@@ -55,7 +55,7 @@
 
           function loadProducts(filterGender = "ALL", searchQuery = "") {
             $.ajax({
-              url: "backend.php",
+              url: "../backend.php",
               method: "GET",
               dataType: "json",
               success: function (data) {

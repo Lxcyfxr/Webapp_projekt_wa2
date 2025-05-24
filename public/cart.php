@@ -12,7 +12,11 @@
     <script src=./jquery-3.7.1.min.js></script>
   </head>
   <body style="padding-top: 2rem">
-    <?php include 'navbar.php'; ?>
+    <?php 
+    session_start();
+    require_once("../connection.php");
+    include 'navbar.php'; 
+    ?>
     <h1>
       Warenkorb von
       <?php 
@@ -21,60 +25,28 @@
             else{echo "Gast";}    
         ?>
     </h1>
-    <div class= "cart" >
-        <div class="warenkorbitems">      
-            <script>
-            $(document).ready(function () {
-                function loadCart() {
-                    $.ajax({
-                        url: './../cart_backend.php',
-                        method: 'GET',
-                        dataType: 'json',
-                        success: function (data) {
-                            if (data.error) {
-                                alert(data.error);
-                                return;
-                            }
+    
+    <?php
+        $userid = intval($_SESSION['userid']);
+        $stmt = $con->prepare("SELECT c.*, p.product_name, p.price, p.image_url FROM cart c JOIN products p ON c.productid = p.id WHERE c.userid = ?");
+        $stmt->bind_param("i", $userid);
+        $stmt->execute();
+        $result = $stmt->get_result();
 
-                            const cartContainer = $('.warenkorbitems');
-                            cartContainer.empty();
-
-                            data.forEach(product => {
-                                const productHTML = `
-                                    <div class="product">
-                                        <img class="cartimg" src="${product.picture}"/>
-                                        <div class="desc">
-                                            <h2>${product.name}</h2>
-                                            <p>${product.description}</p>
-                                            <p>Preis: ${product.price} €</p>
-                                            <p>Größe: ${product.size}</p>
-                                        </div>
-                                        <div class="delops">
-                                            <button class="delete-btn">Delete</button>
-                                            <div class="ops">
-                                                <button class="increase-btn">+</button>
-                                                <p>${product.amount}</p>
-                                                <button class="decrease-btn">-</button>
-                                            </div>
-                                        </div>
-                                    </div>`;
-                                cartContainer.append(productHTML);
-                            });
-                        },
-                        error: function (xhr, status, error) {
-                            alert('Fehler beim Laden des Warenkorbs.'+error);
-                        }
-                    });
-                }
-
-                loadCart();
-            });
-            </script>
-            
-        </div>
-        <div class = "overview">
-            <p>Produkte</p>
-        </div>
-    </div> 
+        echo "<h1>Dein Warenkorb</h1>";
+        echo "<table>";
+        echo "<tr><th>Bild</th><th>Name</th><th>Menge</th><th>Größe</th><th>Preis</th></tr>";
+        while ($row = $result->fetch_assoc()) {
+            echo "<tr>
+                <td><img src='".htmlspecialchars($row['image_url'])."' width='50'></td>
+                <td>".htmlspecialchars($row['product_name'])."</td>
+                <td>".intval($row['amount'])."</td>
+                <td>".htmlspecialchars($row['size'])."</td>
+                <td>".number_format($row['price'], 2)." €</td>
+            </tr>";
+        }
+        echo "</table>";
+        $stmt->close();
+        ?>
   </body>
 </html>

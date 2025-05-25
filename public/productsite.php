@@ -100,7 +100,7 @@
                     if (response.error) {
                         alert(response.error);
                     } else {
-                        alert(response.success);
+                        window.location.href = "cart.php";
                     }
                 },
                 error: function (xhr,status, error) {

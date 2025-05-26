@@ -41,6 +41,7 @@
                 echo "Password is incorrect";
             } else if ($checkPassword == true) {
                 $_SESSION["username"] = $userExists["username"];
+                $_SESSION["id"] = $userExists["id"];
                 $_SESSION['last_activity'] = time();
                 header("Location: index.php");
                 exit();

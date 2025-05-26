@@ -1,12 +1,37 @@
-# Webapp_projekt_wa2
+# Stylung - Webapp-Projekt
 
-Die folgende App ist für ein Projekt im Rahmen unser WebApp Vorlesung.
+Willkommen bei Stylung – deinem Online-Shop für Streetwear, die genau zu dir passt. Wir stehen für einen simplen und schlichten Stil, der ohne Kompromisse kommt: modern, urban und unverwechselbar.
+
+Unsere Mission ist es, die jüngere Generation mit hochwertigen und authentischen Pieces zu versorgen, die nicht nur Trends folgen, sondern den individuellen Ausdruck unterstreichen. Egal ob Basic oder Statement – bei uns findest du das perfekte Outfit für deinen Streetstyle.
+
+Stylung ist mehr als nur Mode. Es ist ein Lebensgefühl. Minimalistisch, zeitlos, stark.
+
+Entdecke unseren Shop und werde Teil von Stylung.
+
+# Anforderungen
+
+- Sessionverwaltung
+- Login-Logout                                  -> erfüllt       Login via Loginpage und Logout dann über Logout Button auf Profilseite
+- automatischer Logout
+- Admin-Bereich mit Useraccount-Verwaltung      -> erfüllt       Profilseite eines Accounts mit Adminrolle (Kann Benutzer "admin" mit PW "admin" verwendet werden)        
+- Passwort-Verwaltung
+- Rechte-Verwaltung                             -> erfüllt       Profilseite eines Accounts mit Adminrolle 
+- Dateneingabe Client- und Serverseitig prüfen
+- Datensatzmanipulation in SQL-Server           -> erfüllt       Profilseite eines Accounts mit Adminrolle (Produktverwaltung)
+- Konfigurationsinformationen via config Datei
+- Einbindung jQuery/jQuery UI o. Bootstrap      -> erfüllt
+- Dynamisches Laden/Nachladen AJAX              -> erfüllt       Shopseite
+- Meldungsfenster / Userbestätigung jQuery UI   -> erfüllt       Kontaktformular auf Kontaktseite
+- Datenexport via JSON                          -> erfüllt       Profilseite eines accounts mit Adminrolle (Userexport JSON (mit aktuellem Suchfilter))
+- Dynamische, responsive Menüstruktur           -> erfüllt       Navbar
+
+# Restliche Features
 
 ## Aufbau
 
-Diese App läuft in einer xampp.
+Stylung wird lokal wie xampp gehostet.
 Unser Backend läuft auf PHP, Frontend mit HTML, CSS, jQuery und Ajax.
-Unser datenbank ist eine SQL Datenbank und läuft ebenfalls in XAMPP
+Unsere Datenbank ist eine SQL Datenbank und läuft ebenfalls in XAMPP
 
 ## Login Validation
 
@@ -16,8 +41,9 @@ sql injection
 xss
 
 ## Datenbank
-
-id, name, beschreibung, größe, geschlecht, preis, marke
+testproducts mit id, name, beschreibung, größe, geschlecht, preis, marke
+users
+cart
 
 ## Shopsite
 
@@ -49,13 +75,3 @@ admin kriegt einen button dynamisch angezeigt um aufs admin portal zu kommen
 
 produkte aus db löschen und aus pictures ordner <br>
 ebenfalls rückmeldungen von Kunden lesen
-
-## Über uns -> eventuell zu Kontakt
-
-Willkommen bei Stylung – deinem Online-Shop für Streetwear, die genau zu dir passt. Wir stehen für einen simplen und schlichten Stil, der ohne Kompromisse kommt: modern, urban und unverwechselbar.
-
-Unsere Mission ist es, die jüngere Generation mit hochwertigen und authentischen Pieces zu versorgen, die nicht nur Trends folgen, sondern den individuellen Ausdruck unterstreichen. Egal ob Basic oder Statement – bei uns findest du das perfekte Outfit für deinen Streetstyle.
-
-Stylung ist mehr als nur Mode. Es ist ein Lebensgefühl. Minimalistisch, zeitlos, stark.
-
-Entdecke unseren Shop und werde Teil von Stylung.

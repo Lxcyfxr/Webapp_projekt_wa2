@@ -33,7 +33,23 @@ h1, h2 {
     display: none
 }
 
+div.form {
+    background-color: #1f2a38;
+    border-radius: 10px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 400px;
+}
+
 form {
+    gap: 1rem;
+    display: flex;
+    flex-direction: column;
+}
+
+div.user-list {
     display: flex;
     flex-direction: column;
     background-color: #1f2a38;
@@ -42,8 +58,14 @@ form {
     margin-bottom: 2rem;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     width: 100%;
-    max-width: 400px;
+    max-width: 850px;
     gap: 1rem;
+}
+
+#user-search {
+    border-radius: 5px;
+    background-color: #2a3b4f;
+    color: white;
 }
 
 form.history {
@@ -70,8 +92,6 @@ form textarea {
     outline: none;
     resize: none;
 }
-
-
 
 form textarea {
     height: 100px;

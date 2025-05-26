@@ -82,9 +82,25 @@
                     <option value="admin">Admin</option>
                 </select>
                 <button class="outfit-300" type="submit">Bestätigen</button>
-            </form>
+            </form>         
         </div>
         ';
+        $result = $con->query("SELECT username, email, role FROM users");
+        echo '<div style="margin-top:2rem;width:100%;">';
+        echo '<h2 class="outfit-300">Alle Nutzer</h2>';
+        echo '<table style="width:100%;color:white;border-collapse:collapse;background:#1a2332;">';
+        echo '<tr><th>Username</th><th>Email</th><th>Rolle</th></tr>';
+        while ($row = $result->fetch_assoc()) {
+            echo '<tr>';
+            echo '<td>' . htmlspecialchars($row['username']) . '</td>';
+            echo '<td>' . htmlspecialchars($row['email']) . '</td>';
+            echo '<td>' . htmlspecialchars($row['role']) . '</td>';
+            echo '</tr>';
+        }
+        echo '</table>';
+        echo '</div>';
+
+
     }else {
         echo ' 
         <img src="pictures/usericon.svg" alt="Profil" width="100" height="100">

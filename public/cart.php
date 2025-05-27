@@ -1,80 +1,148 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
+<html lang="de">
+<head>
     <meta charset="UTF-8" />
-    <title>Stylung</title>
-    <link
-      rel="icon"
-      href="/public/pictures/Logo_Stylung.ico"
-      type="image/x-icon"
-    />
+    <title>Stylung – Warenkorb</title>
+    <link rel="icon" href="/public/pictures/Logo_Stylung.ico" type="image/x-icon" />
     <link rel="stylesheet" href="./css/cart.css" />
-    <script src=./jquery-3.7.1.min.js></script>
-  </head>
-  <body style="padding-top: 2rem">
-    <?php include 'navbar.php'; ?>
-    <h1>
-      Warenkorb von
-      <?php 
-            if (isset($_SESSION['username'])) {
-                echo htmlspecialchars($_SESSION['username']);} 
-            else{echo "Gast";}    
-        ?>
-    </h1>
-    <div class= "cart" >
-        <div class="warenkorbitems">      
-            <script>
-            $(document).ready(function () {
-                function loadCart() {
-                    $.ajax({
-                        url: './../cart_backend.php',
-                        method: 'GET',
-                        dataType: 'json',
-                        success: function (data) {
-                            if (data.error) {
-                                alert(data.error);
-                                return;
-                            }
+</head>
+<body>
+<?php
+session_start();
+require_once("../connection.php");
+include 'navbar.php';
 
-                            const cartContainer = $('.warenkorbitems');
-                            cartContainer.empty();
+if (!isset($_SESSION['username'])) {
+    echo "<div class='cart-container'><p>Bitte <a href='auth.php'>loggen Sie sich ein</a>, um Ihren Warenkorb zu sehen.</p></div>";
+    exit;
+}
+$userid = $_SESSION['id'];
 
-                            data.forEach(product => {
-                                const productHTML = `
-                                    <div class="product">
-                                        <img class="cartimg" src="${product.picture}"/>
-                                        <div class="desc">
-                                            <h2>${product.name}</h2>
-                                            <p>${product.description}</p>
-                                            <p>Preis: ${product.price} €</p>
-                                            <p>Größe: ${product.size}</p>
-                                        </div>
-                                        <div class="delops">
-                                            <button class="delete-btn">Delete</button>
-                                            <div class="ops">
-                                                <button class="increase-btn">+</button>
-                                                <p>${product.amount}</p>
-                                                <button class="decrease-btn">-</button>
-                                            </div>
-                                        </div>
-                                    </div>`;
-                                cartContainer.append(productHTML);
-                            });
-                        },
-                        error: function (xhr, status, error) {
-                            alert('Fehler beim Laden des Warenkorbs.'+error);
-                        }
-                    });
-                }
+// Menge erhöhen/verringern/löschen
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (isset($_POST['action'], $_POST['product_id'], $_POST['size'])) {
+        $product_id = intval($_POST['product_id']);
+        $size = $_POST['size'];
+        if ($_POST['action'] === 'increase') {
+            $stmt = $con->prepare("UPDATE cart SET amount = amount + 1 WHERE user_id = ? AND product_id = ? AND size = ?");
+            $stmt->bind_param("iis", $userid, $product_id, $size);
+            $stmt->execute();
+            $stmt->close();
+        } elseif ($_POST['action'] === 'decrease') {
+            $stmt = $con->prepare("UPDATE cart SET amount = amount - 1 WHERE user_id = ? AND product_id = ? AND size = ? AND amount > 1");
+            $stmt->bind_param("iis", $userid, $product_id, $size);
+            $stmt->execute();
+            $stmt->close();
+        } elseif ($_POST['action'] === 'delete') {
+            $stmt = $con->prepare("DELETE FROM cart WHERE user_id = ? AND product_id = ? AND size = ?");
+            $stmt->bind_param("iis", $userid, $product_id, $size);
+            $stmt->execute();
+            $stmt->close();
+        }
+        header("Location: cart.php");
+        exit;
+    }
+}
 
-                loadCart();
-            });
-            </script>
-            
-        </div>
-        <div class = "overview">
-            <p>Produkte</p>
-        </div>
-    </div> 
-  </body>
-</html>
+// Cart anzeigen
+$stmt = $con->prepare("
+    SELECT 
+        c.amount, 
+        c.size, 
+        c.product_id, 
+        p.name, 
+        p.picture, 
+        p.description, 
+        p.price
+    FROM cart c
+    JOIN testproducts p ON c.product_id = p.id
+    WHERE c.user_id = ?
+");
+$stmt->bind_param("i", $userid);
+$stmt->execute();
+$result = $stmt->get_result();
+
+// Gesamtsumme berechnen
+$total = 0.0;
+$cartRows = [];
+while ($row = $result->fetch_assoc()) {
+    $cartRows[] = $row;
+    $total += $row['amount'] * $row['price'];
+}
+
+// Adresse des Users holen
+$stmt_addr = $con->prepare("SELECT address FROM users WHERE id = ?");
+$stmt_addr->bind_param("i", $userid);
+$stmt_addr->execute();
+$stmt_addr->bind_result($address);
+$stmt_addr->fetch();
+$stmt_addr->close();
+
+echo "<div class='cart-flex-container' style='display:flex; gap:2rem; justify-content:center; align-items:flex-start; width:100%; max-width:1100px; margin:2rem auto 0 auto;'>";
+
+// Cart-Tabelle (links)
+echo "<div class='cart-container'>";
+echo "<div class='cart-title'>Warenkorb von " . htmlspecialchars($_SESSION['username']) . "</div>";
+
+if (count($cartRows) === 0) {
+    echo "<div class='cart-empty'>Dein Warenkorb ist leer.</div>";
+} else {
+    echo "<table class='cart-table'>";
+    foreach ($cartRows as $row) {
+        echo "<tr class='cart-item'>
+            <td><img src='" . htmlspecialchars($row['picture']) . "' alt='" . htmlspecialchars($row['name']) . "'></td>
+            <td>
+                <div style='font-weight:600;'>" . htmlspecialchars($row['name']) . "</div>
+            </td>
+            <td>
+                <form method='POST' class='amount-form' style='display:inline;'>
+                    <input type='hidden' name='product_id' value='" . intval($row['product_id']) . "'>
+                    <input type='hidden' name='size' value='" . htmlspecialchars($row['size']) . "'>
+                    <button type='submit' name='action' value='decrease' class='cart-btn'>-</button>
+                </form>
+                <span style='margin:0 0.5rem; font-weight:500;'>" . intval($row['amount']) . "</span>
+                <form method='POST' class='amount-form' style='display:inline;'>
+                    <input type='hidden' name='product_id' value='" . intval($row['product_id']) . "'>
+                    <input type='hidden' name='size' value='" . htmlspecialchars($row['size']) . "'>
+                    <button type='submit' name='action' value='increase' class='cart-btn'>+</button>
+                </form>
+            </td>
+            <td>" . htmlspecialchars($row['size']) . "</td>
+            <td>" . number_format($row['price'], 2) . " €</td>
+            <td>
+                <form method='POST' class='delete-form' style='display:inline;'>
+                    <input type='hidden' name='product_id' value='" . intval($row['product_id']) . "'>
+                    <input type='hidden' name='size' value='" . htmlspecialchars($row['size']) . "'>
+                    <button type='submit' name='action' value='delete' class='cart-btn delete'>✕</button>
+                </form>
+            </td>
+        </tr>";
+    }
+    echo "</table>";
+}
+echo "</div>";
+
+// Checkout-Box (rechts)
+$noAddress = empty($address);
+echo "<div class='checkout-box'>";
+echo "<div style='font-size:1.3rem; font-weight:600; margin-bottom:1.2rem;'>Checkout</div>";
+echo "<div style='margin-bottom:1.2rem;'><span style='color:#bbb;'>Gesamtsumme:</span><br><span style='font-size:1.5rem; font-weight:700;'>" . number_format($total, 2) . " €</span></div>";
+echo "<div style='margin-bottom:1.2rem;'><span style='color:#bbb;'>Lieferadresse:</span><br><span style='font-size:1.1rem;'>" . ($noAddress ? "Keine Adresse angegeben" : htmlspecialchars($address)) . "</span></div>";
+echo "<button style='width:100%;padding:0.8rem 0;border:none;border-radius:8px;background:" . ($noAddress ? "#888" : "#c580f7") . ";color:#fff;font-size:1.1rem;font-weight:600;cursor:" . ($noAddress ? "not-allowed" : "pointer") . ";' " . ($noAddress ? "disabled" : "") . ">Jetzt bestellen</button>";
+echo "</div>";
+
+echo "</div>"; // Flex-Container
+
+$stmt->close();
+?>
+
+<script>
+// Seite nach +, - oder Löschen automatisch neu laden (ohne doppeltes Absenden)
+document.querySelectorAll('.amount-form, .delete-form').forEach(form => {
+    form.addEventListener('submit', function() {
+        setTimeout(function() {
+            window.location.reload();
+        }, 100);
+    });
+});
+</script>

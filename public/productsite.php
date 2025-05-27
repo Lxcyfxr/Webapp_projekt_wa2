@@ -28,13 +28,13 @@
             <hr width="100%" size="1" color="#ffffff" style="margin: 0px; padding: 0px;">
             <p class="outfit-300">Produktbeschreibung</p>
             <label for="size">Größe wählen:</label>
-            <select id="size" name="size" >
-                <option value="xs">XS</option>
-                <option value="s">S</option>
-                <option value="m">M</option>
-                <option value="l">L</option>
-                <option value="xl">XL</option>
-                <option value="xxl">XXL</option>
+            <select id="size" name="size" required>
+                <option value="">Bitte wählen</option>
+                <option value="XS">XS</option>
+                <option value="S">S</option>
+                <option value="M">M</option>
+                <option value="L">L</option>
+                <option value="XL">XL</option>
             </select>
             <button class="add-to-cart-btn">In den Warenkorb</button>
         </div>
@@ -80,7 +80,7 @@
 <script>
     $(document).ready(function () {
         $('.add-to-cart-btn').click(function () {
-            const productId = new URLSearchParams(window.location.search).get('id');
+            //const productId = new URLSearchParams(window.location.search).get('id');
             const size = $('#size').val();
 
             if (!productId || !size) {
@@ -100,7 +100,7 @@
                     if (response.error) {
                         alert(response.error);
                     } else {
-                        alert(response.success);
+                        window.location.href = "cart.php";
                     }
                 },
                 error: function (xhr,status, error) {

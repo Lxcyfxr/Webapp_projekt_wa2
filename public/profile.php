@@ -22,7 +22,7 @@
     $userData = null;
     if (isset($_SESSION['username'])) {
         require_once("../connection.php");
-        $stmt = $con->prepare("SELECT username, email,role FROM users WHERE username=?");
+        $stmt = $con->prepare("SELECT username, email, role, firstName, lastName, address FROM users WHERE username=?");
         $stmt->bind_param("s", $_SESSION['username']);
         $stmt->execute();
         $result = $stmt->get_result();
@@ -97,8 +97,8 @@
                     <option value="MALE">Herr</option>
                     <option value="FEMALE">Frau</option>
                 </select>
-                <input class="outfit-300" type="text" name="vorname" placeholder="Vorname" required value="' . htmlspecialchars($userData['firstName'] ?? '') . '" readonly/>
-                <input class="outfit-300" type="text" name="nachname" placeholder="Nachname" required value="' . htmlspecialchars($userData['lastName'] ?? '') . '" readonly/>
+                <input class="outfit-300" type="text" name="vorname" placeholder="Vorname" required value="' . htmlspecialchars($userData['firstName'] ?? '') . '" readonly />
+                <input class="outfit-300" type="text" name="nachname" placeholder="Nachname" required value="' . htmlspecialchars($userData['lastName'] ?? '') . '" readonly />
                 <input class="outfit-300" type="text" name="username" placeholder="Username" required value="' . htmlspecialchars($userData['username'] ?? '') . '" readonly />
                 <input class="outfit-300" type="email" name="email" placeholder="E-Mail" required value="' . htmlspecialchars($userData['email'] ?? '') . '" readonly />
                 <input class="outfit-300" type="text" name="profilepic_url" placeholder="Profilbild-URL" required />

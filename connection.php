@@ -2,11 +2,13 @@
 <?php
 
 
-$dsn ='localhost';
-$username = 'root';
-$password = '';
-$dbname = "webapp_project";
+$config = parse_ini_file('../config.ini', true);
+$db = $config['database'];
+$servername = $db['host'];
+$username = $db['user'];
+$password = $db['password'];
+$dbname = $db['dbname'];
 
-$con = new mysqli($dsn, $username, $password, $dbname);
+$con = new mysqli($servername, $username, $password, $dbname);
 
 ?>

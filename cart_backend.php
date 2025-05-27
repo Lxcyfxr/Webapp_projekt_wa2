@@ -1,9 +1,11 @@
 <?php
 session_start();
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "webapp_project";
+$config = parse_ini_file('./config.ini', true);
+$db = $config['database'];
+$servername = $db['host'];
+$username = $db['user'];
+$password = $db['password'];
+$dbname = $db['dbname'];
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 

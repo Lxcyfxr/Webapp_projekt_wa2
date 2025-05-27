@@ -13,7 +13,7 @@ require_once("../connection.php");
 include 'navbar.php';
 
 if (!isset($_SESSION['username'])) {
-    echo "<div class='cart-container'><p>Bitte <a href='auth.php'>loggen Sie sich ein</a>, um Ihren Warenkorb zu sehen.</p></div>";
+    echo "<div class='cart-container'><p>Bitte <a href='auth.php' style='color:#2cc9c2'>loggen</a> Sie sich ein, um Ihren Warenkorb zu sehen.</p></div>";
     exit;
 }
 $userid = $_SESSION['id'];
@@ -85,7 +85,7 @@ echo "<div class='cart-container'>";
 echo "<div class='cart-title'>Warenkorb von " . htmlspecialchars($_SESSION['username']) . "</div>";
 
 if (count($cartRows) === 0) {
-    echo "<div class='cart-empty'>Dein Warenkorb ist leer.</div>";
+    echo "<div class='cart-empty'>Dein Warenkorb ist leer. Schau doch mal <a href='shopsite.php' style='color:#2cc9c2'>hier</a> vorbei.</div>";
 } else {
     echo "<table class='cart-table'>";
     foreach ($cartRows as $row) {

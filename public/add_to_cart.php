@@ -23,17 +23,39 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit;
     }
 
-    $sql = "INSERT INTO cart (product_id, amount, user_id, size) VALUES (?, ?, ?, ?)";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param('iiis', $product_id, $amount, $user_id, $size);
+    // Prüfen, ob der Eintrag bereits existiert
+    $checkSql = "SELECT amount FROM cart WHERE product_id = ? AND user_id = ? AND size = ?";
+    $checkStmt = $conn->prepare($checkSql);
+    $checkStmt->bind_param('iis', $product_id, $user_id, $size);
+    $checkStmt->execute();
+    $checkStmt->store_result();
 
-    if ($stmt->execute()) {
-        echo json_encode(['success' => 'Product added to cart']);
+    if ($checkStmt->num_rows > 0) {
+        // Eintrag existiert, Menge erhöhen
+        $updateSql = "UPDATE cart SET amount = amount + 1 WHERE product_id = ? AND user_id = ? AND size = ?";
+        $updateStmt = $conn->prepare($updateSql);
+        $updateStmt->bind_param('iis', $product_id, $user_id, $size);
+        if ($updateStmt->execute()) {
+            echo json_encode(['success' => 'Product amount increased']);
+        } else {
+            echo json_encode(['error' => 'Failed to update product amount']);
+        }
+        $updateStmt->close();
     } else {
-        echo json_encode(['error' => 'Failed to add product to cart']);
+        // Neuer Eintrag
+        $sql = "INSERT INTO cart (product_id, amount, user_id, size) VALUES (?, ?, ?, ?)";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param('iiis', $product_id, $amount, $user_id, $size);
+
+        if ($stmt->execute()) {
+            echo json_encode(['success' => 'Product added to cart']);
+        } else {
+            echo json_encode(['error' => 'Failed to add product to cart']);
+        }
+        $stmt->close();
     }
 
-    $stmt->close();
+    $checkStmt->close();
     $conn->close();
 }
 ?>

@@ -3,7 +3,6 @@ session_start();
 require("../connection.php");
 require("../session_timeout.php");
 
-<<<<<<< HEAD
     // Sonderzeichen-Prüfung für Login und Registrierung
     function hasInvalidChars($input, $allowAt = false) {
         if ($allowAt) {
@@ -47,7 +46,6 @@ require("../session_timeout.php");
         exit();
     }
     $_SESSION['last_activity'] = time();
-=======
 // Handle manual logout
 if (isset($_POST['logout'])) {
     session_unset();
@@ -55,7 +53,6 @@ if (isset($_POST['logout'])) {
     header("Location: auth.php");
     exit();
 }
->>>>>>> 3253ffd5c1e1561f269d8d05e43556473ffc8bb2
 
 // Login logic
 if (isset($_POST["login_submit"])) {

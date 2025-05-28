@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $description = $_POST['description'];
     $price = $_POST['price']; 
     $gender = $_POST['gender'];
-    $size = $_POST['sizes'] ?? ['XS', 'S', 'M', 'L', 'XL'];
+    $size = $_POST['sizes'];
     $brand = $_POST['brand'];
 
     $servername = "localhost";

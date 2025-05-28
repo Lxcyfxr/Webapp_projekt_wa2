@@ -133,9 +133,9 @@
                 </select>
                 <input class="outfit-300" type="text" name="vorname" placeholder="Vorname" required value="' . htmlspecialchars($userData['firstName'] ?? '') . '" />
                 <input class="outfit-300" type="text" name="nachname" placeholder="Nachname" required value="' . htmlspecialchars($userData['lastName'] ?? '') . '" />
-                <input class="outfit-300" type="text" name="username" placeholder="Username" required value="' . htmlspecialchars($userData['username'] ?? '') . '" />
+                <input class="outfit-300" type="text" name="username" placeholder="Username" required value="' . htmlspecialchars($userData['username'] ?? '') . '" readonly />
                 <input class="outfit-300" type="email" name="email" placeholder="E-Mail" required value="' . htmlspecialchars($userData['email'] ?? '') . '" />
-                <input class="outfit-300" type="text" name="profilepic_url" placeholder="Profilbild-URL" value="' . htmlspecialchars($userData['profilepic_url'] ?? '') . '" />
+                
                 <button class="outfit-300" type="submit">Ändern</button>
             </form>
             <form class="history" action="" method="POST" style="margin-top: 1rem;">

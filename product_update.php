@@ -32,7 +32,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt->close();
 
         if (empty($product_name)) {
-            die('Produkt nicht gefunden.');
+            header('Location: profile.php?message=' . urlencode('Fehler beim Aktualisieren vom Produkt mit der ID ' . $product_id . '!'));
+            exit();
         }
     }
 
@@ -59,7 +60,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         header('Location: profile.php?message=' . urlencode('Produkt ' . $product_name . ' erfolgreich aktualisiert!'));
         exit();
     } else {
-        echo 'Fehler beim Bearbeiten des Produkts: ' . $stmt->error;
+        header('Location: profile.php?message=' . urlencode('Fehler beim Aktualisieren vom Produkt mit der ID ' . $product_id . '!'));
+        exit();
     }
 
     $stmt->close();

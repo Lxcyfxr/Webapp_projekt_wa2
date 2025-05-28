@@ -46,10 +46,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt->bind_param('isssdsss', $next_id, $product_name, $description, $image_url, $price, $gender, $size, $brand);
 
     if ($stmt->execute()) {
-        header('Location: profile.php?message=' . urlencode('Produkt ' . $product_name . ' erfolgreich hinzugefügt!'));
+        header('Location: ../public/profile.php?message=' . urlencode('Produkt ' . $product_name . ' erfolgreich hinzugefügt!'));
         exit();
     } else {
-        header('Location: profile.php?message=' . urlencode('Fehler beim Hinzufügen von ' . $product_name . '!'));
+        header('Location: ..public/profile.php?message=' . urlencode('Fehler beim Hinzufügen von ' . $product_name . '!'));
         exit();
     }
 

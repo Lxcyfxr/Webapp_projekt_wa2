@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt->close();
 
     if (!$product_name) {
-        header('Location: profile.php?message=' . urlencode('Fehler beim Löschen vom Produkt mit der ID ' . $product_id . '!'));
+        header('Location: ../public/profile.php?message=' . urlencode('Fehler beim Löschen vom Produkt mit der ID ' . $product_id . '!'));
         exit();
     }
 
@@ -44,10 +44,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt->bind_param('i', $product_id);
 
     if ($stmt->execute()) {
-        header('Location: profile.php?message=' . urlencode('Produkt ' . $product_name . ' erfolgreich gelöscht!'));
+        header('Location: ../public/profile.php?message=' . urlencode('Produkt ' . $product_name . ' erfolgreich gelöscht!'));
         exit();
     } else {
-        header('Location: profile.php?message=' . urlencode('Fehler beim Löschen vom Produkt mit der ID ' . $product_id . '!'));
+        header('Location: ../public/profile.php?message=' . urlencode('Fehler beim Löschen vom Produkt mit der ID ' . $product_id . '!'));
         exit();
     }
 

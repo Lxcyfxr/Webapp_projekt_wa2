@@ -32,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt->close();
 
         if (empty($product_name)) {
-            header('Location: profile.php?message=' . urlencode('Fehler beim Aktualisieren vom Produkt mit der ID ' . $product_id . '!'));
+            header('Location: ../public/profile.php?message=' . urlencode('Fehler beim Aktualisieren vom Produkt mit der ID ' . $product_id . '!'));
             exit();
         }
     }
@@ -54,10 +54,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt->bind_param('sssssssi', $product_name, $description, $image_url, $price, $gender, $size, $brand, $product_id);
 
     if ($stmt->execute()) {
-        header('Location: profile.php?message=' . urlencode('Produkt ' . $product_name . ' erfolgreich aktualisiert!'));
+        header('Location: ../public/profile.php?message=' . urlencode('Produkt ' . $product_name . ' erfolgreich aktualisiert!'));
         exit();
     } else {
-        header('Location: profile.php?message=' . urlencode('Fehler beim Aktualisieren vom Produkt mit der ID ' . $product_id . '!'));
+        header('Location: ..public/profile.php?message=' . urlencode('Fehler beim Aktualisieren vom Produkt mit der ID ' . $product_id . '!'));
         exit();
     }
 

@@ -127,11 +127,6 @@ require("../session_timeout.php");?>
         <div style="display: flex; justify-content: center; width: 90%; gap: 2rem; margin-top: 2rem;">
             <form class="profile" action="user_edit.php" method="POST" style="margin-top: 1rem;">
                 <h2 class="outfit-300">Persönliche Informationen</h2>
-                 <select class="outfit-300" name="gender">
-                    <option value="">Anrede</option>
-                    <option value="MALE">Herr</option>
-                    <option value="FEMALE">Frau</option>
-                </select>
                 <input class="outfit-300" type="text" name="vorname" placeholder="Vorname" required value="' . htmlspecialchars($userData['firstName'] ?? '') . '" />
                 <input class="outfit-300" type="text" name="nachname" placeholder="Nachname" required value="' . htmlspecialchars($userData['lastName'] ?? '') . '" />
                 <input class="outfit-300" type="text" name="username" placeholder="Username" required value="' . htmlspecialchars($userData['username'] ?? '') . '" readonly />

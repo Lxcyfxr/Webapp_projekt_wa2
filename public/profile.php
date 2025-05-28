@@ -150,7 +150,7 @@ require("../session_timeout.php");?>
         <h1><input type="submit" value="Logout" class="btn solid" name="logout"/></h1>
     </form>
     
-    <script src="jquery-3.7.1.min.js"></script>
+    <script src="/js/jquery-3.7.1.min.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             const urlParams = new URLSearchParams(window.location.search);

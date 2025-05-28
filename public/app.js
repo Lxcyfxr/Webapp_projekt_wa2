@@ -70,18 +70,10 @@ function hideInputWarning(input) {
 
 // Funktion zur Sonderzeichen-Prüfung
 function preventSpecialChars(input, allowAt = false) {
-    // Erlaubte Zeichen definieren
     const regex = allowAt ? /[^a-zA-Z0-9@._-]/g : /[^a-zA-Z0-9._-]/g;
-    // Prüfe, ob unerlaubte Zeichen enthalten sind
     if (regex.test(input.value)) {
-        showInputWarning(
-            input,
-            "Bitte keine Sonderzeichen eingeben" + (allowAt ? " (außer @ im E-Mail-Feld)" : "")
-        );
-        // Entferne ALLE unerlaubten Zeichen
+        // Nur Zeichen entfernen, keine Warnung anzeigen
         input.value = input.value.replace(regex, "");
-    } else {
-        hideInputWarning(input);
     }
 }
 
@@ -98,5 +90,19 @@ document.addEventListener("DOMContentLoaded", function() {
         input.addEventListener("input", function() {
             preventSpecialChars(input, true);
         });
+    });
+
+    // Login-Felder (IDs aus dem HTML)
+    const loginFields = [
+        document.querySelector('#username'), // Login-Username
+        document.querySelector('#password')  // Login-Passwort
+    ];
+
+    loginFields.forEach(function(input) {
+        if (input) {
+            input.addEventListener("input", function() {
+                preventSpecialChars(input, false);
+            });
+        }
     });
 });

@@ -49,7 +49,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         header('Location: profile.php?message=' . urlencode('Produkt ' . $product_name . ' erfolgreich hinzugefügt!'));
         exit();
     } else {
-        echo 'Fehler beim Hinzufügen des Produkts: ' . $stmt->error;
+        header('Location: profile.php?message=' . urlencode('Fehler beim Hinzufügen von ' . $product_name . '!'));
+        exit();
     }
 
     $stmt->close();

@@ -2,7 +2,7 @@ function checkSessionTimeout() {
     const lastActivity = parseInt(localStorage.getItem('last_activity') || '0');
     const currentTime = Math.floor(Date.now() / 1000);
     
-    if (lastActivity && (currentTime - lastActivity > 60)) {
+    if (lastActivity && (currentTime - lastActivity > 300)) {
         window.location.href = 'auth.php';
     }
 }

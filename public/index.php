@@ -1,23 +1,4 @@
-<?php
-require_once("../connection.php");
-header('Content-Type: application/json');
 
-// IDs der gewünschten Produkte (z.B. 1, 2, 3)
-$ids = [1, 2, 3];
-$placeholders = implode(',', array_fill(0, count($ids), '?'));
-$types = str_repeat('i', count($ids));
-
-$stmt = $con->prepare("SELECT id, name, description, picture FROM testproducts WHERE id IN ($placeholders)");
-$stmt->bind_param($types, ...$ids);
-$stmt->execute();
-$result = $stmt->get_result();
-
-$products = [];
-while ($row = $result->fetch_assoc()) {
-    $products[] = $row;
-}
-echo json_encode($products);
-?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -48,12 +29,27 @@ echo json_encode($products);
         <div class="Outfit-600">Egal ob Basic oder Statement - bei uns findest du deinen perfekten Streetstyle.</div>
       </div>
       <div class="stylung-box">
-        <img src="/products/foalsch_cap.jpg"/>
+        <img src=""/>
         <div class="Outfit-600">Stylung ist mehr als nur Mode. Es ist ein Lebensgefühl. Minimalistisch, zeitlos, stark.</div>
       </div>
+      <script>
+$(document).ready(function() {
+    $.ajax({
+        url: '../get_products.php', // Dein PHP-API-Skript, siehe vorherige Antwort
+        method: 'GET',
+        dataType: 'json',
+        success: function(products) {
+            // Wir gehen davon aus, dass die Reihenfolge der Produkte [1,2,3] ist
+            products.forEach(function(product, idx) {
+                $('../products/' + (idx+1)).attr('src', product.picture);
+            });
+        }
+    });
+});
+</script>
     </div>
     <!-- jquery einbindung -->
-    <script src="jquery-3.7.1.min.js"></script>
+    <script src="/js/jquery-3.7.1.min.js"></script>
     <!-- Scriptdatei -->
   </body>
 </html>

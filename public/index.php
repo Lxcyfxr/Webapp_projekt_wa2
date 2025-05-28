@@ -49,7 +49,7 @@ $(document).ready(function() {
 </script>
     </div>
     <!-- jquery einbindung -->
-    <script src="jquery-3.7.1.min.js"></script>
+    <script src="/js/jquery-3.7.1.min.js"></script>
     <!-- Scriptdatei -->
   </body>
 </html>

@@ -17,15 +17,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         die('Datenbankverbindung fehlgeschlagen: ' . $conn->connect_error);
     }
 
-    $stmt = $conn->prepare('SELECT name FROM testproducts WHERE id = ?');
+    // Produktname und Bildpfad holen
+    $stmt = $conn->prepare('SELECT name, picture FROM testproducts WHERE id = ?');
     $stmt->bind_param('i', $product_id);
     $stmt->execute();
-    $stmt->bind_result($product_name);
+    $stmt->bind_result($product_name, $picture_path);
     $stmt->fetch();
     $stmt->close();
 
     if (!$product_name) {
         die('Produkt nicht gefunden.');
+    }
+
+    // Bilddatei löschen, falls vorhanden
+    if ($picture_path) {
+        $file_path = realpath(__DIR__ . '/../products/' . basename($picture_path));
+        // Sicherheit: Stelle sicher, dass das Bild im richtigen Ordner liegt
+        $products_dir = realpath(__DIR__ . '/../products/');
+        if ($file_path && strpos($file_path, $products_dir) === 0 && file_exists($file_path)) {
+            unlink($file_path);
+        }
     }
 
     $stmt = $conn->prepare('DELETE FROM testproducts WHERE id = ?');

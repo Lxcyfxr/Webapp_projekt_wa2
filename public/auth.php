@@ -234,6 +234,6 @@ if (isset($_POST["register_submit"])) {
 </div>
 
 <!-- JS für UI-Wechsel -->
-<script src="./app.js"></script>
+<script src="./js/app.js"></script>
 </body>
 </html>

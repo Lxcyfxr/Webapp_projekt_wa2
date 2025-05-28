@@ -47,3 +47,56 @@ if (passwordInput) {
         strengthText.textContent = labels[strength - 1] || "";
     });
 }
+
+function showInputWarning(input, message) {
+    let warning = input.nextElementSibling;
+    if (!warning || !warning.classList.contains('input-warning')) {
+        warning = document.createElement('div');
+        warning.className = 'input-warning';
+        warning.style.color = '#e74c3c';
+        warning.style.fontSize = '0.9em';
+        warning.style.marginTop = '4px';
+        input.parentNode.insertBefore(warning, input.nextSibling);
+    }
+    warning.textContent = message;
+}
+
+function hideInputWarning(input) {
+    let warning = input.nextElementSibling;
+    if (warning && warning.classList.contains('input-warning')) {
+        warning.remove();
+    }
+}
+
+// Funktion zur Sonderzeichen-Prüfung
+function preventSpecialChars(input, allowAt = false) {
+    // Erlaubte Zeichen definieren
+    const regex = allowAt ? /[^a-zA-Z0-9@._-]/g : /[^a-zA-Z0-9._-]/g;
+    // Prüfe, ob unerlaubte Zeichen enthalten sind
+    if (regex.test(input.value)) {
+        showInputWarning(
+            input,
+            "Bitte keine Sonderzeichen eingeben" + (allowAt ? " (außer @ im E-Mail-Feld)" : "")
+        );
+        // Entferne ALLE unerlaubten Zeichen
+        input.value = input.value.replace(regex, "");
+    } else {
+        hideInputWarning(input);
+    }
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+    // Alle Inputs außer Email
+    document.querySelectorAll('input[type="text"], input[type="password"]').forEach(function(input) {
+        input.addEventListener("input", function() {
+            preventSpecialChars(input, false);
+        });
+    });
+
+    // Nur Email-Feld
+    document.querySelectorAll('input[type="email"]').forEach(function(input) {
+        input.addEventListener("input", function() {
+            preventSpecialChars(input, true);
+        });
+    });
+});

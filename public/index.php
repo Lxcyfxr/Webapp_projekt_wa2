@@ -1,51 +1,30 @@
-<!--Last Change:    -->
-<!--Reason:         -->
+<?php
+require_once("../connection.php");
+header('Content-Type: application/json');
+
+// IDs der gewünschten Produkte (z.B. 1, 2, 3)
+$ids = [1, 2, 3];
+$placeholders = implode(',', array_fill(0, count($ids), '?'));
+$types = str_repeat('i', count($ids));
+
+$stmt = $con->prepare("SELECT id, name, description, picture FROM testproducts WHERE id IN ($placeholders)");
+$stmt->bind_param($types, ...$ids);
+$stmt->execute();
+$result = $stmt->get_result();
+
+$products = [];
+while ($row = $result->fetch_assoc()) {
+    $products[] = $row;
+}
+echo json_encode($products);
+?>
 <!DOCTYPE html>
 <html>
   <head>
     <title>Stylung</title>
     <link rel="icon" href="/public/pictures/Logo_Stylung.ico" type="image/x-icon" />
     <script src="jquery-3.7.1.min.js"></script>
-    <style>
-      .box-container {
-        display: flex;
-        gap: 2rem;
-        justify-content: center;
-        margin-top: 40px;
-      }
-      .stylung-box {
-        background: #1e2633;
-        border-radius: 18px;
-        box-shadow: 0 4px 16px rgba(0,0,0,0.2);
-        padding: 24px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        width: 320px;
-        transition: transform 0.2s;
-      }
-      .stylung-box:hover {
-        transform: translateY(-8px) scale(1.03);
-        box-shadow: 0 8px 24px rgba(0,0,0,0.3);
-      }
-      .stylung-box img {
-        width: 300px;
-        height: 300px;
-        object-fit: cover;
-        border-radius: 12px;
-        margin-bottom: 18px;
-        background: #222;
-      }
-      .Outfit-600 {
-        font-family: 'Outfit', sans-serif;
-        font-weight: 600;
-        font-size: 1.2rem;
-        letter-spacing: 0.5px;
-        color: #fff;
-        text-align: center;
-        color: #2cc9c2;
-      }
-    </style>
+    <link rel="stylesheet" href="./css/index.css">
   </head>
   <body style="background: #141b27; color: white; display:flex; justify-content: center; align-items: center; flex-direction: column; padding-top: 3rem">
     <img src="/public/pictures/Schriftzug_Stylung.png" alt="Stylung Logo" style="width: 600px; height: auto; margin-bottom: 20px;">

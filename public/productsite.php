@@ -25,13 +25,17 @@
         </div>
 
         <div class="product-details-right">
-            <h2 class="outfit-600">Produktname</h2>
-            <hr width="100%" size="1" color="#ffffff" style="margin: 0px; padding: 0px;">
-            <p class="outfit-300">Produktbeschreibung</p>
-            <select id="size" name="size" required class="outfit-300">
-                <option value="">Größe wählen</option>
-            </select>
-            <button class="add-to-cart-btn">In den Warenkorb</button>
+            <div class="product-info">
+                <h2 class="outfit-600">Produktname</h2>
+                <hr width="100%" size="1" color="#ffffff" style="margin: 0px; padding: 0px;">
+                <p class="outfit-300">Produktbeschreibung</p>
+            </div>
+            <div style="flex-direction: row; justify-content: space-between; display: flex; gap: 2rem">
+                <select id="size" name="size" required class="outfit-300">
+                    <option value="">Größe wählen</option>
+                </select>
+                <button class="Outfit-300 add-to-cart-btn">In den Warenkorb</button>
+            </div>
         </div>
     </div>
     

@@ -6,13 +6,7 @@ if ($_SESSION['role'] !== 'admin') {
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $product_id = $_POST['product_id'];
-    $product_name = $_POST['product_name'];
-    $description = $_POST['description'];
-    $price = $_POST['price']; 
-    $gender = $_POST['gender'];
-    $size = $_POST['sizes'];
-    $brand = $_POST['brand'];
-
+    
     $servername = "localhost";
     $username = "root";
     $password = "";
@@ -24,16 +18,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     // Hole existierende Produktdaten
-    $stmt = $conn->prepare('SELECT name, picture FROM testproducts WHERE id = ?');
+    $stmt = $conn->prepare('SELECT name, description, picture, price, gender, size, brand FROM testproducts WHERE id = ?');
     $stmt->bind_param('i', $product_id);
     $stmt->execute();
-    $stmt->bind_result($existing_name, $existing_picture);
-    $stmt->fetch();
+    $result = $stmt->get_result();
+    $existing_data = $result->fetch_assoc();
     $stmt->close();
 
-    // Verwende existierende Werte wenn keine neuen angegeben
-    $product_name = empty($product_name) ? $existing_name : $product_name;
-    $image_url = $existing_picture; // Standard: behalte existierendes Bild
+    // Verwende neue Werte nur wenn sie nicht leer sind
+    $product_name = !empty($_POST['product_name']) ? $_POST['product_name'] : $existing_data['name'];
+    $description = !empty($_POST['description']) ? $_POST['description'] : $existing_data['description'];
+    $price = !empty($_POST['price']) ? $_POST['price'] : $existing_data['price'];
+    $gender = !empty($_POST['gender']) ? $_POST['gender'] : $existing_data['gender'];
+    $brand = !empty($_POST['brand']) ? $_POST['brand'] : $existing_data['brand'];
+    $size = !empty($_POST['sizes']) ? json_encode($_POST['sizes']) : $existing_data['size'];
+    $image_url = $existing_data['picture']; // Standard: behalte existierendes Bild
 
     // Update Bild nur wenn eines hochgeladen wurde
     if (isset($_FILES['image_file']) && $_FILES['image_file']['error'] === UPLOAD_ERR_OK) {
@@ -46,19 +45,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $image_url = '../products/' . $image_name;
             
             // Optional: Lösche altes Bild wenn es existiert
-            if ($existing_picture && file_exists(__DIR__ . '/' . $existing_picture)) {
-                unlink(__DIR__ . '/' . $existing_picture);
+            if ($existing_data['picture'] && file_exists(__DIR__ . '/' . $existing_data['picture'])) {
+                unlink(__DIR__ . '/' . $existing_data['picture']);
             }
         } else {
             die('Fehler beim Hochladen des Bildes.');
         }
     }
 
-    $sizesJson = json_encode($size);
-
     // Update Query mit dem korrekten Bildpfad
     $stmt = $conn->prepare('UPDATE testproducts SET name = ?, description = ?, picture = ?, price = ?, gender = ?, size = ?, brand = ? WHERE id = ?');
-    $stmt->bind_param('sssssssi', $product_name, $description, $image_url, $price, $gender, $sizesJson, $brand, $product_id);
+    $stmt->bind_param('sssssssi', $product_name, $description, $image_url, $price, $gender, $size, $brand, $product_id);
 
     if ($stmt->execute()) {
         header('Location: ../public/profile.php?message=' . urlencode('Produkt ' . $product_name . ' erfolgreich aktualisiert!'));

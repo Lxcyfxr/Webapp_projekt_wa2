@@ -129,7 +129,10 @@ echo "<div class='checkout-box'>";
 echo "<div style='font-size:1.3rem; font-weight:600; margin-bottom:1.2rem;'>Checkout</div>";
 echo "<div style='margin-bottom:1.2rem;'><span style='color:#bbb;'>Gesamtsumme:</span><br><span style='font-size:1.5rem; font-weight:700;'>" . number_format($total, 2) . " €</span></div>";
 echo "<div style='margin-bottom:1.2rem;'><span style='color:#bbb;'>Lieferadresse:</span><br><span style='font-size:1.1rem;'>" . ($noAddress ? "Keine Adresse angegeben" : htmlspecialchars($address)) . "</span></div>";
-echo "<button style='width:100%;padding:0.8rem 0;border:none;border-radius:8px;background:" . ($noAddress ? "#888" : "#c580f7") . ";color:#fff;font-size:1.1rem;font-weight:600;cursor:" . ($noAddress ? "not-allowed" : "pointer") . ";' " . ($noAddress ? "disabled" : "") . ">Jetzt bestellen</button>";
+echo "<form action='../buy_product.php' method='POST' style='margin:0;'>
+    <input type='hidden' name='price' value='" . number_format($total, 2, '.', '') . "'>
+    <button type='submit' style='width:100%;padding:0.8rem 0;border:none;border-radius:8px;background:" . ($noAddress ? "#888" : "#c580f7") . ";color:#fff;font-size:1.1rem;font-weight:600;cursor:" . ($noAddress ? "not-allowed" : "pointer") . ";' " . ($noAddress ? "disabled" : "") . ">Jetzt bestellen</button>
+</form>";
 echo "</div>";
 
 echo "</div>"; // Flex-Container

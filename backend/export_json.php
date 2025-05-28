@@ -4,7 +4,7 @@ if ($_SESSION['username'] !== 'admin') {
     die('Zugriff verweigert');
 }
 
-$config = parse_ini_file('./config.ini', true);
+$config = parse_ini_file('../config.ini', true);
 $db = $config['database'];
 $servername = $db['host'];
 $username = $db['user'];

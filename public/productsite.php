@@ -14,7 +14,7 @@
 </head>
 <body style="background: #141b27; color: white;">
     <?php include 'navbar.php'; 
-    require("../session_timeout.php");?>
+    require("../backend/session_timeout.php");?>
     <div class="product-details-container">
         <div class="product-details-left">
             <div class="product-box-large">
@@ -28,13 +28,8 @@
             <h2 class="outfit-600">Produktname</h2>
             <hr width="100%" size="1" color="#ffffff" style="margin: 0px; padding: 0px;">
             <p class="outfit-300">Produktbeschreibung</p>
-            <select id="size" name="size" required>
+            <select id="size" name="size" required class="outfit-300">
                 <option value="">Größe wählen</option>
-                <option value="XS">XS</option>
-                <option value="S">S</option>
-                <option value="M">M</option>
-                <option value="L">L</option>
-                <option value="XL">XL</option>
             </select>
             <button class="add-to-cart-btn">In den Warenkorb</button>
         </div>
@@ -43,7 +38,7 @@
     <script>
         function loadProduct(id) {
             $.ajax({
-                url: '../backend.php', // URL zur backend.php
+                url: '../backend/backend.php', // URL zur backend.php
                 type: 'GET',
                 dataType: 'json',
                 success: function(data) {
@@ -56,6 +51,18 @@
                         $('.product-box-large p').text(parseFloat(product.price).toFixed(2) + ' €');
                         $('.product-details-right h2').text(product.name);
                         $('.product-details-right p').text(product.description);
+
+                        // Größen-Select dynamisch befüllen
+                        const sizeSelect = $('#size');
+                        sizeSelect.empty().append('<option value="">Größe wählen</option>');
+                        
+                        // Parse JSON string to array if necessary
+                        const sizes = typeof product.size === 'string' ? 
+                            JSON.parse(product.size) : product.size;
+                        
+                        sizes.forEach(size => {
+                            sizeSelect.append(`<option value="${size}">${size}</option>`);
+                        });
                     } else {
                         $('.product-details-container').html('<p>Kein Produkt mit dieser ID</p>');
                     }

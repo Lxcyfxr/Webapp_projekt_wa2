@@ -9,8 +9,8 @@
 <body>
 <?php
 session_start();
-require_once("../connection.php");
-require("../session_timeout.php");
+require_once("../backend/connection.php");
+require("../backend/session_timeout.php");
 include 'navbar.php';
 
 if (!isset($_SESSION['username'])) {

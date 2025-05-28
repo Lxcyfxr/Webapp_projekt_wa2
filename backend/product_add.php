@@ -9,7 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $description = $_POST['description'];
     $price = $_POST['price'];
     $gender = $_POST['gender'] ?? null;
-    $size = $_POST['size'] ?? null;
+    $size = $_POST['sizes'] ?? ['XS', 'S', 'M', 'L', 'XL'];
     $brand = $_POST['brand'] ?? null;
 
     $servername = "localhost";
@@ -29,12 +29,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Bild-Upload
     $image_url = null;
     if (isset($_FILES['image_file']) && $_FILES['image_file']['error'] === UPLOAD_ERR_OK) {
-        $upload_dir = __DIR__ . '/../products/';
+        $upload_dir = __DIR__ . '../products/';
         $ext = pathinfo($_FILES['image_file']['name'], PATHINFO_EXTENSION);
         $image_name = 'product' . $next_id . '.' . $ext;
         $image_path = $upload_dir . $image_name;
         if (move_uploaded_file($_FILES['image_file']['tmp_name'], $image_path)) {
-            $image_url = '/../products/' . $image_name;
+            $image_url = '../products/' . $image_name;
         } else {
             die('Fehler beim Hochladen des Bildes.');
         }
@@ -42,14 +42,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         die('Kein Bild ausgewählt oder Fehler beim Upload.');
     }
 
+    $sizesJson = json_encode($size);
+
     $stmt = $conn->prepare('INSERT INTO testproducts (id, name, description, picture, price, gender, size, brand) VALUES (?, ?, ?, ?, ?, ?, ?, ?)');
-    $stmt->bind_param('isssdsss', $next_id, $product_name, $description, $image_url, $price, $gender, $size, $brand);
+    $stmt->bind_param('isssdsss', $next_id, $product_name, $description, $image_url, $price, $gender, $sizesJson, $brand);
 
     if ($stmt->execute()) {
-        header('Location: profile.php?message=' . urlencode('Produkt ' . $product_name . ' erfolgreich hinzugefügt!'));
+        header('Location: ../public/profile.php?message=' . urlencode('Produkt ' . $product_name . ' erfolgreich hinzugefügt!'));
         exit();
     } else {
-        header('Location: profile.php?message=' . urlencode('Fehler beim Hinzufügen von ' . $product_name . '!'));
+        header('Location: ..public/profile.php?message=' . urlencode('Fehler beim Hinzufügen von ' . $product_name . '!'));
         exit();
     }
 

@@ -114,3 +114,27 @@ body::-webkit-scrollbar {
   outline: none;
   resize: none;
 }
+
+.size-selection {
+    margin: 1rem 0;
+}
+
+.size-checkboxes {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-top: 0.5rem;
+}
+
+.size-checkboxes label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+}
+
+.size-checkboxes input[type="checkbox"] {
+    cursor: pointer;
+    width: 16px;
+    height: 16px;
+}

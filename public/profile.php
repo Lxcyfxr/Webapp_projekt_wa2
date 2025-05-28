@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="./css/profile.css">
 </head>
 <?php include 'navbar.php'; 
-require("../session_timeout.php");?>
+require("../backend/session_timeout.php");?>
 <body style="background: #141b27; color: white; display:flex; justify-content: center; align-items: center; flex-direction: column; padding-top: 3%">
     
     <h1 class="outfit-300 Headline">Profil von  <?php 
@@ -22,7 +22,7 @@ require("../session_timeout.php");?>
     // Hole Userdaten aus DB, falls eingeloggt
     $userData = null;
     if (isset($_SESSION['username'])) {
-        require_once("../connection.php");
+        require_once("../backend/connection.php");
         $stmt = $con->prepare("SELECT * FROM users WHERE username=?");
         $stmt->bind_param("s", $_SESSION['username']);
         $stmt->execute();
@@ -40,7 +40,7 @@ require("../session_timeout.php");?>
         <p class="outfit-300 success-message" id="message-container"></p>
         <div style="display: flex; justify-content: center; width: 90%; gap: 2rem;">
             <div class="form" style="margin-top: 1rem;">
-                <form action="../product_add.php" method="POST" enctype="multipart/form-data" style="margin-top: 1rem;">
+                <form action="../backend/product_add.php" method="POST" enctype="multipart/form-data" style="margin-top: 1rem;">
                     <h2 class="outfit-300">Produkt hinzufügen</h2>
                     <input class="outfit-300" type="text" name="product_name" placeholder="Produktname" required />
                     <textarea class="outfit-300" name="description" placeholder="Beschreibung" required></textarea>
@@ -54,13 +54,22 @@ require("../session_timeout.php");?>
                         <option value="MALE">Männer</option>
                         <option value="FEMALE">Frauen</option>
                     </select>
-                    <input class="outfit-300" type="text" name="size" placeholder="Größe (optional)" />
+                    <div class="size-selection outfit-300">
+                        <div class="size-checkboxes">
+                            <label>Verfügbare Größen:</label>
+                            <label><input type="checkbox" name="sizes[]" value="XS"> XS</label>
+                            <label><input type="checkbox" name="sizes[]" value="S"> S</label>
+                            <label><input type="checkbox" name="sizes[]" value="M"> M</label>
+                            <label><input type="checkbox" name="sizes[]" value="L"> L</label>
+                            <label><input type="checkbox" name="sizes[]" value="XL"> XL</label>
+                        </div>
+                    </div>
                     <input class="outfit-300" type="text" name="brand" placeholder="Marke (optional)" />
                     <button class="outfit-300" type="submit">Bestätigen</button>
                 </form>
             </div>
             <div class="form" style="margin-top: 1rem;">
-                <form action="../product_update.php" method="POST" style="margin-top: 1rem;">
+                <form action="../backend/product_update.php" method="POST" style="margin-top: 1rem;">
                     <h2 class="outfit-300">Produkt aktualisieren</h2>
                     <input class="outfit-300" type="number" name="product_id" placeholder="Produkt-ID" required />
                     <input class="outfit-300" type="text" name="product_name" placeholder="Neuer Produktname (optional)" />
@@ -75,13 +84,22 @@ require("../session_timeout.php");?>
                         <option value="MALE">Männer</option>
                         <option value="FEMALE">Frauen</option>
                     </select>
-                    <input class="outfit-300" type="text" name="size" placeholder="Größe (optional)" />
+                    <div class="size-selection outfit-300">
+                        <div class="size-checkboxes">
+                            <label>Verfügbare Größen:</label>
+                            <label><input type="checkbox" name="sizes[]" value="XS"> XS</label>
+                            <label><input type="checkbox" name="sizes[]" value="S"> S</label>
+                            <label><input type="checkbox" name="sizes[]" value="M"> M</label>
+                            <label><input type="checkbox" name="sizes[]" value="L"> L</label>
+                            <label><input type="checkbox" name="sizes[]" value="XL"> XL</label>
+                        </div>
+                    </div>
                     <input class="outfit-300" type="text" name="brand" placeholder="Marke (optional)" />
                     <button class="outfit-300" type="submit">Bestätigen</button>
                 </form>
             </div>
             <div class="form" style="margin-top: 1rem;">
-                <form action="../product_delete.php" method="POST" style="margin-top: 1rem;">
+                <form action="../backend/product_delete.php" method="POST" style="margin-top: 1rem;">
                     <h2 class="outfit-300">Produkt löschen</h2>
                     <input class="outfit-300" type="number" name="product_id" placeholder="Produkt-ID" required />
                     <button class="outfit-300" type="submit">Bestätigen</button>
@@ -91,7 +109,7 @@ require("../session_timeout.php");?>
         <h1 class="outfit-300">Benutzerverwaltung</h1>
         <div style="display: flex; justify-content: center; width: 90%; gap: 2rem;">
             <div class="form" style="margin-top: 1rem;">
-                <form action="../user_admin.php" method="POST" style="margin-top: 1rem;">
+                <form action="../backend/user_admin.php" method="POST" style="margin-top: 1rem;">
                     <h2 class="outfit-300">User Rolle ändern</h2>
                     <input class="outfit-300" type="text" name="username" placeholder="Username" required />
                     <select class="outfit-300" name="role">
@@ -178,7 +196,7 @@ require("../session_timeout.php");?>
 
           function loadUsers(searchQuery = "") {
             $.ajax({
-              url: "../user_list.php",
+              url: "../backend/user_list.php",
               method: "GET",
               dataType: "json",
               success: function (data) {
@@ -215,7 +233,7 @@ require("../session_timeout.php");?>
         
         $("#user-export").on("click", function () {
             const search = $("#user-search").val();
-            let url = "../export_json.php";
+            let url = "../backend/export_json.php";
             if (search) {
                 url += "?search=" + encodeURIComponent(search);
             }

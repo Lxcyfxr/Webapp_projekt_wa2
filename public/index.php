@@ -27,8 +27,17 @@ echo json_encode($products);
     <link rel="stylesheet" href="./css/index.css">
   </head>
   <body style="background: #141b27; color: white; display:flex; justify-content: center; align-items: center; flex-direction: column; padding-top: 3rem">
+    <button id="play-music" style="margin:20px;">Für Atmospähre</button>
+  <audio id="bg-music" src="/public/backgroundmusic.mp3" type="audio/mpeg"></audio>
+  <script>
+    document.getElementById('play-music').addEventListener('click', function() {
+      document.getElementById('bg-music').play();
+      this.style.display = 'none';
+    });
+  </script>
     <img src="/public/pictures/Schriftzug_Stylung.png" alt="Stylung Logo" style="width: 600px; height: auto; margin-bottom: 20px;">
-    <?php include 'navbar.php'; ?>
+    <?php include 'navbar.php'; 
+    require("../session_timeout.php");?>
     <div class="box-container">
       <div class="stylung-box">
         <img src="/products/stylung_shirt.jpg"/>

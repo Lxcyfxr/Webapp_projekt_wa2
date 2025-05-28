@@ -13,7 +13,8 @@
     </style>
 </head>
 <body style="background: #141b27; color: white;">
-    <?php include 'navbar.php'; ?>
+    <?php include 'navbar.php'; 
+    require("../session_timeout.php");?>
     <div class="product-details-container">
         <div class="product-details-left">
             <div class="product-box-large">

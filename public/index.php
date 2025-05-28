@@ -49,7 +49,8 @@
   </head>
   <body style="background: #141b27; color: white; display:flex; justify-content: center; align-items: center; flex-direction: column; padding-top: 3rem">
     <img src="/public/pictures/Schriftzug_Stylung.png" alt="Stylung Logo" style="width: 600px; height: auto; margin-bottom: 20px;">
-    <?php include 'navbar.php'; ?>
+    <?php include 'navbar.php'; 
+    require("../session_timeout.php");?>
     <div class="box-container">
       <div class="stylung-box">
         <img src="/products/stylung_shirt.jpg"/>

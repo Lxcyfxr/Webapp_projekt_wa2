@@ -7,7 +7,8 @@
     <link rel="icon" href="/public/pictures/Logo_Stylung.ico" type="image/x-icon" />
     <link rel="stylesheet" href="./css/profile.css">
 </head>
-<?php include 'navbar.php'; ?>
+<?php include 'navbar.php'; 
+require("../session_timeout.php");?>
 <body style="background: #141b27; color: white; display:flex; justify-content: center; align-items: center; flex-direction: column; padding-top: 3%">
     
     <h1 class="outfit-300 Headline">Profil von  <?php 
@@ -37,9 +38,9 @@
         echo '
         <h1 class="outfit-300">Produktverwaltung</h1>
         <p class="outfit-300 success-message" id="message-container"></p>
-        <div style="display: flex; justify-content: center; width: 90%; gap: 2rem; margin-top: 2rem;">
+        <div style="display: flex; justify-content: center; width: 90%; gap: 2rem;">
             <div class="form" style="margin-top: 1rem;">
-                <form action="product_add.php" method="POST" enctype="multipart/form-data" style="margin-top: 1rem;">
+                <form action="../product_add.php" method="POST" enctype="multipart/form-data" style="margin-top: 1rem;">
                     <h2 class="outfit-300">Produkt hinzufügen</h2>
                     <input class="outfit-300" type="text" name="product_name" placeholder="Produktname" required />
                     <textarea class="outfit-300" name="description" placeholder="Beschreibung" required></textarea>
@@ -59,7 +60,7 @@
                 </form>
             </div>
             <div class="form" style="margin-top: 1rem;">
-                <form action="product_update.php" method="POST" style="margin-top: 1rem;">
+                <form action="../product_update.php" method="POST" style="margin-top: 1rem;">
                     <h2 class="outfit-300">Produkt aktualisieren</h2>
                     <input class="outfit-300" type="number" name="product_id" placeholder="Produkt-ID" required />
                     <input class="outfit-300" type="text" name="product_name" placeholder="Neuer Produktname (optional)" />
@@ -80,7 +81,7 @@
                 </form>
             </div>
             <div class="form" style="margin-top: 1rem;">
-                <form action="product_delete.php" method="POST" style="margin-top: 1rem;">
+                <form action="../product_delete.php" method="POST" style="margin-top: 1rem;">
                     <h2 class="outfit-300">Produkt löschen</h2>
                     <input class="outfit-300" type="number" name="product_id" placeholder="Produkt-ID" required />
                     <button class="outfit-300" type="submit">Bestätigen</button>
@@ -88,9 +89,9 @@
             </div>
         </div>
         <h1 class="outfit-300">Benutzerverwaltung</h1>
-        <div style="display: flex; justify-content: center; width: 90%; gap: 2rem; margin-top: 2rem;">
+        <div style="display: flex; justify-content: center; width: 90%; gap: 2rem;">
             <div class="form" style="margin-top: 1rem;">
-                <form action="user_admin.php" method="POST" style="margin-top: 1rem;">
+                <form action="../user_admin.php" method="POST" style="margin-top: 1rem;">
                     <h2 class="outfit-300">User Rolle ändern</h2>
                     <input class="outfit-300" type="text" name="username" placeholder="Username" required />
                     <select class="outfit-300" name="role">

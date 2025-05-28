@@ -1,7 +1,9 @@
 <?php
-    require("../connection.php");
-    session_start();
+session_start();
+require("../connection.php");
+require("../session_timeout.php");
 
+<<<<<<< HEAD
     // Sonderzeichen-Prüfung für Login und Registrierung
     function hasInvalidChars($input, $allowAt = false) {
         if ($allowAt) {
@@ -45,95 +47,97 @@
         exit();
     }
     $_SESSION['last_activity'] = time();
+=======
+// Handle manual logout
+if (isset($_POST['logout'])) {
+    session_unset();
+    session_destroy();
+    header("Location: auth.php");
+    exit();
+}
+>>>>>>> 3253ffd5c1e1561f269d8d05e43556473ffc8bb2
 
-    // Handle manual logout
-    if (isset($_POST['logout'])) {
-        session_unset();
-        session_destroy();
-        header("Location: auth.php");
-        exit();
+// Login logic
+if (isset($_POST["login_submit"])) {
+    $username = $_POST["username"];
+    $password = $_POST["password"];
+
+    // Prepare the SQL statement using MySQLi
+    $stmt = $con->prepare("SELECT * FROM users WHERE username=? OR email=?");
+    $stmt->bind_param("ss", $username, $username);
+    $stmt->execute();
+
+    // Fetch the result
+    $result = $stmt->get_result();
+    $userExists = $result->fetch_assoc();
+
+    if ($userExists) {
+        $passwordHashed = $userExists["password"];
+        $checkPassword = password_verify($password, $passwordHashed);
+
+        if ($checkPassword == false) {
+            echo "Password is incorrect";
+        } else if ($checkPassword == true) {
+            $_SESSION["username"] = $userExists["username"];
+            $_SESSION["id"] = $userExists["id"];
+            $_SESSION["role"] = $userExists["role"];
+            $_SESSION['last_activity'] = time();
+            header("Location: index.php");
+            exit();
+        }
+    } else {
+        echo "User not found";
     }
 
-    // Login logic
-    if (isset($_POST["login_submit"])) {
-        $username = $_POST["username"];
-        $password = $_POST["password"];
+    $stmt->close();
+}
+
+// Registration logic
+if (isset($_POST["register_submit"])) {
+    $firstName = $_POST["firstName"];
+    $lastName = $_POST["lastName"];
+    $username = $_POST["username"];
+    $email = trim(strtolower($_POST["email"]));
+    $emailre = trim(strtolower($_POST["emailre"]));
+    $password_plain = $_POST["password"];
+    $passwordre_plain = $_POST["passwordre"];
+    $address = $_POST["address"];
+    
+    if ($password_plain !== $passwordre_plain || $email !== $emailre) {
+        echo "<script src='https://code.jquery.com/jquery-3.7.1.min.js'></script>
+              <script>
+                $(function() {
+                    alert('Die Passwörter oder Emails stimmen nicht überein!');
+                });
+              </script>";
+    } else {
+        $password = password_hash($password_plain, PASSWORD_DEFAULT);
 
         // Prepare the SQL statement using MySQLi
         $stmt = $con->prepare("SELECT * FROM users WHERE username=? OR email=?");
-        $stmt->bind_param("ss", $username, $username);
+        $stmt->bind_param("ss", $username, $email);
         $stmt->execute();
 
         // Fetch the result
         $result = $stmt->get_result();
-        $userExists = $result->fetch_assoc();
+        $userAlreadyExists = $result->num_rows > 0;
 
-        if ($userExists) {
-            $passwordHashed = $userExists["password"];
-            $checkPassword = password_verify($password, $passwordHashed);
-
-            if ($checkPassword == false) {
-                echo "Password is incorrect";
-            } else if ($checkPassword == true) {
-                $_SESSION["username"] = $userExists["username"];
-                $_SESSION["id"] = $userExists["id"];
-                $_SESSION['last_activity'] = time();
-                header("Location: index.php");
-                exit();
-            }
-        } else {
-            echo "User not found";
-        }
-
-        $stmt->close();
-    }
-
-    // Registration logic
-    if (isset($_POST["register_submit"])) {
-        $firstName = $_POST["firstName"];
-        $lastName = $_POST["lastName"];
-        $username = $_POST["username"];
-        $email = trim(strtolower($_POST["email"]));
-        $emailre = trim(strtolower($_POST["emailre"]));
-        $password_plain = $_POST["password"];
-        $passwordre_plain = $_POST["passwordre"];
-        $address = $_POST["address"];
-        
-        if ($password_plain !== $passwordre_plain || $email !== $emailre) {
-            echo "<script src='https://code.jquery.com/jquery-3.7.1.min.js'></script>
-                  <script>
-                    $(function() {
-                        alert('Die Passwörter oder Emails stimmen nicht überein!');
-                    });
-                  </script>";
-        } else {
-            $password = password_hash($password_plain, PASSWORD_DEFAULT);
-
-            // Prepare the SQL statement using MySQLi
-            $stmt = $con->prepare("SELECT * FROM users WHERE username=? OR email=?");
-            $stmt->bind_param("ss", $username, $email);
+        // Function to register the user
+        function registerUser($username, $email, $password, $firstName, $lastName, $address) {
+            global $con;
+            $stmt = $con->prepare("INSERT INTO users (firstName, lastName, username, email, password, address) VALUES (?, ?, ?, ?, ?, ?)");
+            $stmt->bind_param("ssssss", $firstName, $lastName, $username, $email, $password, $address);
             $stmt->execute();
+        }
 
-            // Fetch the result
-            $result = $stmt->get_result();
-            $userAlreadyExists = $result->num_rows > 0;
-
-            // Function to register the user
-            function registerUser($username, $email, $password, $firstName, $lastName, $address) {
-                global $con;
-                $stmt = $con->prepare("INSERT INTO users (firstName, lastName, username, email, password, address) VALUES (?, ?, ?, ?, ?, ?)");
-                $stmt->bind_param("ssssss", $firstName, $lastName, $username, $email, $password, $address);
-                $stmt->execute();
-            }
-
-            if (!$userAlreadyExists) {
-                registerUser($username, $email, $password, $firstName, $lastName, $address);
-                echo "Registration successful!";
-            } else {
-                echo "User already exists";
-            }
+        if (!$userAlreadyExists) {
+            registerUser($username, $email, $password, $firstName, $lastName, $address);
+            echo "Registration successful!";
+        } else {
+            echo "User already exists";
         }
     }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -141,6 +145,7 @@
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
+    <script src="/public/js/session_timeout.js"></script>
     <link rel="stylesheet" href="./css/authentication.css">
     <link rel="stylesheet" href="./nav_bar.css"/>
     <title>Stylung</title>

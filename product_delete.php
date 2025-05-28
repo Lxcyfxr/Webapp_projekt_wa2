@@ -1,6 +1,6 @@
 <?php
 session_start();
-if ($_SESSION['username'] !== 'admin') {
+if ($_SESSION['role'] !== 'admin') {
     die('Zugriff verweigert');
 }
 
@@ -26,7 +26,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt->close();
 
     if (!$product_name) {
-        die('Produkt nicht gefunden.');
+        header('Location: profile.php?message=' . urlencode('Fehler beim Löschen vom Produkt mit der ID ' . $product_id . '!'));
+        exit();
     }
 
     // Bilddatei löschen, falls vorhanden
@@ -46,7 +47,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         header('Location: profile.php?message=' . urlencode('Produkt ' . $product_name . ' erfolgreich gelöscht!'));
         exit();
     } else {
-        echo 'Fehler beim Entfernen des Produkts: ' . $stmt->error;
+        header('Location: profile.php?message=' . urlencode('Fehler beim Löschen vom Produkt mit der ID ' . $product_id . '!'));
+        exit();
     }
 
     $stmt->close();

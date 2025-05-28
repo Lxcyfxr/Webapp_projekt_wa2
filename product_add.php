@@ -1,17 +1,16 @@
 <?php
 session_start();
-if ($_SESSION['username'] !== 'admin') {
+if ($_SESSION['role'] !== 'admin') {
     die('Zugriff verweigert');
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $product_id = $_POST['product_id'];
     $product_name = $_POST['product_name'];
     $description = $_POST['description'];
-    $price = $_POST['price']; 
-    $gender = $_POST['gender'];
-    $size = $_POST['size'];
-    $brand = $_POST['brand'];
+    $price = $_POST['price'];
+    $gender = $_POST['gender'] ?? null;
+    $size = $_POST['size'] ?? null;
+    $brand = $_POST['brand'] ?? null;
 
     $servername = "localhost";
     $username = "root";
@@ -23,19 +22,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         die('Datenbankverbindung fehlgeschlagen: ' . $conn->connect_error);
     }
 
-    if (empty($product_name)) {
-        $stmt = $conn->prepare('SELECT name FROM  testproducts WHERE id = ?');
-        $stmt->bind_param('i', $product_id);
-        $stmt->execute();
-        $stmt->bind_result($product_name);
-        $stmt->fetch();
-        $stmt->close();
+    $result = $conn->query('SELECT MIN(t1.id + 1) AS next_id FROM testproducts t1 LEFT JOIN testproducts t2 ON t1.id + 1 = t2.id WHERE t2.id IS NULL');
+    $row = $result->fetch_assoc();
+    $next_id = $row['next_id'] ?? 1;
 
-        if (empty($product_name)) {
-            die('Produkt nicht gefunden.');
-        }
-    }
-
+    // Bild-Upload
     $image_url = null;
     if (isset($_FILES['image_file']) && $_FILES['image_file']['error'] === UPLOAD_ERR_OK) {
         $upload_dir = __DIR__ . '/../products/';
@@ -51,15 +42,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         die('Kein Bild ausgewählt oder Fehler beim Upload.');
     }
 
-
-    $stmt = $conn->prepare('UPDATE testproducts SET name = ?, description = ?, picture = ?, price = ?, gender = ?, size = ?, brand = ? WHERE id = ?');
-    $stmt->bind_param('sssssssi', $product_name, $description, $image_url, $price, $gender, $size, $brand, $product_id);
+    $stmt = $conn->prepare('INSERT INTO testproducts (id, name, description, picture, price, gender, size, brand) VALUES (?, ?, ?, ?, ?, ?, ?, ?)');
+    $stmt->bind_param('isssdsss', $next_id, $product_name, $description, $image_url, $price, $gender, $size, $brand);
 
     if ($stmt->execute()) {
-        header('Location: profile.php?message=' . urlencode('Produkt ' . $product_name . ' erfolgreich aktualisiert!'));
+        header('Location: profile.php?message=' . urlencode('Produkt ' . $product_name . ' erfolgreich hinzugefügt!'));
         exit();
     } else {
-        echo 'Fehler beim Bearbeiten des Produkts: ' . $stmt->error;
+        header('Location: profile.php?message=' . urlencode('Fehler beim Hinzufügen von ' . $product_name . '!'));
+        exit();
     }
 
     $stmt->close();

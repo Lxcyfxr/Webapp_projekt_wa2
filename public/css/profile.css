@@ -182,3 +182,8 @@ form.logout-form input[type="submit"] {
 form.logout-form input[type="submit"]:hover {
   background-color: #e60000;
 }
+
+th {
+  text-align: left;
+  padding-bottom: 0.5rem;
+}

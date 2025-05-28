@@ -1,7 +1,7 @@
 <!--Last Change:    -->
 <!--Reason:         -->
 <?php
-  require("../session_timeout.php");
+  require("../backend/session_timeout.php");
 ?>
 <html>
   <head>

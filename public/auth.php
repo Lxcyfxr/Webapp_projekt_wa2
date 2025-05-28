@@ -1,7 +1,7 @@
 <?php
 session_start();
-require("../connection.php");
-require("../session_timeout.php");
+require("../backend/connection.php");
+require("../backend/session_timeout.php");
 
     // Sonderzeichen-Prüfung für Login und Registrierung
     function hasInvalidChars($input, $allowAt = false) {

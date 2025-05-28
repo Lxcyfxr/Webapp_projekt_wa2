@@ -13,7 +13,7 @@
   </head>
   <body style="background: #141b27; color: white">
     <?php include 'navbar.php'; 
-    require("../session_timeout.php");?>
+    require("../backend/session_timeout.php");?>
     <script src="/js/jquery-3.7.1.min.js"></script>
     <div width=80%>
       <div id="search-container" style="text-align: center; margin-top: 5rem;">
@@ -56,7 +56,7 @@
 
           function loadProducts(filterGender = "ALL", searchQuery = "") {
             $.ajax({
-              url: "../backend.php",
+              url: "../backend/backend.php",
               method: "GET",
               dataType: "json",
               success: function (data) {

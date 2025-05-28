@@ -14,7 +14,7 @@
 </head>
 <body style="background: #141b27; color: white;">
     <?php include 'navbar.php'; 
-    require("../session_timeout.php");?>
+    require("../backend/session_timeout.php");?>
     <div class="product-details-container">
         <div class="product-details-left">
             <div class="product-box-large">
@@ -43,7 +43,7 @@
     <script>
         function loadProduct(id) {
             $.ajax({
-                url: '../backend.php', // URL zur backend.php
+                url: '../backend/backend.php', // URL zur backend.php
                 type: 'GET',
                 dataType: 'json',
                 success: function(data) {

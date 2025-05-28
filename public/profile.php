@@ -22,7 +22,7 @@
     $userData = null;
     if (isset($_SESSION['username'])) {
         require_once("../connection.php");
-        $stmt = $con->prepare("SELECT username, email, role, firstName, lastName, address FROM users WHERE username=?");
+        $stmt = $con->prepare("SELECT * FROM users WHERE username=?");
         $stmt->bind_param("s", $_SESSION['username']);
         $stmt->execute();
         $result = $stmt->get_result();
@@ -118,19 +118,19 @@
         <img src="pictures/usericon.svg" alt="Profil" width="100" height="100">
         <p class="outfit-300 success-message" id="message-container"></p>
         <div style="display: flex; justify-content: center; width: 90%; gap: 2rem; margin-top: 2rem;">
-            <form class="profile" action="" method="POST" style="margin-top: 1rem;">
+            <form class="profile" action="user_edit.php" method="POST" style="margin-top: 1rem;">
                 <h2 class="outfit-300">Persönliche Informationen</h2>
                  <select class="outfit-300" name="gender">
                     <option value="">Anrede</option>
                     <option value="MALE">Herr</option>
                     <option value="FEMALE">Frau</option>
                 </select>
-                <input class="outfit-300" type="text" name="vorname" placeholder="Vorname" required value="' . htmlspecialchars($userData['firstName'] ?? '') . '" readonly />
-                <input class="outfit-300" type="text" name="nachname" placeholder="Nachname" required value="' . htmlspecialchars($userData['lastName'] ?? '') . '" readonly />
-                <input class="outfit-300" type="text" name="username" placeholder="Username" required value="' . htmlspecialchars($userData['username'] ?? '') . '" readonly />
-                <input class="outfit-300" type="email" name="email" placeholder="E-Mail" required value="' . htmlspecialchars($userData['email'] ?? '') . '" readonly />
-                <input class="outfit-300" type="text" name="profilepic_url" placeholder="Profilbild-URL" required />
-                <button class="outfit-300" type="submit">Bearbeiten</button>
+                <input class="outfit-300" type="text" name="vorname" placeholder="Vorname" required value="' . htmlspecialchars($userData['firstName'] ?? '') . '" />
+                <input class="outfit-300" type="text" name="nachname" placeholder="Nachname" required value="' . htmlspecialchars($userData['lastName'] ?? '') . '" />
+                <input class="outfit-300" type="text" name="username" placeholder="Username" required value="' . htmlspecialchars($userData['username'] ?? '') . '" />
+                <input class="outfit-300" type="email" name="email" placeholder="E-Mail" required value="' . htmlspecialchars($userData['email'] ?? '') . '" />
+                <input class="outfit-300" type="text" name="profilepic_url" placeholder="Profilbild-URL" value="' . htmlspecialchars($userData['profilepic_url'] ?? '') . '" />
+                <button class="outfit-300" type="submit">Ändern</button>
             </form>
             <form class="history" action="" method="POST" style="margin-top: 1rem;">
                 <h2 class="history outfit-300">Verlauf</h2>

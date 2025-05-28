@@ -8,7 +8,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $product_id = $_POST['product_id'];
     $product_name = $_POST['product_name'];
     $description = $_POST['description'];
-    $image_url = $_POST['image_url'];
     $price = $_POST['price']; 
     $gender = $_POST['gender'];
     $size = $_POST['size'];
@@ -36,6 +35,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             die('Produkt nicht gefunden.');
         }
     }
+
+    $image_url = null;
+    if (isset($_FILES['image_file']) && $_FILES['image_file']['error'] === UPLOAD_ERR_OK) {
+        $upload_dir = __DIR__ . '/../products/';
+        $ext = pathinfo($_FILES['image_file']['name'], PATHINFO_EXTENSION);
+        $image_name = 'product' . $next_id . '.' . $ext;
+        $image_path = $upload_dir . $image_name;
+        if (move_uploaded_file($_FILES['image_file']['tmp_name'], $image_path)) {
+            $image_url = '/../products/' . $image_name;
+        } else {
+            die('Fehler beim Hochladen des Bildes.');
+        }
+    } else {
+        die('Kein Bild ausgewählt oder Fehler beim Upload.');
+    }
+
 
     $stmt = $conn->prepare('UPDATE testproducts SET name = ?, description = ?, picture = ?, price = ?, gender = ?, size = ?, brand = ? WHERE id = ?');
     $stmt->bind_param('sssssssi', $product_name, $description, $image_url, $price, $gender, $size, $brand, $product_id);

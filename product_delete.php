@@ -1,6 +1,6 @@
 <?php
 session_start();
-if ($_SESSION['username'] !== 'admin') {
+if ($_SESSION['role'] !== 'admin') {
     die('Zugriff verweigert');
 }
 

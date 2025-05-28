@@ -29,12 +29,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Bild-Upload
     $image_url = null;
     if (isset($_FILES['image_file']) && $_FILES['image_file']['error'] === UPLOAD_ERR_OK) {
-        $upload_dir = __DIR__ . '../products/';
+        $upload_dir = __DIR__ . '/../products/';
         $ext = pathinfo($_FILES['image_file']['name'], PATHINFO_EXTENSION);
         $image_name = 'product' . $next_id . '.' . $ext;
         $image_path = $upload_dir . $image_name;
         if (move_uploaded_file($_FILES['image_file']['tmp_name'], $image_path)) {
-            $image_url = '../products/' . $image_name;
+            $image_url = '/../products/' . $image_name;
         } else {
             die('Fehler beim Hochladen des Bildes.');
         }

@@ -1,6 +1,8 @@
 /*Last Change:    Loris 23.04.2025*/
 /*Reason:         Farbschema geändert*/
-
+#desktop-navbar {
+  z-index: 1000;
+}
 ul.navbar {
   list-style-type: none;
   margin: 0;

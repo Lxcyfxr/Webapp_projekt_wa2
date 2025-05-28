@@ -121,6 +121,7 @@ require("../session_timeout.php");?>
         ';
 
     }else {
+
         echo ' 
         <img src="pictures/usericon.svg" alt="Profil" width="100" height="100">
         <p class="outfit-300 success-message" id="message-container"></p>
@@ -134,11 +135,15 @@ require("../session_timeout.php");?>
                 
                 <button class="outfit-300" type="submit">Ändern</button>
             </form>
-            <form class="history" action="" method="POST" style="margin-top: 1rem;">
-                <h2 class="history outfit-300">Verlauf</h2>
-            </form>
+            
         </div>
         ';
+        // Warenverlauf einbinden
+        if (isset($userData['id'])) {
+            echo '<div style="width:90%;margin-top:2rem;">';
+            include 'order_history.php';
+            echo '</div>';
+        }
     }
     ?>
     <form action="auth.php" class="logout-form" method="POST">

@@ -54,7 +54,16 @@ require("../session_timeout.php");?>
                         <option value="MALE">Männer</option>
                         <option value="FEMALE">Frauen</option>
                     </select>
-                    <input class="outfit-300" type="text" name="size" placeholder="Größe (optional)" />
+                    <div class="size-selection outfit-300">
+                        <div class="size-checkboxes">
+                            <label>Verfügbare Größen:</label>
+                            <label><input type="checkbox" name="sizes[]" value="XS"> XS</label>
+                            <label><input type="checkbox" name="sizes[]" value="S"> S</label>
+                            <label><input type="checkbox" name="sizes[]" value="M"> M</label>
+                            <label><input type="checkbox" name="sizes[]" value="L"> L</label>
+                            <label><input type="checkbox" name="sizes[]" value="XL"> XL</label>
+                        </div>
+                    </div>
                     <input class="outfit-300" type="text" name="brand" placeholder="Marke (optional)" />
                     <button class="outfit-300" type="submit">Bestätigen</button>
                 </form>
@@ -75,7 +84,16 @@ require("../session_timeout.php");?>
                         <option value="MALE">Männer</option>
                         <option value="FEMALE">Frauen</option>
                     </select>
-                    <input class="outfit-300" type="text" name="size" placeholder="Größe (optional)" />
+                    <div class="size-selection outfit-300">
+                        <div class="size-checkboxes">
+                            <label>Verfügbare Größen:</label>
+                            <label><input type="checkbox" name="sizes[]" value="XS"> XS</label>
+                            <label><input type="checkbox" name="sizes[]" value="S"> S</label>
+                            <label><input type="checkbox" name="sizes[]" value="M"> M</label>
+                            <label><input type="checkbox" name="sizes[]" value="L"> L</label>
+                            <label><input type="checkbox" name="sizes[]" value="XL"> XL</label>
+                        </div>
+                    </div>
                     <input class="outfit-300" type="text" name="brand" placeholder="Marke (optional)" />
                     <button class="outfit-300" type="submit">Bestätigen</button>
                 </form>

@@ -3,6 +3,49 @@ session_start();
 require("../connection.php");
 require("../session_timeout.php");
 
+    // Sonderzeichen-Prüfung für Login und Registrierung
+    function hasInvalidChars($input, $allowAt = false) {
+        if ($allowAt) {
+            return preg_match('/[^a-zA-Z0-9@._-]/', $input);
+        } else {
+            return preg_match('/[^a-zA-Z0-9._-]/', $input);
+        }
+    }
+
+    // Bei Login prüfen
+    if (isset($_POST["login_submit"])) {
+        if (
+            hasInvalidChars($_POST["username"] ?? '') ||
+            hasInvalidChars($_POST["password"] ?? '')
+        ) {
+            die("Fehler: Ungültige Zeichen im Login-Feld.");
+        }
+    }
+
+    // Bei Registrierung prüfen
+    if (isset($_POST["register_submit"])) {
+        if (
+            hasInvalidChars($_POST["firstName"] ?? '') ||
+            hasInvalidChars($_POST["lastName"] ?? '') ||
+            hasInvalidChars($_POST["username"] ?? '') ||
+            hasInvalidChars($_POST["address"] ?? '') ||
+            hasInvalidChars($_POST["password"] ?? '') ||
+            hasInvalidChars($_POST["passwordre"] ?? '') ||
+            hasInvalidChars($_POST["email"] ?? '', true) ||
+            hasInvalidChars($_POST["emailre"] ?? '', true)
+        ) {
+            die("Fehler: Ungültige Zeichen in den Eingabefeldern.");
+        }
+    }
+
+    // Check for session timeout
+    if (isset($_SESSION['last_activity']) && (time() - $_SESSION['last_activity'] > 60)) {
+        session_unset();
+        session_destroy();
+        header("Location: auth.php");
+        exit();
+    }
+    $_SESSION['last_activity'] = time();
 // Handle manual logout
 if (isset($_POST['logout'])) {
     session_unset();

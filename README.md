@@ -10,15 +10,15 @@ Entdecke unseren Shop und werde Teil von Stylung.
 
 # Anforderungen
 
-- Sessionverwaltung
+- Sessionverwaltung                             -> erfüllt      
 - Login-Logout                                  -> erfüllt       Login via Loginpage und Logout dann über Logout Button auf Profilseite
-- automatischer Logout
+- automatischer Logout                          -> erfüllt       Egal welche Seite, automatischer Logout nach 5min Inaktivität
 - Admin-Bereich mit Useraccount-Verwaltung      -> erfüllt       Profilseite eines Accounts mit Adminrolle (Kann Benutzer "admin" mit PW "admin" verwendet werden)        
-- Passwort-Verwaltung
+- Passwort-Verwaltung                           ->
 - Rechte-Verwaltung                             -> erfüllt       Profilseite eines Accounts mit Adminrolle 
-- Dateneingabe Client- und Serverseitig prüfen
+- Dateneingabe Client- und Serverseitig prüfen  -> 
 - Datensatzmanipulation in SQL-Server           -> erfüllt       Profilseite eines Accounts mit Adminrolle (Produktverwaltung)
-- Konfigurationsinformationen via config Datei
+- Konfigurationsinformationen via config Datei  ->
 - Einbindung jQuery/jQuery UI o. Bootstrap      -> erfüllt
 - Dynamisches Laden/Nachladen AJAX              -> erfüllt       Shopseite
 - Meldungsfenster / Userbestätigung jQuery UI   -> erfüllt       Kontaktformular auf Kontaktseite

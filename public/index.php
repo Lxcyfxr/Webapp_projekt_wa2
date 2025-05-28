@@ -19,7 +19,7 @@
   </script>
     <img src="/public/pictures/Schriftzug_Stylung.png" alt="Stylung Logo" style="width: 600px; height: auto; margin-bottom: 20px;">
     <?php include 'navbar.php'; 
-    require("../session_timeout.php");?>
+    require("../backend/session_timeout.php");?>
     <div class="box-container">
       <div class="stylung-box">
         <img id="img-1" src="/products/stylung_shirt.jpg"/>
@@ -36,7 +36,7 @@
       <script>
         $(document).ready(function() {
             $.ajax({
-                url: '../get_products.php',
+                url: '../backend/get_products.php',
                 method: 'GET',
                 dataType: 'json',
                 success: function(products) {

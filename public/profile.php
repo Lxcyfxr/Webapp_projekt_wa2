@@ -43,10 +43,10 @@
                     <h2 class="outfit-300">Produkt hinzufügen</h2>
                     <input class="outfit-300" type="text" name="product_name" placeholder="Produktname" required />
                     <textarea class="outfit-300" name="description" placeholder="Beschreibung" required></textarea>
-                    <label for="image_file" class="custom-file-upload outfit-300">
+                    <label for="image_file_add" class="custom-file-upload outfit-300" id="label_image_file_add">
                         Bild hochladen
                     </label>
-                    <input type="file" name="image_file" id="image_file" accept="image/*" required>
+                    <input type="file" name="image_file" id="image_file_add" accept="image/*" required>
                     <input class="outfit-300" type="number" name="price" min="0" placeholder="Preis" step="0.01" required />
                     <select class="outfit-300" name="gender">
                         <option value="">Geschlecht (optional)</option>
@@ -64,10 +64,10 @@
                     <input class="outfit-300" type="number" name="product_id" placeholder="Produkt-ID" required />
                     <input class="outfit-300" type="text" name="product_name" placeholder="Neuer Produktname (optional)" />
                     <textarea class="outfit-300" name="description" placeholder="Neue Beschreibung (optional)"></textarea>
-                    <label for="image_file" class="custom-file-upload outfit-300">
-                        Bild hochladen
+                    <label for="image_file_update" class="custom-file-upload outfit-300" id="label_image_file_update">
+                        Bild hochladen (optional)
                     </label>
-                    <input type="file" name="image_file" id="image_file" accept="image/*" required>
+                    <input type="file" name="image_file" id="image_file_update" accept="image/*">
                     <input class="outfit-300" type="number" min="0" name="price" placeholder="Neuer Preis (optional)" step="0.01" />
                     <select class="outfit-300" name="gender">
                         <option value="">Geschlecht (optional)</option>
@@ -224,6 +224,24 @@
         loadUsers();
         });
 
+        document.addEventListener('DOMContentLoaded', function () {
+            // Für Produkt hinzufügen
+            const fileInputAdd = document.getElementById('image_file_add');
+            const labelAdd = document.getElementById('label_image_file_add');
+            if (fileInputAdd && labelAdd) {
+                fileInputAdd.addEventListener('change', function () {
+                    labelAdd.textContent = this.files[0] ? this.files[0].name : 'Bild hochladen';
+                });
+            }
+            // Für Produkt aktualisieren
+            const fileInputUpdate = document.getElementById('image_file_update');
+            const labelUpdate = document.getElementById('label_image_file_update');
+            if (fileInputUpdate && labelUpdate) {
+                fileInputUpdate.addEventListener('change', function () {
+                    labelUpdate.textContent = this.files[0] ? this.files[0].name : 'Bild hochladen';
+                });
+            }
+        });
     </script>
 </body>
 </html>

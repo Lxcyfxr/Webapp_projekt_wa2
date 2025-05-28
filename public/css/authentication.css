@@ -103,6 +103,18 @@ form.sign-in-form {
     font-weight: 500;
 }
 
+.input-warning {
+    color: #e74c3c;
+    font-family:'Outfit';
+    font-size: 0.9em;
+    margin-top: 4px;
+    margin-left: 40px; /* Abstand zum Icon */
+    position: absolute;
+    left: 0;
+    top: 100%;
+    white-space: nowrap;
+    z-index: 10;
+}
 
 .btn {
     width: 150px;

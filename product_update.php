@@ -48,10 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         } else {
             die('Fehler beim Hochladen des Bildes.');
         }
-    } else {
-        die('Kein Bild ausgewählt oder Fehler beim Upload.');
-    }
-
+    } 
 
     $stmt = $conn->prepare('UPDATE testproducts SET name = ?, description = ?, picture = ?, price = ?, gender = ?, size = ?, brand = ? WHERE id = ?');
     $stmt->bind_param('sssssssi', $product_name, $description, $image_url, $price, $gender, $size, $brand, $product_id);

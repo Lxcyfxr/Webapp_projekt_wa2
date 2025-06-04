@@ -1,5 +1,5 @@
 <?php
-require_once("../backend/connection.php");
+require_once("./connection.php");
 
 if (
     isset($_POST['username']) &&
@@ -19,7 +19,7 @@ if (
     
 
     if ($stmt->execute()) {
-        header("Location: profile.php?message=Daten erfolgreich geändert!");
+        header("Location: /public/profile.php?message=Daten erfolgreich geändert!");
         exit();
     } else {
         echo "Fehler beim Ändern der Userdaten.";

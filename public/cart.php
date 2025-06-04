@@ -136,10 +136,31 @@ echo "<form action='../backend/buy_product.php' method='POST' style='margin:0;'>
 echo "</div>";
 
 echo "</div>"; // Flex-Container
+echo'<p class="outfit-300 success-message" id="message-container"></p>';
 
 $stmt->close();
 ?>
+<script src="/js/jquery-3.7.1.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const urlParams = new URLSearchParams(window.location.search);
+            const message = urlParams.get('message');
+            const messageContainer = document.getElementById('message-container');
 
+            if (message) {
+                messageContainer.textContent = message;
+                messageContainer.style.display = 'block';
+                setTimeout(function() {
+                    document.getElementById("message-container").style.display = "none";
+                }, 3000);
+
+                const forms = document.querySelectorAll('form');
+                forms.forEach(form => form.reset());
+
+                const newUrl = window.location.href.split('?')[0];
+                window.history.replaceState({}, document.title, newUrl);
+            }
+        });</script>
 <script>
 // Seite nach +, - oder Löschen automatisch neu laden (ohne doppeltes Absenden)
 document.querySelectorAll('.amount-form, .delete-form').forEach(form => {

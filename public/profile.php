@@ -145,7 +145,7 @@ require("../backend/session_timeout.php");?>
         <p class="outfit-300 success-message" id="message-container"></p>
         <div style="display: flex; justify-content: center; align-items: flex-start; width: 90%; gap: 2rem; margin-top: 2rem;">
             <div class="form" style="min-width:300px; flex:1;">
-                <form class="profile" action="user_edit.php" method="POST" style="margin-top: 1rem;">
+                <form class="profile" action="/backend/user_edit.php" method="POST" style="margin-top: 1rem;">
                     <h2 class="outfit-300">Persönliche Informationen</h2>
                     <input class="outfit-300" type="text" name="vorname" placeholder="Vorname" required value="' . htmlspecialchars($userData['firstName'] ?? '') . '" />
                     <input class="outfit-300" type="text" name="nachname" placeholder="Nachname" required value="' . htmlspecialchars($userData['lastName'] ?? '') . '" />

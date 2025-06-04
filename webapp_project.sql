@@ -97,7 +97,7 @@ CREATE TABLE `testproducts` (
   `picture` text NOT NULL,
   `price` decimal(10,2) NOT NULL,
   `gender` varchar(10) DEFAULT NULL,
-  `size` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL CHECK (json_valid(`size`)),
+  `size` longtext DEFAULT NULL,
   `brand` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 

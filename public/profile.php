@@ -69,7 +69,7 @@ require("../backend/session_timeout.php");?>
                 </form>
             </div>
             <div class="form" style="margin-top: 1rem;">
-                <form action="../backend/product_update.php" method="POST" style="margin-top: 1rem;">
+                <form action="../backend/product_update.php" method="POST" enctype="multipart/form-data" style="margin-top: 1rem;">
                     <h2 class="outfit-300">Produkt aktualisieren</h2>
                     <input class="outfit-300" type="number" name="product_id" placeholder="Produkt-ID" required />
                     <input class="outfit-300" type="text" name="product_name" placeholder="Neuer Produktname (optional)" />

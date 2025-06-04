@@ -30,7 +30,7 @@
         <div class="Outfit-600">Egal ob Basic oder Statement - bei uns findest du deinen perfekten Streetstyle.</div>
       </div>
       <div  class="stylung-box">
-        <img id="img-3" src=""/>
+        <img id="img-3" src="/products/foalsch_cap.jpg"/>
         <div class="Outfit-600">Stylung ist mehr als nur Mode. Es ist ein Lebensgefühl. Minimalistisch, zeitlos, stark.</div>
       </div>
       <script>

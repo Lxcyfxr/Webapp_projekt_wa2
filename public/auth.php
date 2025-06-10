@@ -15,8 +15,7 @@ require("../backend/session_timeout.php");
     // Bei Login prüfen
     if (isset($_POST["login_submit"])) {
         if (
-            hasInvalidChars($_POST["username"] ?? '') ||
-            hasInvalidChars($_POST["password"] ?? '')
+            hasInvalidChars($_POST["username"] ?? '')
         ) {
             die("Fehler: Ungültige Zeichen im Login-Feld.");
         }
@@ -29,8 +28,6 @@ require("../backend/session_timeout.php");
             hasInvalidChars($_POST["lastName"] ?? '') ||
             hasInvalidChars($_POST["username"] ?? '') ||
             hasInvalidChars($_POST["address"] ?? '') ||
-            hasInvalidChars($_POST["password"] ?? '') ||
-            hasInvalidChars($_POST["passwordre"] ?? '') ||
             hasInvalidChars($_POST["email"] ?? '', true) ||
             hasInvalidChars($_POST["emailre"] ?? '', true)
         ) {

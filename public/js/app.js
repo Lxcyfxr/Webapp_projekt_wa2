@@ -69,26 +69,42 @@ function hideInputWarning(input) {
 }
 
 // Funktion zur Sonderzeichen-Prüfung
-function preventSpecialChars(input, allowAt = false) {
+function preventSpecialChars(input, allowAt = false, allowSpecialChars = false) {
+    if (allowSpecialChars) {
+        hideInputWarning(input);
+        return; // Keine Einschränkung für Passwörter
+    }
     const regex = allowAt ? /[^a-zA-Z0-9@._-]/g : /[^a-zA-Z0-9._-]/g;
     if (regex.test(input.value)) {
-        // Nur Zeichen entfernen, keine Warnung anzeigen
+        // Zeichen entfernen
         input.value = input.value.replace(regex, "");
+        // Warnung anzeigen
+        showInputWarning(input, "Sonderzeichen sind hier nicht erlaubt.");
+    } else {
+        // Warnung ausblenden, falls keine ungültigen Zeichen mehr vorhanden
+        hideInputWarning(input);
     }
 }
 
 document.addEventListener("DOMContentLoaded", function() {
-    // Alle Inputs außer Email
-    document.querySelectorAll('input[type="text"], input[type="password"]').forEach(function(input) {
+    // Alle Inputs außer Email und Passwort
+    document.querySelectorAll('input[type="text"]').forEach(function(input) {
         input.addEventListener("input", function() {
-            preventSpecialChars(input, false);
+            preventSpecialChars(input, false, false);
         });
     });
 
     // Nur Email-Feld
     document.querySelectorAll('input[type="email"]').forEach(function(input) {
         input.addEventListener("input", function() {
-            preventSpecialChars(input, true);
+            preventSpecialChars(input, true, false);
+        });
+    });
+
+    // Passworteingabefelder: keine Einschränkung
+    document.querySelectorAll('input[type="password"]').forEach(function(input) {
+        input.addEventListener("input", function() {
+            preventSpecialChars(input, false, true);
         });
     });
 
@@ -100,9 +116,16 @@ document.addEventListener("DOMContentLoaded", function() {
 
     loginFields.forEach(function(input) {
         if (input) {
-            input.addEventListener("input", function() {
-                preventSpecialChars(input, false);
-            });
+            // Für Passwortfeld keine Einschränkung, für Username wie gehabt
+            if (input.type === "password") {
+                input.addEventListener("input", function() {
+                    preventSpecialChars(input, false, true);
+                });
+            } else {
+                input.addEventListener("input", function() {
+                    preventSpecialChars(input, false, false);
+                });
+            }
         }
     });
 });

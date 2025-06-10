@@ -24,27 +24,54 @@ if (passwordInput) {
         const val = passwordInput.value;
         let strength = 0;
 
-        // Stärke prüfen
-        if (val.length >= 8) strength++;
-        if (/[A-Z]/.test(val)) strength++;
-        if (/[a-z]/.test(val)) strength++;
-        if (/[0-9]/.test(val)) strength++;
-        if (/[^A-Za-z0-9]/.test(val)) strength++;
+        const hasLower = /[a-z]/.test(val);
+        const hasUpper = /[A-Z]/.test(val);
+        const hasNumber = /[0-9]/.test(val);
+        const hasSpecial = /[^A-Za-z0-9]/.test(val);
+
+        // Sehr schwach: mindestens 1 Buchstabe
+        if (/[a-zA-Z]/.test(val)) strength = 1;
+
+        // Schwach: mindestens 5 Zeichen
+        if (val.length >= 5) strength = 2;
+
+        // Okay: mindestens 8 Zeichen
+        if (val.length >= 8) strength = 3;
+
+        // Gut: mindestens 8 Zeichen UND Groß- und Kleinbuchstaben UND (Zahl ODER Sonderzeichen)
+        if (
+            val.length >= 8 &&
+            hasLower && hasUpper &&
+            (hasNumber || hasSpecial)
+        ) {
+            strength = 4;
+        }
+
+        // Sehr gut: mindestens 8 Zeichen UND Groß- und Kleinbuchstaben UND Zahl UND Sonderzeichen
+        if (
+            val.length >= 8 &&
+            hasLower && hasUpper &&
+            hasNumber && hasSpecial
+        ) {
+            strength = 5;
+        }
 
         const barColors = ["#e74c3c", "#e67e22", "#f1c40f", "#2ecc71", "#27ae60"];
         const labels = ["Sehr schwach", "Schwach", "Okay", "Gut", "Sehr gut"];
 
-        // Stärke-Balken aktualisieren
-        strengthBar.innerHTML = `<div style="
-            width: ${(strength * 20)}%;
-            background-color: ${barColors[strength - 1] || '#e74c3c'};
-            height: 100%;
-            border-radius: 4px;
-            transition: width 0.4s ease, background-color 0.4s ease;
-        "></div>`;
-
-        // Text anzeigen
-        strengthText.textContent = labels[strength - 1] || "";
+        if (strength > 0) {
+            strengthBar.innerHTML = `<div style="
+                width: ${(strength * 20)}%;
+                background-color: ${barColors[strength - 1] || '#e74c3c'};
+                height: 100%;
+                border-radius: 4px;
+                transition: width 0.4s ease, background-color 0.4s ease;
+            "></div>`;
+            strengthText.textContent = labels[strength - 1] || "";
+        } else {
+            strengthBar.innerHTML = "";
+            strengthText.textContent = "";
+        }
     });
 }
 

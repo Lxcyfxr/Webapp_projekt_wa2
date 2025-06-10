@@ -12,10 +12,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $size = $_POST['sizes'] ?? ['XS', 'S', 'M', 'L', 'XL'];
     $brand = $_POST['brand'] ?? null;
 
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "webapp_project";
+    $config = parse_ini_file('../config.ini', true);
+    $db = $config['database'];
+    $servername = $db['host'];
+    $username = $db['user'];
+    $password = $db['password'];
+    $dbname = $db['dbname'];
 
     $conn = new mysqli($servername, $username, $password, $dbname);
     if ($conn->connect_error) {

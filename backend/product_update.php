@@ -7,10 +7,12 @@ if ($_SESSION['role'] !== 'admin') {
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $product_id = $_POST['product_id'];
     
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "webapp_project";
+    $config = parse_ini_file('../config.ini', true);
+    $db = $config['database'];
+    $servername = $db['host'];
+    $username = $db['user'];
+    $password = $db['password'];
+    $dbname = $db['dbname'];
 
     $conn = new mysqli($servername, $username, $password, $dbname);
     if ($conn->connect_error) {

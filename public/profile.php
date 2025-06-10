@@ -50,7 +50,7 @@ require("../backend/session_timeout.php");?>
                     <input type="file" name="image_file" id="image_file_add" accept="image/*" required>
                     <input class="outfit-300" type="number" name="price" min="0" placeholder="Preis" step="0.01" required />
                     <select class="outfit-300" name="gender">
-                        <option value="">Geschlecht (optional)</option>
+                        <option value="NULL">Geschlecht (optional)</option>
                         <option value="MALE">Männer</option>
                         <option value="FEMALE">Frauen</option>
                     </select>
@@ -83,6 +83,7 @@ require("../backend/session_timeout.php");?>
                         <option value="">Geschlecht (optional)</option>
                         <option value="MALE">Männer</option>
                         <option value="FEMALE">Frauen</option>
+                        <option value="NULL">Unisex</option>
                     </select>
                     <div class="size-selection outfit-300">
                         <div class="size-checkboxes">

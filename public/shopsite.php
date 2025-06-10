@@ -60,22 +60,25 @@
               method: "GET",
               dataType: "json",
               success: function (data) {
-                allProducts = data; // Speichert alle Produkte für die Suche
+                allProducts = data;
 
-                // Filterlogik
-                const filteredProducts = data.filter(
-                  (product) =>
-                    (filterGender === "ALL" || product.gender === filterGender) &&
-                    product.name.toLowerCase().includes(searchQuery.toLowerCase())
-                );
+                const filteredProducts = data.filter((product) => {
+                  const nameMatch = product.name.toLowerCase().includes(searchQuery.toLowerCase());
+                  
+                  if (filterGender === "ALL") {
+                    return nameMatch;
+                  } else if (filterGender === "MALE") {
+                    return nameMatch && (product.gender === "MALE" || product.gender === "NULL");
+                  } else if (filterGender === "FEMALE") {
+                    return nameMatch && (product.gender === "FEMALE" || product.gender === "NULL");
+                  }
+                  return false;
+                });
 
                 totalProducts = filteredProducts.length;
                 const startIndex = (currentPage - 1) * productsPerPage;
                 const endIndex = startIndex + productsPerPage;
-                const paginatedProducts = filteredProducts.slice(
-                  startIndex,
-                  endIndex
-                );
+                const paginatedProducts = filteredProducts.slice(startIndex, endIndex);
 
                 let productContent = "";
                 paginatedProducts.forEach(function (product) {

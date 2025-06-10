@@ -69,29 +69,41 @@ function hideInputWarning(input) {
 }
 
 // Funktion zur Sonderzeichen-Prüfung
-function preventSpecialChars(input, allowAt = false, allowSpecialChars = false) {
+function preventSpecialChars(input, allowAt = false, allowSpecialChars = false, isAddress = false) {
     if (allowSpecialChars) {
         hideInputWarning(input);
         return; // Keine Einschränkung für Passwörter
     }
-    const regex = allowAt ? /[^a-zA-Z0-9@._-]/g : /[^a-zA-Z0-9._-]/g;
+    let regex;
+    if (isAddress) {
+        // Erlaubt a-z, A-Z, 0-9, Punkt, Unterstrich, Bindestrich, Leerzeichen und ß
+        regex = /[^a-zA-Z0-9._\- ß]/g;
+    } else if (allowAt) {
+        regex = /[^a-zA-Z0-9@._-]/g;
+    } else {
+        regex = /[^a-zA-Z0-9._-]/g;
+    }
     if (regex.test(input.value)) {
-        // Zeichen entfernen
         input.value = input.value.replace(regex, "");
-        // Warnung anzeigen
         showInputWarning(input, "Sonderzeichen sind hier nicht erlaubt.");
     } else {
-        // Warnung ausblenden, falls keine ungültigen Zeichen mehr vorhanden
         hideInputWarning(input);
     }
 }
 
 document.addEventListener("DOMContentLoaded", function() {
-    // Alle Inputs außer Email und Passwort
+    // Alle Inputs außer Email, Passwort und Adresse
     document.querySelectorAll('input[type="text"]').forEach(function(input) {
-        input.addEventListener("input", function() {
-            preventSpecialChars(input, false, false);
-        });
+        // Prüfen, ob es das Adressfeld ist
+        if (input.name === "address") {
+            input.addEventListener("input", function() {
+                preventSpecialChars(input, false, false, true);
+            });
+        } else {
+            input.addEventListener("input", function() {
+                preventSpecialChars(input, false, false, false);
+            });
+        }
     });
 
     // Nur Email-Feld

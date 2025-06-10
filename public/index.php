@@ -10,22 +10,28 @@
   </head>
   <body style="background: #141b27; color: white; display:flex; justify-content: center; align-items: center; flex-direction: column; padding-top: 3rem">
   <body style="background: #141b27; color: white; display:flex; justify-content: center; align-items: center; flex-direction: column; padding-top: 3rem">
-    <img src="/public/pictures/Schriftzug_Stylung.png" alt="Stylung Logo" style="width: 600px; height: auto; margin-bottom: 20px;">
+    <img src="/public/pictures/Schriftzug_Stylung.png" alt="Stylung Logo" style="width: 400px; height: auto; margin-bottom: 20px;">
     <?php include 'navbar.php'; 
     require("../backend/session_timeout.php");?>
     <div class="box-container">
-      <div class="stylung-box">
-        <img id="img-1" src="/products/stylung_shirt.jpg"/>
-        <div class="Outfit-600">Ein Stil, der ohne Kompromisse kommt: modern, urban und unverwechselbar.</div>
-      </div>
-      <div  class="stylung-box">
-        <img id="img-2" src="/products/sinsheim_shirt.jpg"/>
-        <div class="Outfit-600">Egal ob Basic oder Statement - bei uns findest du deinen perfekten Streetstyle.</div>
-      </div>
-      <div  class="stylung-box">
-        <img id="img-3" src="/products/foalsch_cap.jpg"/>
-        <div class="Outfit-600">Stylung ist mehr als nur Mode. Es ist ein Lebensgefühl. Minimalistisch, zeitlos, stark.</div>
-      </div>
+      <a href="productsite.php?id=2" style="text-decoration: none; color: inherit;">
+        <div class="stylung-box">
+          <img id="img-1" src="/products/product2.jpg"/>
+          <div class="Outfit-300">Ein Stil, der ohne Kompromisse kommt: modern, urban und unverwechselbar.</div>
+        </div>
+      </a>
+      <a href="productsite.php?id=1" style="text-decoration: none; color: inherit;">
+        <div  class="stylung-box">
+          <img id="img-2" src="/products/product1.png"/>
+          <div class="Outfit-300">Egal ob Basic oder Statement - bei uns findest du deinen perfekten Streetstyle.</div>
+        </div>
+      </a>
+      <a href="productsite.php?id=3" style="text-decoration: none; color: inherit;">
+        <div  class="stylung-box">
+          <img id="img-3" src="/products/product3.png"/>
+          <div class="Outfit-300">Stylung ist mehr als nur Mode. Es ist ein Lebensgefühl. Minimalistisch, zeitlos, stark.</div>
+        </div>
+      </a>
       <script>
         $(document).ready(function() {
             $.ajax({

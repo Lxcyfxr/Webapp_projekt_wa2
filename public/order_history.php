@@ -21,7 +21,7 @@ $user_id = $user_row['id'];
 $stmt1->close();
 
 // Bestellungen laden
-$stmt = $con->prepare("SELECT * FROM buy_history WHERE user_id = ? ORDER BY date DESC");
+$stmt = $con->prepare("SELECT * FROM buy_history WHERE user_id = ? ORDER BY order_id DESC");
 $stmt->bind_param("i", $user_id);
 $stmt->execute();
 $result = $stmt->get_result();

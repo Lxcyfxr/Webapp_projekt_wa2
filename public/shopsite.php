@@ -82,7 +82,7 @@
 
                 let productContent = "";
                 paginatedProducts.forEach(function (product) {
-                  const truncatedName = truncateAtWord(product.name, 30);
+                  const truncatedName = truncateAtWord(product.name, 20);
                   productContent += `
                     <a href="productsite.php?id=${product.id}" style="text-decoration: none; color: inherit;">
                       <div class="product-box">

@@ -83,7 +83,7 @@ require("../backend/session_timeout.php");?>
                         <option value="">Geschlecht (optional)</option>
                         <option value="MALE">Männer</option>
                         <option value="FEMALE">Frauen</option>
-                        <option value="NULL">Beide</option>
+                        <option value="NULL">Unisex</option>
                     </select>
                     <div class="size-selection outfit-300">
                         <div class="size-checkboxes">

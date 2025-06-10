@@ -4,7 +4,7 @@
   <head>
     <title>Stylung</title>
     <link rel="icon" href="/public/pictures/Logo_Stylung.ico" type="image/x-icon" />
-    <script src="jquery-3.7.1.min.js"></script>
+    <script src="js/jquery-3.7.1.min.js"></script>
     <link rel="stylesheet" href="./css/index.css">
     
   </head>
@@ -35,10 +35,11 @@
       <script>
         $(document).ready(function() {
             $.ajax({
-                url: '../backend/get_products.php',
+                url: '/backend/get_products.php',
                 method: 'GET',
                 dataType: 'json',
                 success: function(products) {
+                    console.log(products);
                     products.forEach(function(product, idx) {
                         $('#img-' + (idx+1)).attr('src', product.picture);
                     });

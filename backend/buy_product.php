@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt->execute();
     $result = $stmt->get_result();
     if ($result->num_rows === 0) {
-        echo "<div class='cart-container'><p>Ihr Warenkorb ist leer.</p></div>";
+        header("Location: /public/cart.php?message=Ihr Warenkorb ist leer!");
         exit;
     }
 
@@ -42,6 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt->bind_param("i", $userid);
     $stmt->execute();
 
-    echo "<div class='cart-container'><p>Bestellung erfolgreich!</p></div>";
-}
+        header("Location: /public/cart.php?message=Danke für Ihren Einkauf! Ihre Bestellung wurde erfolgreich aufgegeben.");
+    exit;
+    }
 ?>

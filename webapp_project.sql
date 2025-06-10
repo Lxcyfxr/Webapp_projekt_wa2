@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 04. Jun 2025 um 14:58
+-- Erstellungszeit: 10. Jun 2025 um 15:00
 -- Server-Version: 10.4.32-MariaDB
 -- PHP-Version: 8.2.12
 
@@ -106,12 +106,12 @@ CREATE TABLE `testproducts` (
 --
 
 INSERT INTO `testproducts` (`id`, `name`, `description`, `picture`, `price`, `gender`, `size`, `brand`) VALUES
-(1, 'Auto Product 1', 'Auto-generated product for image 0001T-05X-002-1-790753_2 (1).jpg', '/../products/0001T-05X-002-1-790753_2 (1).jpg', 30.75, 'FEMALE', '', 'AutoBrand'),
-(2, 'Auto Product 2', 'Auto-generated product for image 0001T-59X-002-1-669441_5 (1).jpg', '/../products/0001T-59X-002-1-669441_5 (1).jpg', 31.50, 'FEMALE', '', 'AutoBrand'),
-(3, 'Auto Product 3', 'Auto-generated product for image 0001T-74X-002-1-783263 (1).jpg', '/../products/0001T-74X-002-1-783263 (1).jpg', 32.25, 'FEMALE', '', 'AutoBrand'),
+(1, 'Sinsheim T-Shirt', 'Der Klassiker aus dem ersten Semester!', '/../products/product1.png', 19.99, 'FEMALE', '[\"S\",\"M\",\"L\",\"XL\"]', 'Stylung'),
+(2, '\"Foalsch!\" - Cap', 'Du hast einen Drang, den bayrischen Dialekt zu verspotten? Dann ist die \"Foalsch!\"-Cap genau das richtige Piece für dich. Simpel und doch vielsagend!', '/../products/product2.jpg', 9.95, 'FEMALE', '[\"S\",\"M\",\"L\"]', 'Stylung'),
+(3, 'Stylung Patreon Shirt', 'Du möchtest uns unterstützen? Mit dem Patreon Shirt kannst du deine Unterstützung nach Außen zeigen. Hergestellt unter den schlechtesten Bedingungen von Kindern in Uganda, bereichern wir uns maximal.', '/../products/product3.png', 49.90, 'FEMALE', '[\"XS\",\"S\",\"M\",\"L\",\"XL\"]', 'Stylung'),
 (4, 'Auto Product 4', 'Auto-generated product for image 0002T-57X-001-1-790758_1.jpg', '/../products/0002T-57X-001-1-790758_1.jpg', 33.00, 'FEMALE', '', 'AutoBrand'),
 (5, 'Auto Product 5', 'Auto-generated product for image 0002T-74X-001-1-790760.jpg', '/../products/0002T-74X-001-1-790760.jpg', 33.75, 'FEMALE', '', 'AutoBrand'),
-(6, 'Auto Product 6', 'Auto-generated product for image 000BS-MLC-001-1-872384_1 (1).jpg', '/../products/000BS-MLC-001-1-872384_1 (1).jpg', 34.50, 'MALE', '', 'AutoBrand'),
+(6, 'Auto Product 6', 'Auto-generated product for image 000BS-MLC-001-1-872384_1 (1).jpg', '/../products/product6.jpeg', 34.50, 'MALE', '', 'AutoBrand'),
 (7, 'Auto Product 7', 'Auto-generated product for image 000CC-39X-001-1-871620_1 (1).jpg', '/../products/000CC-39X-001-1-871620_1 (1).jpg', 35.25, 'MALE', '', 'AutoBrand'),
 (8, 'Auto Product 8', 'Auto-generated product for image 000CH-99X-050-1-930214_1 (1).jpg', '/../products/000CH-99X-050-1-930214_1 (1).jpg', 36.00, 'MALE', '', 'AutoBrand'),
 (9, 'Auto Product 9', 'Auto-generated product for image 000CR-00X-001-1-916435 (1).jpg', '/../products/000CR-00X-001-1-916435 (1).jpg', 36.75, 'MALE', '', 'AutoBrand'),
@@ -126,7 +126,7 @@ INSERT INTO `testproducts` (`id`, `name`, `description`, `picture`, `price`, `ge
 (18, 'Auto Product 18', 'Auto-generated product for image 003CC-03X-001-1-918693 (1).jpg', '/../products/003CC-03X-001-1-918693 (1).jpg', 43.50, 'MALE', '', 'AutoBrand'),
 (19, 'Auto Product 19', 'Auto-generated product for image 003CR-15X-001-1-916127 (1).jpg', '/../products/003CR-15X-001-1-916127 (1).jpg', 44.25, 'MALE', '', 'AutoBrand'),
 (20, 'Auto Product 20', 'Auto-generated product for image 003DE-08X-010-1-911987 (1).jpg', '/../products/003DE-08X-010-1-911987 (1).jpg', 45.00, 'MALE', '', 'AutoBrand'),
-(21, 'Auto Product 21', 'Auto-generated product for image 004BS-MLC-010-1-879799 (1).jpg', '/../products/004BS-MLC-010-1-879799 (1).jpg', 45.75, 'MALE', '', 'AutoBrand'),
+(21, 'Auto Product 21', 'Auto-generated product for image 004BS-MLC-010-1-879799 (1).jpg', '/../products/product21.jpeg', 45.75, 'MALE', '', 'AutoBrand'),
 (22, 'Auto Product 22', 'Auto-generated product for image 004BZ-09M-004-1-836354.jpg', '/../products/004BZ-09M-004-1-836354.jpg', 46.50, 'MALE', '', 'AutoBrand'),
 (23, 'Auto Product 23', 'Auto-generated product for image 004CA-39X-001-1-864224.jpg', '/../products/004CA-39X-001-1-864224.jpg', 47.25, 'MALE', '', 'AutoBrand'),
 (24, 'Auto Product 24', 'Auto-generated product for image 004CH-MLC-050-1-930944_1 (1).jpg', '/../products/004CH-MLC-050-1-930944_1 (1).jpg', 48.00, 'MALE', '', 'AutoBrand'),
@@ -167,7 +167,7 @@ INSERT INTO `testproducts` (`id`, `name`, `description`, `picture`, `price`, `ge
 (59, 'Auto Product 59', 'Auto-generated product for image 014AU-MLC-010-1-855786 (1).jpg', '/../products/014AU-MLC-010-1-855786 (1).jpg', 74.25, 'FEMALE', '', 'AutoBrand'),
 (60, 'Auto Product 60', 'Auto-generated product for image 014CC-03X-001-1-910756 (1).jpg', '/../products/014CC-03X-001-1-910756 (1).jpg', 75.00, 'FEMALE', '', 'AutoBrand'),
 (61, 'Auto Product 61', 'Auto-generated product for image 014CH-55X-050-1-938662.jpg', '/../products/014CH-55X-050-1-938662.jpg', 75.75, 'FEMALE', '', 'AutoBrand'),
-(62, 'Auto Product 62', 'Auto-generated product for image 014CR-01X-001-1-913602.jpg', '/../products/014CR-01X-001-1-913602.jpg', 76.50, 'FEMALE', '', 'AutoBrand'),
+(62, 'Auto Product 62', 'Auto-generated product for image 014CR-01X-001-1-913602.jpg', '/../products/product62.jpeg', 76.50, 'FEMALE', '', 'AutoBrand'),
 (63, 'Auto Product 63', 'Auto-generated product for image 015BA-34X-001-1-940454.jpg', '/../products/015BA-34X-001-1-940454.jpg', 77.25, 'FEMALE', '', 'AutoBrand'),
 (64, 'Auto Product 64', 'Auto-generated product for image 015BZ-86X-050-1-894747_2.jpg', '/../products/015BZ-86X-050-1-894747_2.jpg', 78.00, 'FEMALE', '', 'AutoBrand'),
 (65, 'Auto Product 65', 'Auto-generated product for image 016BB-03X-001-1-893561 (1).jpg', '/../products/016BB-03X-001-1-893561 (1).jpg', 78.75, 'FEMALE', '', 'AutoBrand'),
@@ -177,7 +177,7 @@ INSERT INTO `testproducts` (`id`, `name`, `description`, `picture`, `price`, `ge
 (69, 'Auto Product 69', 'Auto-generated product for image 017BR-08X-001-1-847147_2.jpg', '/../products/017BR-08X-001-1-847147_2.jpg', 81.75, 'FEMALE', '', 'AutoBrand'),
 (70, 'Auto Product 70', 'Auto-generated product for image 017CC-01X-001-1-904595 (1).jpg', '/../products/017CC-01X-001-1-904595 (1).jpg', 82.50, 'FEMALE', '', 'AutoBrand'),
 (71, 'Auto Product 71', 'Auto-generated product for image 017CH-55X-001-1-920196_1.jpg', '/../products/017CH-55X-001-1-920196_1.jpg', 83.25, 'FEMALE', '', 'AutoBrand'),
-(72, 'Auto Product 72', 'Auto-generated product for image 017CR-03X-001-1-916436 (1).jpg', '/../products/017CR-03X-001-1-916436 (1).jpg', 84.00, 'FEMALE', '', 'AutoBrand'),
+(72, 'Auto Product 72', 'Auto-generated product for image 017CR-03X-001-1-916436 (1).jpg', '/../products/product72.jpeg', 84.00, 'FEMALE', '', 'AutoBrand'),
 (73, 'Auto Product 73', 'Auto-generated product for image 018BB-33X-001-1-906670_2 (1).jpg', '/../products/018BB-33X-001-1-906670_2 (1).jpg', 84.75, 'FEMALE', '', 'AutoBrand'),
 (74, 'Auto Product 74', 'Auto-generated product for image 018CC-39X-001-1-917498 (1).jpg', '/../products/018CC-39X-001-1-917498 (1).jpg', 85.50, 'FEMALE', '', 'AutoBrand'),
 (75, 'Auto Product 75', 'Auto-generated product for image 018CR-00X-001-1-912742 (1).jpg', '/../products/018CR-00X-001-1-912742 (1).jpg', 86.25, 'FEMALE', '', 'AutoBrand'),
@@ -200,10 +200,10 @@ INSERT INTO `testproducts` (`id`, `name`, `description`, `picture`, `price`, `ge
 (92, 'Auto Product 92', 'Auto-generated product for image 022BZ-50X-001-1-908192_5 (1).jpg', '/../products/022BZ-50X-001-1-908192_5 (1).jpg', 99.00, 'FEMALE', '', 'AutoBrand'),
 (93, 'Auto Product 93', 'Auto-generated product for image 022CA-MLC-001-1-852416_1 (1).jpg', '/../products/022CA-MLC-001-1-852416_1 (1).jpg', 99.75, 'FEMALE', '', 'AutoBrand'),
 (94, 'Auto Product 94', 'Auto-generated product for image 022CA-MLC-001-1-852416_1 (2).jpg', '/../products/022CA-MLC-001-1-852416_1 (2).jpg', 100.50, 'FEMALE', '', 'AutoBrand'),
-(95, 'Auto Product 95', 'Auto-generated product for image 1.jpg', '/../products/1.jpg', 101.25, 'FEMALE', '', 'AutoBrand'),
+(95, 'Auto Product 95', 'Auto-generated product for image 1.jpg', '/../products/product95.jpeg', 101.25, 'FEMALE', '', 'AutoBrand'),
 (96, 'Auto Product 96', 'Auto-generated product for image 11_2.jpg', '/../products/11_2.jpg', 102.00, 'FEMALE', '', 'AutoBrand'),
 (97, 'Auto Product 97', 'Auto-generated product for image 19.jpg', '/../products/19.jpg', 102.75, 'FEMALE', '', 'AutoBrand'),
-(98, 'Auto Product 98', 'Auto-generated product for image 2.jpg', '/../products/2.jpg', 103.50, 'FEMALE', '', 'AutoBrand'),
+(98, 'Auto Product 98', 'Auto-generated product for image 2.jpg', '/../products/product98.jpeg', 103.50, 'FEMALE', '', 'AutoBrand'),
 (99, 'Auto Product 99', 'Auto-generated product for image 21_1.jpg', '/../products/21_1.jpg', 104.25, 'FEMALE', '', 'AutoBrand');
 
 -- --------------------------------------------------------
@@ -230,7 +230,7 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `username`, `email`, `password`, `firstName`, `lastName`, `address`, `role`) VALUES
 (1, 'admin', 'admin@stylung.de', '$2y$10$e4XwgysQY2BJudOVZxdVzOwTKVlHME/bkcMD0JMuhIzpVJLScTTPy', '', '', '', 'admin'),
 (2, 'qeqweqe', 'ka@ka.ka', '$2y$10$iRlfNO1TRSlthsDubicktu4jWT6xSs..1/M/rWp2UzWvpBb/QzSG.', '', '', '', 'user'),
-(3, 'les', 'les@les.les', '$2y$10$POIVT4VeQr2UTq/CzvjmLuJ.QRPjlqyL6vRgpDkeMQX/5t.oi9FiG', '', '', '', 'user'),
+(3, 'les', 'les@les.les', '$2y$10$POIVT4VeQr2UTq/CzvjmLuJ.QRPjlqyL6vRgpDkeMQX/5t.oi9FiG', 'Peter', 'Dom', 'Petersdom 12', 'user'),
 (4, 'username', 'email@stylung.de', '$2y$10$MjVPKYm3A9oOUEu5lXClj.2WCY5nEJrWB4KK.AO07zulSW7Jwi1Uq', 'first', 'last', 'efwfrv', 'user'),
 (5, 'testaccount', 'effefww@defe.de', '$2y$10$dsVq4gitUcpa4vf3v9PCfu75NBgkB43U3A1Q.cBjO40gJKCG6HIFi', 'lorisfefe', 'testefe', 'fwefergferrgfr', 'user');
 

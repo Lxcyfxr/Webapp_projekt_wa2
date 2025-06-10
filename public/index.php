@@ -14,16 +14,16 @@
     <?php include 'navbar.php'; 
     require("../backend/session_timeout.php");?>
     <div class="box-container">
-      <a href="productsite.php?id=2" style="text-decoration: none; color: inherit;">
+      <a href="productsite.php?id=1" style="text-decoration: none; color: inherit;">
         <div class="stylung-box">
-          <img id="img-1" src="/products/product2.jpg"/>
-          <div class="Outfit-300">Ein Stil, der ohne Kompromisse kommt: modern, urban und unverwechselbar.</div>
+          <img id="img-1" src="/products/product1.png"/>
+          <div class="Outfit-300">Egal ob Basic oder Statement - bei uns findest du deinen perfekten Streetstyle.</div>
         </div>
       </a>
-      <a href="productsite.php?id=1" style="text-decoration: none; color: inherit;">
+      <a href="productsite.php?id=2" style="text-decoration: none; color: inherit;">
         <div  class="stylung-box">
-          <img id="img-2" src="/products/product1.png"/>
-          <div class="Outfit-300">Egal ob Basic oder Statement - bei uns findest du deinen perfekten Streetstyle.</div>
+          <img id="img-2" src="/products/product2.jpg"/>
+          <div class="Outfit-300">Ein Stil, der ohne Kompromisse kommt: modern, urban und unverwechselbar.</div>
         </div>
       </a>
       <a href="productsite.php?id=3" style="text-decoration: none; color: inherit;">

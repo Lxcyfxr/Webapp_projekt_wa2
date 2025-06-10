@@ -11,7 +11,7 @@ if ($con->connect_error) {
 }
 header('Content-Type: application/json');
 
-$ids = [100, 2, 3];
+$ids = [2, 1, 3];
 $placeholders = implode(',', array_fill(0, count($ids), '?'));
 $types = str_repeat('i', count($ids));
 

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 10. Jun 2025 um 15:56
+-- Erstellungszeit: 10. Jun 2025 um 16:11
 -- Server-Version: 10.4.32-MariaDB
 -- PHP-Version: 8.2.12
 
@@ -40,7 +40,8 @@ CREATE TABLE `buy_history` (
 
 INSERT INTO `buy_history` (`order_id`, `user_id`, `date`, `price`) VALUES
 (1, 5, '0000-00-00', 47),
-(2, 5, '0000-00-00', 100);
+(2, 5, '0000-00-00', 100),
+(3, 3, '2025-06-10', 50);
 
 -- --------------------------------------------------------
 
@@ -109,7 +110,7 @@ INSERT INTO `testproducts` (`id`, `name`, `description`, `picture`, `price`, `ge
 (1, 'Sinsheim T-Shirt', 'Der Klassiker aus dem ersten Semester!', '/../products/product1.png', 19.99, 'NULL', '[\"S\",\"M\",\"L\",\"XL\"]', 'Stylung'),
 (2, '\"Foalsch!\" - Cap', 'Du hast einen Drang, den bayrischen Dialekt zu verspotten? Dann ist die \"Foalsch!\"-Cap genau das richtige Piece für dich. Simpel und doch vielsagend!', '/../products/product2.jpg', 9.95, 'NULL', '[\"S\",\"M\",\"L\"]', 'Stylung'),
 (3, 'Stylung Patreon Shirt', 'Du möchtest uns unterstützen? Mit dem Patreon Shirt kannst du deine Unterstützung nach Außen zeigen. Hergestellt unter den schlechtesten Bedingungen von Kindern in Uganda, bereichern wir uns maximal.', '/../products/product3.png', 49.90, 'NULL', '[\"XS\",\"S\",\"M\",\"L\",\"XL\"]', 'Stylung'),
-(4, 'Auto Product 4', 'Auto-generated product for image 0002T-57X-001-1-790758_1.jpg', '/../products/0002T-57X-001-1-790758_1.jpg', 33.00, 'FEMALE', '[\"S\",\"M\",\"L\",\"XL\"]', 'AutoBrand'),
+(4, 'Tack Tack Tack T-Shirt', 'Peng aus MickeyMaus, kommt schon Leute!', '/../products/product4.png', 9.99, 'NULL', '[\"S\",\"M\"]', 'Stylung'),
 (5, 'Auto Product 5', 'Auto-generated product for image 0002T-74X-001-1-790760.jpg', '/../products/0002T-74X-001-1-790760.jpg', 33.75, 'FEMALE', '[\"S\",\"M\",\"L\",\"XL\"]', 'AutoBrand'),
 (6, 'Auto Product 6', 'Auto-generated product for image 000BS-MLC-001-1-872384_1 (1).jpg', '/../products/product6.jpeg', 34.50, 'MALE', '[\"S\",\"M\",\"L\",\"XL\"]', 'AutoBrand'),
 (7, 'Auto Product 7', 'Auto-generated product for image 000CC-39X-001-1-871620_1 (1).jpg', '/../products/000CC-39X-001-1-871620_1 (1).jpg', 35.25, 'MALE', '[\"S\",\"M\",\"L\",\"XL\"]', 'AutoBrand'),
@@ -204,7 +205,8 @@ INSERT INTO `testproducts` (`id`, `name`, `description`, `picture`, `price`, `ge
 (96, 'Auto Product 96', 'Auto-generated product for image 11_2.jpg', '/../products/11_2.jpg', 102.00, 'FEMALE', '[\"S\",\"M\",\"L\",\"XL\"]', 'AutoBrand'),
 (97, 'Auto Product 97', 'Auto-generated product for image 19.jpg', '/../products/19.jpg', 102.75, 'FEMALE', '[\"S\",\"M\",\"L\",\"XL\"]', 'AutoBrand'),
 (98, 'Auto Product 98', 'Auto-generated product for image 2.jpg', '/../products/product98.jpeg', 103.50, 'FEMALE', '[\"S\",\"M\",\"L\",\"XL\"]', 'AutoBrand'),
-(99, 'Auto Product 99', 'Auto-generated product for image 21_1.jpg', '/../products/21_1.jpg', 104.25, 'FEMALE', '[\"S\",\"M\",\"L\",\"XL\"]', 'AutoBrand');
+(99, 'Auto Product 99', 'Auto-generated product for image 21_1.jpg', '/../products/21_1.jpg', 104.25, 'FEMALE', '[\"S\",\"M\",\"L\",\"XL\"]', 'AutoBrand'),
+(100, 'T-Shirt \"n-Dimensionaler Hypercube\"', 'Wenn du deinen Freunden schon immer mal den Quantencomputer erklären wolltest, hast du hiermit genau das richtige Stück gefunden.', '/../products/product100.png', 42.42, 'NULL', '[\"XS\",\"S\",\"M\",\"L\",\"XL\"]', 'Stylung');
 
 -- --------------------------------------------------------
 
@@ -276,13 +278,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT für Tabelle `buy_history`
 --
 ALTER TABLE `buy_history`
-  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT für Tabelle `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT für Tabelle `info_contacts`
@@ -294,7 +296,7 @@ ALTER TABLE `info_contacts`
 -- AUTO_INCREMENT für Tabelle `testproducts`
 --
 ALTER TABLE `testproducts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=102;
 
 --
 -- AUTO_INCREMENT für Tabelle `users`

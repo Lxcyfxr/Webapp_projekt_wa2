@@ -9,12 +9,12 @@ if (!isset($_SESSION['username'])) {
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $userid = $_SESSION['id'];
 
-    $userid = $POST['userid'] ?? $userid;
-     // Fallback auf Session-ID, falls nicht gesetzt
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "webapp_project";
+    $config = parse_ini_file('../config.ini', true);
+    $db = $config['database'];
+    $servername = $db['host'];
+    $username = $db['user'];
+    $password = $db['password'];
+    $dbname = $db['dbname'];
 
     $conn = new mysqli($servername, $username, $password, $dbname);
 

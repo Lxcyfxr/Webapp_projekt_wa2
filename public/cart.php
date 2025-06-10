@@ -118,7 +118,7 @@ if (count($cartRows) === 0) {
                 </form>
             </td>
         </tr>";
-    }
+    } 
     echo "</table>";
 }
 echo "</div>";
@@ -132,11 +132,11 @@ echo "<div style='margin-bottom:1.2rem;'><span style='color:#bbb;'>Lieferadresse
 echo "<form action='../backend/buy_product.php' method='POST' style='margin:0;'>
     <input type='hidden' name='price' value='" . number_format($total, 2, '.', '') . "'>
     <button type='submit' style='width:100%;padding:0.8rem 0;border:none;border-radius:8px;background:" . ($noAddress ? "#888" : "#c580f7") . ";color:#fff;font-size:1.1rem;font-weight:600;cursor:" . ($noAddress ? "not-allowed" : "pointer") . ";' " . ($noAddress ? "disabled" : "") . ">Jetzt bestellen</button>
-</form>";
+    </form>";
+echo'<p class="outfit-300 success-message" id="message-container"></p>';
 echo "</div>";
 
 echo "</div>"; // Flex-Container
-echo'<p class="outfit-300 success-message" id="message-container"></p>';
 
 $stmt->close();
 ?>

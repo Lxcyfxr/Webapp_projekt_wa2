@@ -75,7 +75,7 @@
   <footer>
     <hr>
     <p>
-      <a href="impressum.php">Impressum</a> |
+      Impressum |
       <a href="#" id="openForm">Kontaktformular</a> |
       Datenschutz
     </p>

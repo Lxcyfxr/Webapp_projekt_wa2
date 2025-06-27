@@ -4,15 +4,4 @@ RewriteCond %{REQUEST_URI} !^/public/
 RewriteCond %{REQUEST_URI} !^/products/
 RewriteCond %{REQUEST_URI} !^/backend/
 RewriteCond %{REQUEST_URI} !^/\.htaccess$
-RewriteCond %{REQUEST_URI} !^/backend\.php$
-RewriteCond %{REQUEST_URI} !^/cart_backend\.php$
-RewriteCond %{REQUEST_URI} !^/product_add\.php$
-RewriteCond %{REQUEST_URI} !^/product_delete\.php$
-RewriteCond %{REQUEST_URI} !^/product_update\.php$
-RewriteCond %{REQUEST_URI} !^/user_admin\.php$
-RewriteCond %{REQUEST_URI} !^/connection\.php$
-RewriteCond %{REQUEST_URI} !^/export_json\.php$
-RewriteCond %{REQUEST_URI} !^/user_list\.php$
-RewriteCond %{REQUEST_URI} !^/get_products\.php$
-RewriteCond %{REQUEST_URI} !^/buy_product\.php$
 RewriteRule ^(.*)$ public/$1 [L]

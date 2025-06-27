@@ -39,8 +39,8 @@ CREATE TABLE `buy_history` (
 --
 
 INSERT INTO `buy_history` (`order_id`, `user_id`, `date`, `price`) VALUES
-(1, 5, '0000-00-00', 47),
-(2, 5, '0000-00-00', 100),
+(1, 2, '0000-00-00', 47),
+(2, 2, '0000-00-00', 100),
 (3, 3, '2025-06-10', 50);
 
 -- --------------------------------------------------------
@@ -83,7 +83,7 @@ CREATE TABLE `info_contacts` (
 --
 
 INSERT INTO `info_contacts` (`id`, `email`, `problem`, `submitted_at`) VALUES
-(1, 'ka@ka.ka', 'halo ich bin dumm\r\n', '2025-05-21 13:06:07');
+(1, 'anton@ka.com', 'Mein Tshirt ist zu klein\r\n', '2025-05-21 13:06:07');
 
 -- --------------------------------------------------------
 
@@ -231,10 +231,8 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `username`, `email`, `password`, `firstName`, `lastName`, `address`, `role`) VALUES
 (1, 'admin', 'admin@stylung.de', '$2y$10$e4XwgysQY2BJudOVZxdVzOwTKVlHME/bkcMD0JMuhIzpVJLScTTPy', '', '', '', 'admin'),
-(2, 'qeqweqe', 'ka@ka.ka', '$2y$10$iRlfNO1TRSlthsDubicktu4jWT6xSs..1/M/rWp2UzWvpBb/QzSG.', '', '', '', 'user'),
-(3, 'les', 'les@les.les', '$2y$10$POIVT4VeQr2UTq/CzvjmLuJ.QRPjlqyL6vRgpDkeMQX/5t.oi9FiG', 'Peter', 'Dom', 'Petersdom 12', 'user'),
-(4, 'username', 'email@stylung.de', '$2y$10$MjVPKYm3A9oOUEu5lXClj.2WCY5nEJrWB4KK.AO07zulSW7Jwi1Uq', 'first', 'last', 'efwfrv', 'user'),
-(5, 'testaccount', 'effefww@defe.de', '$2y$10$dsVq4gitUcpa4vf3v9PCfu75NBgkB43U3A1Q.cBjO40gJKCG6HIFi', 'lorisfefe', 'testefe', 'fwefergferrgfr', 'user');
+(2, 'les', 'les@les.les', '$2y$10$POIVT4VeQr2UTq/CzvjmLuJ.QRPjlqyL6vRgpDkeMQX/5t.oi9FiG', 'Peter', 'Dom', 'Petersdom 12', 'user'),
+(3, 'testaccount', 'effefww@defe.de', '$2y$10$dsVq4gitUcpa4vf3v9PCfu75NBgkB43U3A1Q.cBjO40gJKCG6HIFi', 'norbert', 'Schefller', 'Musterstraße 12', 'user');
 
 --
 -- Indizes der exportierten Tabellen

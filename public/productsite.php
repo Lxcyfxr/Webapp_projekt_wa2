@@ -100,7 +100,7 @@
             }
 
             $.ajax({
-                url: './add_to_cart.php',
+                url: './backend/add_to_cart.php',
                 type: 'POST',
                 data: {
                     product_id: productId,
